@@ -4,7 +4,19 @@
 ```{r}
 install.packages("readxl")
 library(readxl)
-Thailand <- read_excel("Thailand.xlsx")
+Thailand <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymin_annual_Thailand")
+Thailand
+```
+```{r}
+install.packages("readxl")
+library(readxl)
+Thailand <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymax_annual_Thailand")
+Thailand
+```
+```{r}
+install.packages("readxl")
+library(readxl)
+Thailand <- read_excel("Thailand.xlsx",sheet = "era5_tp(mm)_annual_Thailand")
 Thailand
 ```
 
