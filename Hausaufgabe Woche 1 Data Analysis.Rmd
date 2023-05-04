@@ -1,2 +1,9 @@
-Hallo
+#Download Files into R
+
+```{r}
+install.packages("readxl")
+library(readxl)
+Thailand <- read_excel("Thailand.xlsx")
+Thailand
+```
 
