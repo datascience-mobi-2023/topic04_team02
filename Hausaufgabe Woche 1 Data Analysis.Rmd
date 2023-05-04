@@ -4,19 +4,49 @@
 ```{r}
 install.packages("readxl")
 library(readxl)
-Thailand_daymin <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymin_annual_Thailand")
-Thailand_daymin
+Thailand <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymin_annual_Thailand")
+Thailand
 ```
 ```{r}
 install.packages("readxl")
 library(readxl)
-Thailand_daymax <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymax_annual_Thailand")
-Thailand_daymax
+Thailand <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymax_annual_Thailand")
+Thailand
 ```
 ```{r}
 install.packages("readxl")
 library(readxl)
-Thailand_tp <- read_excel("Thailand.xlsx",sheet = "era5_tp(mm)_annual_Thailand")
-Thailand_tp
+Thailand <- read_excel("Thailand.xlsx",sheet = "era5_tp(mm)_annual_Thailand")
+Thailand
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Questions
+
+Identify which sub-districts are having the highest and the lowest temperature and total precipitation.
+```{r}
+which()
+```
+
+
+Where are these districts located (east, west, north, south or central of the country)?
+
+Are the values of total precipitation realistic, please make some literature review and/or check with available historical weather data.
+
+Check the temporal variation of Dengue cases/deaths.
