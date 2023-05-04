@@ -77,6 +77,13 @@ Where are these districts located (east, west, north, south or central of the co
 Are the values of total precipitation realistic, please make some literature review and/or check with available historical weather data.
 
 ```{r}
+tp = Thailand_tp[, c(3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19)]
+
+plot(tp, type = "b", pch = 19)
+```
+
+
+```{r}
 hist(Thailand_tp$"2008", breaks=15)
 hist(Thailand_tp$"2009", breaks=15)
 hist(Thailand_tp$"2010", breaks=15)
