@@ -44,13 +44,41 @@ Identify which sub-districts are having the highest and the lowest temperature a
 which()
 ```
 
+
+
+
+
+
+
+
+
+
 ## Question 2 (Fiona)
 
 Where are these districts located (east, west, north, south or central of the country)?
 
+
+
+
+
+
+
+
+
+
 ## Question 3 (Lena)
 
 Are the values of total precipitation realistic, please make some literature review and/or check with available historical weather data.
+
+
+
+
+
+
+
+
+
+
 
 ## Question 4 (Niklas)
 
