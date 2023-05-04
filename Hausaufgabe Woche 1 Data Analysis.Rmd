@@ -80,11 +80,34 @@ Are the values of total precipitation realistic, please make some literature rev
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ## Question 4 (Niklas)
 
 Check the temporal variation of Dengue cases/deaths.
 ```{r}
-# load the data of the Dengue cases
+#load Dengue cases and death
+cases = read_excel("Dengue_Data.xlsx", sheet = "Dengue_cases")
+death = read_excel("Dengue_Data.xlsx", sheet = "Denge_deaths")
 
+
+#clean data just for Thailand
+cases_Thai = cases[,c(1,3)]
+death_Thai = death[,c(1,3)]
+
+
+#plot to see cases and death numbers over time
+plot(cases_Thai, type = "b", pch = 19); plot(death_Thai, type = "b", pch = 19)
 ```
+The number of cases peak every 2-3 years, as well as the death count. It should be observed next if there is a correlation between the peaks and the climate data. Between 2015 and 2019 was a rather calm period with less outbreaks than before, which could also be correlated to climate data.
 
