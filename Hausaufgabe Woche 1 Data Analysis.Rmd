@@ -40,14 +40,118 @@ Gideon
 
 Identify which sub-districts are having the highest and the lowest temperature and total precipitation.
 
+***Precipitation***
+
+Step 1: Sort Data Set "Total Precipitation" in 2022 from highest to lowest 
 ```{r}
-which()
+Thailand_tp_sorted = Thailand_tp[order(Thailand_tp$`2022`, decreasing = TRUE), ]
+Thailand_tp_sorted
+```
+
+Step Two: Give me the first six provinces with the highest precipitation and the lowest precipitation
+```{r}
+#sub districts with Highest Precipitation
+Thailand_tp_highest = head(Thailand_tp_sorted)
+Thailand_tp_highest_list = Thailand_tp_highest$ADM1_EN
+Thailand_tp_highest_list
+```
+
+```{r}
+#sub districts with Lowest Precipitation
+Thailand_tp_lowest = tail(Thailand_tp_sorted) 
+Thailand_tp_lowest_list = Thailand_tp_lowest$ADM1_EN
+Thailand_tp_lowest_list
+```
+
+***Maximal Temperatur***
+
+Step 1: Sort Data Set "Max Temperatur" in 2022 from highest to lowest 
+```{r}
+Thailand_daymax_sorted = Thailand_daymax[order(Thailand_daymax$`2022`, decreasing = TRUE), ]
+Thailand_daymax_sorted
+```
+
+Step Two: Give me the first six provinces with the highest max temperatur and the lowest max temperatur
+```{r}
+#sub districts with Highest max Temperatur
+Thailand_daymax_highest = head(Thailand_daymax_sorted)
+Thailand_daymax_highest_list = Thailand_daymax_highest$ADM1_EN
+Thailand_daymax_highest_list
+```
+
+
+```{r}
+#sub districts with Lowest max temperatur
+Thailand_daymax_lowest = tail(Thailand_daymax_sorted) 
+Thailand_daymax_lowest_list = Thailand_daymax_lowest$ADM1_EN
+Thailand_daymax_lowest_list
 ```
 
 
 
+***Minimal Temperatur***
+
+Step 1: Sort Data Set "Min Temperatur" in 2022 from highest to lowest 
+```{r}
+Thailand_daymin_sorted = Thailand_daymin[order(Thailand_daymin$`2022`, decreasing = TRUE), ]
+Thailand_daymin_sorted
+```
+
+Step Two: Give me the first six provinces with the highest min temperatur and the lowest min temperatur
+```{r}
+#sub districts with Highest min Temperatur
+Thailand_daymin_highest = head(Thailand_daymin_sorted)
+Thailand_daymin_highest_list = Thailand_daymin_highest$ADM1_EN
+Thailand_daymin_highest_list
+```
 
 
+```{r}
+#sub districts with Lowest min temperatur
+Thailand_daymin_lowest = tail(Thailand_daymin_sorted) 
+Thailand_daymin_lowest_list = Thailand_daymin_lowest$ADM1_EN
+Thailand_daymin_lowest_list
+```
+
+***Highest Maximum and Minimal Temperatur***
+
+unique districts with the top highest min and max temperatures:
+```{r}
+Thailand_temp_highest = unique(c(Thailand_daymax_highest_list, Thailand_daymin_highest_list))
+Thailand_temp_highest
+```
+
+***lowest Maximum and Minimal Temperatur***
+
+unique districts with the lowest min and max temperatures
+```{r}
+Thailand_temp_lowest = unique(c(Thailand_daymax_lowest_list, Thailand_daymin_lowest_list))
+Thailand_temp_lowest
+```
+
+Summary: 
+Sub-districts highest temperature
+```{r}
+Thailand_temp_highest
+```
+
+
+sub-districts lowest temperature
+```{r}
+Thailand_temp_lowest
+```
+
+
+sub-districts highest total precipitation.
+```{r}
+Thailand_tp_highest_list
+```
+
+
+sub_districts lowest total precipitation
+```{r}
+Thailand_tp_lowest_list
+```
 
 
 
