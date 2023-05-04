@@ -1,40 +1,33 @@
 <<<<<<< HEAD
 #Download Files into R
 
+
+Thailand Climate Data: 
+
 ```{r}
 install.packages("readxl")
 library(readxl)
-Thailand <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymin_annual_Thailand")
-Thailand
+
+Thailand_daymin <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymin_annual_Thailand")
+Thailand_daymin
 ```
+
 ```{r}
-install.packages("readxl")
-library(readxl)
-Thailand <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymax_annual_Thailand")
-Thailand
+Thailand_daymax <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymax_annual_Thailand")
+Thailand_daymax
 ```
+
 ```{r}
-install.packages("readxl")
-library(readxl)
-Thailand <- read_excel("Thailand.xlsx",sheet = "era5_tp(mm)_annual_Thailand")
-Thailand
+Thailand_tp <- read_excel("Thailand.xlsx",sheet = "era5_tp(mm)_annual_Thailand")
+Thailand_tp
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Dengue Data
+```{r}
+Gideon <- read_excel("Dengue_Data.xlsx",sheet = "Gideon")
+Gideon
+```
 
 
 Questions
@@ -50,3 +43,7 @@ Where are these districts located (east, west, north, south or central of the co
 Are the values of total precipitation realistic, please make some literature review and/or check with available historical weather data.
 
 Check the temporal variation of Dengue cases/deaths.
+
+
+
+
