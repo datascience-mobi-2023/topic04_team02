@@ -3,6 +3,8 @@
 install.packages("readxl")
 library(readxl)
 ```
+
+
 # Thailand Climate Data: 
 
 ```{r}
@@ -32,9 +34,13 @@ Gideon <- read_excel("Dengue_Data.xlsx",sheet = "Gideon")
 Gideon
 ```
 
-# Questions for Week 1
-## Question 1
 
+
+
+# Questions for Week 1
+
+
+## Question 1 (Lenny)
 Identify which sub-districts are having the highest and the lowest temperature and total precipitation.
 
 ```{r}
@@ -56,7 +62,7 @@ which()
 
 
 
-## Question 2
+## Question 2 (Fiona)
 Where are these districts located (east, west, north, south or central of the country)?
 
 
@@ -68,7 +74,12 @@ Where are these districts located (east, west, north, south or central of the co
 
 
 
-## Question 3
+
+
+
+
+
+## Question 3 (Lena)
 Are the values of total precipitation realistic, please make some literature review and/or check with available historical weather data.
 
 
@@ -84,8 +95,25 @@ Are the values of total precipitation realistic, please make some literature rev
 
 
 
-## Question 4
+
+
+
+
+## Question 4 (Niklas)
 Check the temporal variation of Dengue cases/deaths.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
