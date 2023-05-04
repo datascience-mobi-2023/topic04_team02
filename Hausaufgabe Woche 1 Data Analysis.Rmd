@@ -6,6 +6,11 @@ Thailand Climate Data:
 ```{r}
 install.packages("readxl")
 library(readxl)
+```
+
+```{r}
+install.packages("readxl")
+library(readxl)
 
 Thailand_daymin <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymin_annual_Thailand")
 Thailand_daymin
