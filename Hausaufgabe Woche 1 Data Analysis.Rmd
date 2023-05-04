@@ -1,6 +1,6 @@
 ---
 title: "Hausaufgabe Woche 1 Data Analysis Thailand"
-author: "Lennard Moschner"
+author: "Leonardo Moschner"
 date: "2023-05-04"
 output: html_document
 ---
@@ -28,3 +28,4 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
