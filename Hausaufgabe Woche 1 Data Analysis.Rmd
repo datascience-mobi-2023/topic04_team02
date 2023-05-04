@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #Download Files into R
 
 ```{r}
