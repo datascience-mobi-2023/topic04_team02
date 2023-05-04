@@ -1,2 +1,6 @@
-Hallo
+Hausaufgaben Woche 1
+
+```{r}
+
+```
 
