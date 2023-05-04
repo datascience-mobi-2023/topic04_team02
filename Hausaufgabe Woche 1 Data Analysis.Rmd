@@ -82,6 +82,23 @@ Where are these districts located (east, west, north, south or central of the co
 ## Question 3 (Lena)
 Are the values of total precipitation realistic, please make some literature review and/or check with available historical weather data.
 
+```{r}
+hist(Thailand_tp$"2008", breaks=15)
+hist(Thailand_tp$"2009", breaks=15)
+hist(Thailand_tp$"2010", breaks=15)
+hist(Thailand_tp$"2011", breaks=15)
+hist(Thailand_tp$"2012", breaks=15)
+hist(Thailand_tp$"2013", breaks=15)
+hist(Thailand_tp$"2014", breaks=15)
+hist(Thailand_tp$"2015", breaks=15)
+hist(Thailand_tp$"2016", breaks=15)
+hist(Thailand_tp$"2017", breaks=15)
+hist(Thailand_tp$"2018", breaks=15)
+hist(Thailand_tp$"2019", breaks=15)
+hist(Thailand_tp$"2020", breaks=15)
+hist(Thailand_tp$"2021", breaks=15)
+hist(Thailand_tp$"2022", breaks=15)
+```
 
 
 
