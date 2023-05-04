@@ -1,12 +1,9 @@
-
-
-
-Thailand Climate Data: 
-
+# Install beforehand
 ```{r}
 install.packages("readxl")
 library(readxl)
 ```
+# Thailand Climate Data: 
 
 ```{r}
 install.packages("readxl")
@@ -27,25 +24,67 @@ Thailand_tp
 ```
 
 
-Dengue Data
+# Dengue Data
+Extracted from Gideon:
+
 ```{r}
 Gideon <- read_excel("Dengue_Data.xlsx",sheet = "Gideon")
 Gideon
 ```
 
-
-Questions
+# Questions for Week 1
+## Question 1
 
 Identify which sub-districts are having the highest and the lowest temperature and total precipitation.
+
 ```{r}
 which()
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Question 2
 Where are these districts located (east, west, north, south or central of the country)?
 
+
+
+
+
+
+
+
+
+
+## Question 3
 Are the values of total precipitation realistic, please make some literature review and/or check with available historical weather data.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Question 4
 Check the temporal variation of Dengue cases/deaths.
 
 
