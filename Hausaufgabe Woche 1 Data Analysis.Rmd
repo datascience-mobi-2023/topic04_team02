@@ -215,6 +215,7 @@ plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[26,5:19], type = "b", pch
 
 ```{r}
 <<<<<<< HEAD
+<<<<<<< HEAD
 hist(Thailand_tp$"2008", ylim=c(0,20), breaks=15)
 hist(Thailand_tp$"2009", ylim=c(0,20), breaks=15)
 hist(Thailand_tp$"2010", ylim=c(0,20), breaks=15)
@@ -246,6 +247,23 @@ hist(Thailand_tp$"2019", breaks=15, main = colnames(Thailand_tp[,16]), xlab = "t
 hist(Thailand_tp$"2020", breaks=15, main = colnames(Thailand_tp[,17]), xlab = "total percipitation")
 hist(Thailand_tp$"2021", breaks=15, main = colnames(Thailand_tp[,18]), xlab = "total percipitation")
 hist(Thailand_tp$"2022", breaks=15, main = colnames(Thailand_tp[,19]), xlab = "total percipitation")
+=======
+hist(Thailand_tp$"2008", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,5]), xlab = "total percipitation")
+hist(Thailand_tp$"2009", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,6]), xlab = "total percipitation")
+hist(Thailand_tp$"2010", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,7]), xlab = "total percipitation")
+hist(Thailand_tp$"2011", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,8]), xlab = "total percipitation")
+hist(Thailand_tp$"2012", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,9]), xlab = "total percipitation")
+hist(Thailand_tp$"2013", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,10]), xlab = "total percipitation")
+hist(Thailand_tp$"2014", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,11]), xlab = "total percipitation")
+hist(Thailand_tp$"2015", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,12]), xlab = "total percipitation")
+hist(Thailand_tp$"2016", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,13]), xlab = "total percipitation")
+hist(Thailand_tp$"2017", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,14]), xlab = "total percipitation")
+hist(Thailand_tp$"2018", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,15]), xlab = "total percipitation")
+hist(Thailand_tp$"2019", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,16]), xlab = "total percipitation")
+hist(Thailand_tp$"2020", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,17]), xlab = "total percipitation")
+hist(Thailand_tp$"2021", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,18]), xlab = "total percipitation")
+hist(Thailand_tp$"2022", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,19]), xlab = "total percipitation")
+>>>>>>> 655a8528ccf0e5e2c230d2ba82a122bb4eb82109
 ```
 
 ## Question 4 (Niklas)
