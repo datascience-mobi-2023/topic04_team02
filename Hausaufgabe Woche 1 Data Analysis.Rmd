@@ -186,45 +186,45 @@ plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[1,5:19], type = "b", pch 
 ```{r}
 #central 
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[1,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[1,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[1,5:19], type = "b", pch = 19, col="red", xlab = "year", ylab = "total percipitation", main = Thailand_tp[1,2])
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[2,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[2,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[2,5:19], type = "b", pch = 19, col="red", xlab = "year", ylab = "total percipitation", main = Thailand_tp[2,2])
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[60,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[60,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[60,5:19], type = "b", pch = 19, col="red", xlab = "year", ylab = "total percipitation", main = Thailand_tp[60,2])
 
 #north
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[46,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[46,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[46,5:19], type = "b", pch = 19, col="darkblue", xlab = "year", ylab = "total percipitation", main = Thailand_tp[46,2])
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[45,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[45,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[45,5:19], type = "b", pch = 19, col="darkblue", xlab = "year", ylab = "total percipitation", main = Thailand_tp[45,2])
 
 #south
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[75,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[75,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[75,5:19], type = "b", pch = 19, col="green", xlab = "year", ylab = "total percipitation", main = Thailand_tp[75,2])
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[76,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[76,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[76,5:19], type = "b", pch = 19, col="green", xlab = "year", ylab = "total percipitation", main = Thailand_tp[76,2])
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[77,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[77,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[77,5:19], type = "b", pch = 19, col="green", xlab = "year", ylab = "total percipitation", main = Thailand_tp[77,2])
 
 #mid-tail
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[69,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[69,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[69,5:19], type = "b", pch = 19, col="purple", xlab = "year", ylab = "total percipitation", main = Thailand_tp[69,2])
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[70,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[70,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[70,5:19], type = "b", pch = 19, col="purple", xlab = "year", ylab = "total percipitation", main = Thailand_tp[70,2])
 
 #west
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[51,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[51,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[51,5:19], type = "b", pch = 19, col="turquoise", xlab = "year", ylab = "total percipitation", main = Thailand_tp[51,2])
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[57,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[57,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[57,5:19], type = "b", pch = 19, col="turquoise", xlab = "year", ylab = "total percipitation", main = Thailand_tp[57,2])
 
 #east
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[22,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[22,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[22,5:19], type = "b", pch = 19, col="orange", xlab = "year", ylab = "total percipitation", main = Thailand_tp[22,2])
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[23,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[23,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[23,5:19], type = "b", pch = 19, col="orange", xlab = "year", ylab = "total percipitation", main = Thailand_tp[23,2])
 
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[26,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[26,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[26,5:19], type = "b", pch = 19, col="orange", xlab = "year", ylab = "total percipitation", main = Thailand_tp[26,2])
 
 ```
 
