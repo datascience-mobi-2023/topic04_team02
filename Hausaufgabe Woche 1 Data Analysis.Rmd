@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-#Download Files into R
+
 
 ```{r}
 install.packages("readxl")
