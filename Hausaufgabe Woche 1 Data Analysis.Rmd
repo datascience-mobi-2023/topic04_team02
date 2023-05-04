@@ -180,7 +180,7 @@ Are the values of total precipitation realistic, please make some literature rev
 ### Change in total percipitation over the years in the provinces
 
 ```{r}
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[1,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = Thailand_tp[1,2]); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[2,5:19], type = "b", pch = 19, col = "red")
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[1,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = "Bangkok (black), Trat (green) and Samut Songkhram (red)", ylim = c(900,3500)); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[61,5:19], type = "b", pch = 19, col = "red"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[14,5:19], type = "b", pch = 19, col = "green")
 ```
 
 ```{r}
