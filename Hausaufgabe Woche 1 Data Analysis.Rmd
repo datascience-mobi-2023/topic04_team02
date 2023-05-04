@@ -4,19 +4,19 @@
 ```{r}
 install.packages("readxl")
 library(readxl)
-Thailand <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymin_annual_Thailand")
-Thailand
+Thailand_daymin <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymin_annual_Thailand")
+Thailand_daymin
 ```
 ```{r}
 install.packages("readxl")
 library(readxl)
-Thailand <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymax_annual_Thailand")
-Thailand
+Thailand_daymax <- read_excel("Thailand.xlsx",sheet = "era5_t2m_daymax_annual_Thailand")
+Thailand_daymax
 ```
 ```{r}
 install.packages("readxl")
 library(readxl)
-Thailand <- read_excel("Thailand.xlsx",sheet = "era5_tp(mm)_annual_Thailand")
-Thailand
+Thailand_tp <- read_excel("Thailand.xlsx",sheet = "era5_tp(mm)_annual_Thailand")
+Thailand_tp
 ```
 
