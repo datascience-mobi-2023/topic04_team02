@@ -365,15 +365,15 @@ Are the values of total precipitation realistic, please make some literature rev
 ### Change in total precipitation over the years in the provinces
 
 ```{r}
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[1,5:19], type = "b", pch = 19, xlab = "year", ylab = "total percipitation", main = "Bangkok (black), Trat (green) and Chiang Rai (red)", ylim = c(900,3500)); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[46,5:19], type = "b", pch = 19, col = "red"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[14,5:19], type = "b", pch = 19, col = "green")
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[1,5:19], type = "b", pch = 19, col = "green", xlab = "year", ylab = "total precipitation", main = "Bangkok (green), Nakhon Phanom (turquoise), Chanthaburi (pink), Tak (darkblue), Nan (red) and Pattani (orange)", ylim = c(900,3500)); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[75,5:19], type = "b", pch = 19, col = "orange"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[37,5:19], type = "b", pch = 19, col = "turquoise"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[13,5:19], type = "b", pch = 19, col = "pink"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[51,5:19], type = "b", pch = 19, col = "darkblue"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[44,5:19], type = "b", pch = 19, col = "red"); 
 ```
 
 ```{r}
 ##total precipitation in different parts of thailands (directions based on "map_provinces")
 
 #north
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[37,5:19], type = "b", pch = 19, col="turquoise", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = Thailand_tp[37,2])
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[38,5:19], type = "b", pch = 19, col="turquoise", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = Thailand_tp[38,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[44,5:19], type = "b", pch = 19, col="red", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = Thailand_tp[44,2])
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[46,5:19], type = "b", pch = 19, col="red", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = Thailand_tp[46,2])
 
 #northeast
 plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[22,5:19], type = "b", pch = 19, col="orange", ylim = c(900,3500), xlab = "year", ylab = "total percipitation", main = Thailand_tp[22,2])
