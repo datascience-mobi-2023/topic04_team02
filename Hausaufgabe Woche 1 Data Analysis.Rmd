@@ -363,7 +363,13 @@ Are the values of total precipitation realistic, please make some literature rev
 ### Change in total precipitation over the years in the provinces
 
 ```{r}
-plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[1,5:19], type = "b", pch = 19, col = "green", xlab = "year", ylab = "total precipitation", main = "Bangkok (green), Nakhon Phanom (turquoise), Chanthaburi (pink), Tak (darkblue), Nan (red) and Pattani (orange)", ylim = c(900,3500)); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[75,5:19], type = "b", pch = 19, col = "orange"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[37,5:19], type = "b", pch = 19, col = "turquoise"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[13,5:19], type = "b", pch = 19, col = "pink"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[51,5:19], type = "b", pch = 19, col = "darkblue"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[44,5:19], type = "b", pch = 19, col = "red"); 
+plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[1,5:19], type = "b", pch = 19, col = "green", xlab = "year", ylab = "total precipitation", main = "total precipitation 2008-2022", ylim = c(900,3500)); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[75,5:19], type = "b", pch = 19, col = "orange"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[37,5:19], type = "b", pch = 19, col = "turquoise"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[13,5:19], type = "b", pch = 19, col = "pink"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[51,5:19], type = "b", pch = 19, col = "darkblue"); lines(colnames(Thailand_tp[,5:19]), Thailand_tp[44,5:19], type = "b", pch = 19, col = "red"); 
+
+legend(x = "topright",          
+       legend = c("Pattani", "Chanthaburi", "Nakhon Phanom", "Tak", "Nan", "Bangkok"),  
+       lty = c(1),           
+       col = c(col= "orange",col="pink", col="turquoise",col="darkblue",col="red", col="green"),           
+       lwd = 2)      
 ```
 
 ```{r}
