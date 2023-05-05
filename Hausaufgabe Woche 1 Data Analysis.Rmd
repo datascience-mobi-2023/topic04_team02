@@ -207,6 +207,29 @@ Thailand_lowest_meantemp_provinces = Thailand_lowest_meantemp[,1]
 Thailand_lowest_meantemp_provinces
 ```
 
+***mean total precipitation of all provinces***
+```{r}
+#mean of each province over all years
+Thailand_mean_tp = apply(Thailand_tp[,5:19], 1, mean)
+#add name of the provinces to the data frame
+Thailand_mean_tp = cbind(province_names, Thailand_mean_tp)
+```
+
+***provinces with highest and lowest total precipitation***
+```{r}
+#sort the provinces by mean total precipitation
+Thailand_mean_tp[order(Thailand_mean_tp[,2], decreasing = TRUE),]
+
+#Show 6 provinces each with highest and lowest total precipitation 
+Thailand_highest_meantp = head(Thailand_mean_tp[order(Thailand_mean_tp[,2], decreasing = TRUE),])
+Thailand_lowest_meantp  = head(Thailand_mean_tp[order(Thailand_mean_tp[,2], decreasing = FALSE),])
+
+#show the provinces together with their mean total precipitation
+Thailand_highest_meantp
+Thailand_lowest_meantp
+```
+
+
 ## Question 2 (Fiona)
 
 Where are these districts located (east, west, north, south or central of the country)?
