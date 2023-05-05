@@ -396,9 +396,6 @@ plot(x = colnames(Thailand_tp[,5:19]), y = Thailand_tp[70,5:19], type = "b", pch
 
 ```
 
-
-
-
 ```{r}
 hist(Thailand_tp$"2008", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,5]), xlab = "total precipitation")
 hist(Thailand_tp$"2009", ylim=c(0,20), breaks=15, main = colnames(Thailand_tp[,6]), xlab = "total precipitation")
