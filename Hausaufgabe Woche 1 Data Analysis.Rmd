@@ -156,6 +156,57 @@ sub_districts lowest total precipitation
 Thailand_tp_lowest_list
 ```
 
+### Second Solution (Fiona)
+
+***Province names***
+```{r}
+province_names = Thailand_daymax[,2]
+province_names
+```
+
+***Means over the years 2008-2022***
+
+```{r}
+#Mean over years 2008-2022 per province
+Thailand_tp_mean = apply(Thailand_tp[,5:19], 1, mean)
+Thailand_tp_province_mean = cbind(province_names, Thailand_tp_mean)
+Thailand_tp_province_mean
+
+#Mean Min and Max Temperature per province
+Thailand_daymin_mean = apply(Thailand_daymin[,5:19], 1, mean)
+Thailand_daymax_mean = apply(Thailand_daymax[,5:19], 1, mean)
+
+#Creation of a new dataframe with daymin and daymay per province
+Thailand_daymin_province_mean = cbind(Thailand_daymin_mean, Thailand_daymax_mean)
+Thailand_Temp_min_max = cbind(province_names, Thailand_daymin_province_mean) 
+Thailand_Temp_min_max
+```
+
+
+***Mean Temperature of daymin and daymax per province***
+
+```{r}
+Thailand_meantemp = apply(Thailand_Temp_min_max[,2:3], 1, mean)
+Thailand_temp_mean =  cbind(province_names, Thailand_meantemp)
+Thailand_temp_mean
+```
+
+***Provinces with highest mean temperature***
+```{r}
+Thailand_highest_meantemp = Thailand_temp_mean[head(order(Thailand_temp_mean[,2], decreasing = TRUE)),]
+Thailand_highest_meantemp
+Thailand_highest_meantemp_provinces = Thailand_highest_meantemp[,1]
+Thailand_highest_meantemp_provinces
+```
+
+***Provinces with lowest mean temperature***
+```{r}
+Thailand_lowest_meantemp = Thailand_temp_mean[tail(order(Thailand_temp_mean[,2], decreasing = TRUE)),]
+Thailand_lowest_meantemp
+Thailand_lowest_meantemp_provinces = Thailand_lowest_meantemp[,1]
+Thailand_lowest_meantemp_provinces
+```
+
 ## Question 2 (Fiona)
 
 Where are these districts located (east, west, north, south or central of the country)?
@@ -172,8 +223,45 @@ Thailand_provinces_south = list("Chumphon", "Krabi", "Nakhon Si Thammarat", "Nar
 Thailand_provinces_central = list("Ang Thong", "Chachoengsao", "Chai Nat", "Chanthaburi", "Chon Buri", "Kamphaeng Phet", "Kanchanaburi", "Lop Buri", "Nakhon Nayok", "Nakhon Pathom", "Nakhon Sawan", "Nonthaburi", "Pathum Thani", "Phetchabun", "Phetchaburi", "Phichit", "Phitsanulok", "Phra Nakhon Si Ayutthaya", "Prachin Buri", "Prachuap Khiri Khan", "Ratchaburi", "Rayong", "Sa Keao", "Samut Prakan", "Samut Sakhon", "Samut Songkhram", "Saraburi", "Sing Buri", "Sukhothai", "Suphan Buri", "Tak", "Trat", "Uthai Thani")
 ```
 
+###Location of the provinces with the highest mean temperature over the years 2008-2022
 
-### Location of the provinces with the highest temperature
+```{r}
+#provinces in North Thailand
+Thailand_lowest_meantemp_provinces[which(Thailand_lowest_meantemp_provinces %in% Thailand_provinces_north)]
+
+#provinces in Northeastern Thailand
+Thailand_lowest_meantemp_provinces[which(Thailand_lowest_meantemp_provinces %in% Thailand_provinces_northeastern)]
+
+#provinces in Central Thailand
+Thailand_lowest_meantemp_provinces[which(Thailand_lowest_meantemp_provinces%in% Thailand_provinces_central)]
+
+#provinces in South Thailand
+Thailand_lowest_meantemp_provinces[which(Thailand_lowest_meantemp_provinces %in% Thailand_provinces_south)]
+```
+
+
+### Location of the provinces with the lowest mean temperature over the years 2008-2022
+
+```{r}
+#provinces in North Thailand
+Thailand_highest_meantemp_provinces[which(Thailand_highest_meantemp_provinces %in% Thailand_provinces_north)]
+
+#provinces in Northeastern Thailand
+Thailand_highest_meantemp_provinces[which(Thailand_highest_meantemp_provinces %in% Thailand_provinces_northeastern)]
+
+#provinces in Central Thailand
+Thailand_highest_meantemp_provinces[which(Thailand_highest_meantemp_provinces%in% Thailand_provinces_central)]
+
+#provinces in South Thailand
+Thailand_highest_meantemp_provinces[which(Thailand_highest_meantemp_provinces %in% Thailand_provinces_south)]
+```
+
+
+
+
+### Answers for Lennys Solution
+
+####Location of the provinces with the highest temperature for 2022 
 
 ```{r}
 #provinces in North Thailand
@@ -192,7 +280,7 @@ Thailand_temp_highest[which(Thailand_temp_highest %in% Thailand_provinces_south)
 The provinces with the highest temperature are not located in north and northeastern Thailand. All provinces with the highest temperature except of Phuket are located in central Thailand. Phuket is located in the south.
 
 
-### Location of the provinces with the lowest temperature
+#### Location of the provinces with the lowest temperature
 
 ```{r}
 #provinces in North Thailand
@@ -211,7 +299,7 @@ Thailand_temp_lowest[which(Thailand_temp_lowest %in% Thailand_provinces_south)]
 The provinces with the lowest temperature are mostly located in north and central Thailand.
 
 
-### Location of the provinces with the highest total precipitation 
+#### Location of the provinces with the highest total precipitation 
 
 ```{r}
 #provinces in North Thailand
@@ -229,7 +317,7 @@ Thailand_tp_highest_list[which(Thailand_tp_highest_list %in% Thailand_provinces_
 
 The provinces with the highest total precipitation are mostly located in south Thailand. One of the provinces with the highest total precipitation is located in central Thailand.
 
-### Location of the provinces with the lowest total precipitation 
+#### Location of the provinces with the lowest total precipitation 
 
 ```{r}
 #provinces in North Thailand
