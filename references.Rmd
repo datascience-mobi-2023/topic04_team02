@@ -38,15 +38,6 @@
 
 <https://peerj.com/articles/12659/>
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> c6945c59aa146dc8e591ae35249bd756ac8e2101
->>>>>>> Stashed changes
 # The impact of climate on dengue (general reports)
 
 ## A regional suitable conditions index to forecast the impact of climate change on dengue vectorial capacity
