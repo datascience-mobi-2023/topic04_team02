@@ -8,6 +8,12 @@ date: "2023-05-12"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(readxl)
+Precipitation <- read_excel("ClimateData_2006_2020.xlsx", sheet = "era5_tp_2006_2020_thailand_monm")
+Precipitation
+```
+
 
 ## R Markdown
 
