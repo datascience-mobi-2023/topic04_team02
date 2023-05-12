@@ -13,6 +13,9 @@
 
 <https://www.cambridge.org/core/journals/epidemiology-and-infection/article/are-we-modelling-the-correct-dataset-minimizing-false-predictions-for-dengue-fever-in-thailand/747AE7867C566B28F047623199298D04>
 
+- susceptible-infected-recovered (SIR) type model
+- respective state space plots
+
 ## Economic impact of dengue fever/dengue hemorrhagic fever in Thailand at the family and population levels
 
 <https://www.ajtmh.org/view/journals/tpmd/72/6/article-p786.xml>
@@ -27,10 +30,23 @@
 
 <https://www.webofscience.com/wos/biosis/full-record/BIOSIS:PREV202100467603>
 
+- annual precipitation total: decreasing trend in eastern Thailand, increasing trend in northern Thailand 
+- annual number of rainy days: decreasing trend in Thailand 
+- consecutive wet days: widespread decreasing trend in most regions (drastic decline in southern Thailand)
+
 ## Multiple comparisons of precipitation variations in different areas using simultaneous confidence intervals for all possible ratios of variances of several zero-inflated lognormal models
 
 <https://peerj.com/articles/12659/>
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> c6945c59aa146dc8e591ae35249bd756ac8e2101
+>>>>>>> Stashed changes
 # The impact of climate on dengue (general reports)
 
 ## A regional suitable conditions index to forecast the impact of climate change on dengue vectorial capacity
@@ -113,7 +129,7 @@
 
 <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0034651>
 
-# General Review of all reviews
+#' General Review of all reviews
 
 <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9197220/>
 
