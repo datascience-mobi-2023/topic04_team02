@@ -363,42 +363,33 @@ Are the values of total precipitation realistic, please make some literature rev
 ### Change in total precipitation over the years in the provinces
 
 ```{r}
-plot(x = colnames(tp[,5:19]), y = tp[1,5:19], type = "b", pch = 19, col = "green", xlab = "year", ylab = "total precipitation", main = "total precipitation 2008-2022", ylim = c(900,3500)); lines(colnames(tp[,5:19]), tp[75,5:19], type = "b", pch = 19, col = "orange"); lines(colnames(tp[,5:19]), tp[37,5:19], type = "b", pch = 19, col = "turquoise"); lines(colnames(tp[,5:19]), tp[13,5:19], type = "b", pch = 19, col = "pink"); lines(colnames(tp[,5:19]), tp[51,5:19], type = "b", pch = 19, col = "darkblue"); lines(colnames(tp[,5:19]), tp[44,5:19], type = "b", pch = 19, col = "red"); 
+plot(x = colnames(tp[,5:19]), y = tp[1,5:19], type = "b", pch = 19, col = "green", xlab = "year", ylab = "total precipitation", main = "total precipitation 2008-2022", ylim = c(900,3500)); lines(colnames(tp[,5:19]), tp[44,5:19], type = "b", pch = 19, col = "orange");  lines(colnames(tp[,5:19]), tp[37,5:19], type = "b", pch = 19, col = "blue"); lines(colnames(tp[,5:19]), tp[75,5:19], type = "b", pch = 19, col = "red"); 
 
 legend(x = "topright",          
-       legend = c("Pattani (southt)", "Chanthaburi (east)", "Nakhon Phanom (northeast)", "Tak (west)", "Nan (south)", "Bangkok (central)"),  
+       legend = c("Pattani (south)", "Nan (north)", "Nakhon Phanom (northeastern)", "Bangkok (central)"),  
        lty = c(1),           
-       col = c(col= "orange",col="pink", col="turquoise",col="darkblue",col="red", col="green"),           
-       lwd = 2)      
+       col = c(col= "red",col="blue",col="orange", col="green"),           
+       lwd = 2)     
 ```
 
 ```{r}
 ##total precipitation in different parts of thailands (directions based on "map_provinces")
 
 #north
-plot(x = colnames(tp[,5:19]), y = tp[44,5:19], type = "b", pch = 19, col="red", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[44,2])
-plot(x = colnames(tp[,5:19]), y = tp[46,5:19], type = "b", pch = 19, col="red", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[46,2])
+plot(x = colnames(tp[,5:19]), y = tp[44,5:19], type = "b", pch = 19, col="blue", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[44,2])
+plot(x = colnames(tp[,5:19]), y = tp[46,5:19], type = "b", pch = 19, col="blue", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[46,2])
 
-#northeast
-plot(x = colnames(tp[,5:19]), y = tp[22,5:19], type = "b", pch = 19, col="turquoise", ylim = c(900,3500), xlab = "year", ylab = "total percipitation", main = tp[22,2])
-plot(x = colnames(tp[,5:19]), y = tp[23,5:19], type = "b", pch = 19, col="turquoise", ylim = c(900,3500), xlab = "year", ylab = "total percipitation", main = tp[23,2])
-
-#west
-plot(x = colnames(tp[,5:19]), y = tp[51,5:19], type = "b", pch = 19, col="darkblue", ylim = c(900,3500), xlab = "year", ylab = "total percipitation", main = tp[51,2])
-plot(x = colnames(tp[,5:19]), y = tp[57,5:19], type = "b", pch = 19, col="darkblue", ylim = c(900,3500), xlab = "year", ylab = "total percipitation", main = tp[57,2])
-
+#northeastern
+plot(x = colnames(tp[,5:19]), y = tp[22,5:19], type = "b", pch = 19, col="orange", ylim = c(900,3500), xlab = "year", ylab = "total percipitation", main = tp[22,2])
+plot(x = colnames(tp[,5:19]), y = tp[23,5:19], type = "b", pch = 19, col="orange", ylim = c(900,3500), xlab = "year", ylab = "total percipitation", main = tp[23,2])
 
 #central
 plot(x = colnames(tp[,5:19]), y = tp[1,5:19], type = "b", pch = 19, col="green", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[1,2])
 plot(x = colnames(tp[,5:19]), y = tp[2,5:19], type = "b", pch = 19, col="green", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[2,2])
 
-#east
-plot(x = colnames(tp[,5:19]), y = tp[13,5:19], type = "b", pch = 19, col="pink", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[13,2])
-plot(x = colnames(tp[,5:19]), y = tp[14,5:19], type = "b", pch = 19, col="pink", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[14,2])
-
 #south
-plot(x = colnames(tp[,5:19]), y = tp[75,5:19], type = "b", pch = 19, col="orange", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[75,2])
-plot(x = colnames(tp[,5:19]), y = tp[70,5:19], type = "b", pch = 19, col="orange", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[70,2])
+plot(x = colnames(tp[,5:19]), y = tp[75,5:19], type = "b", pch = 19, col="red", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[75,2])
+plot(x = colnames(tp[,5:19]), y = tp[70,5:19], type = "b", pch = 19, col="red", ylim = c(900,3500), xlab = "year", ylab = "total precipitation", main = tp[70,2])
 
 ```
 
