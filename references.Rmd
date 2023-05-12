@@ -20,6 +20,8 @@
 
 <https://www.cambridge.org/core/journals/epidemiology-and-infection/article/geographical-structure-of-dengue-transmission-and-its-determinants-in-thailand/97D0F8EE84FCDE429C806F9EE8950631>
 
+
+
 # Precipitation (Thailand)
 
 ## Projection of the Precipitation Extremes in Thailand Under Climate Change Scenario RCP8.5
@@ -29,6 +31,8 @@
 ## Multiple comparisons of precipitation variations in different areas using simultaneous confidence intervals for all possible ratios of variances of several zero-inflated lognormal models
 
 <https://peerj.com/articles/12659/>
+
+
 
 # The impact of climate on dengue (general reports)
 
@@ -52,6 +56,8 @@
 
 <https://www.webofscience.com/wos/biosis/full-record/BIOSIS:PREV201400626986>
 
+
+
 # The impact of climate on dengue (Thailand based reports)
 
 ## Spatiotemporal patterns and climatic drivers of severe dengue in Thailand
@@ -73,6 +79,8 @@
 ## The association between dengue incidences and provincial-level weather variables in Thailand from 2001 to 2014
 
 <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0226945>
+
+
 
 # The impact of climate on dengue (reports based on other locations)
 
