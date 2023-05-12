@@ -95,3 +95,39 @@
 ## Effects of Extreme Precipitation to the Distribution of Infectious Diseases in Taiwan, 1994-2008
 
 <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0034651>
+
+# General Review of all reviews
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9197220/
+
+# notes wednesday
+Mobility Data 
+
+Temperature 
+Precipitation 
+Humidity 
+
+Monthly Data
+2003 - 2020 
+
+- Hypothesis unbiased 
+- Based on Literature 
+- Background slide about biological mechanism 
+
+AREMA Model 
+GAM Model for Prediction 
+
+First descriptive analysis correlation Analysis and …. 
+Tools for plotting maps 
+Environmental Variables
+
+17.05 Project Proposal. 
+
+Spacial Temporal Analysis
+Plotting 
+Graphs 
+Model Data
+
+
+
+
