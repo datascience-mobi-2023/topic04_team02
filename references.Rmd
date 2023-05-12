@@ -1,6 +1,5 @@
 # Dengue in Thailand
 
-
 ## Does Bangkok have a central role in the dengue dynamics of Thailand?
 
 <https://parasitesandvectors.biomedcentral.com/articles/10.1186/s13071-020-3892-y>
@@ -13,8 +12,8 @@
 
 <https://www.cambridge.org/core/journals/epidemiology-and-infection/article/are-we-modelling-the-correct-dataset-minimizing-false-predictions-for-dengue-fever-in-thailand/747AE7867C566B28F047623199298D04>
 
-- susceptible-infected-recovered (SIR) type model
-- respective state space plots
+-   susceptible-infected-recovered (SIR) type model
+-   respective state space plots
 
 ## Economic impact of dengue fever/dengue hemorrhagic fever in Thailand at the family and population levels
 
@@ -30,9 +29,9 @@
 
 <https://www.webofscience.com/wos/biosis/full-record/BIOSIS:PREV202100467603>
 
-- annual precipitation total: decreasing trend in eastern Thailand, increasing trend in northern Thailand 
-- annual number of rainy days: decreasing trend in Thailand 
-- consecutive wet days: widespread decreasing trend in most regions (drastic decline in southern Thailand)
+-   annual precipitation total: decreasing trend in eastern Thailand, increasing trend in northern Thailand
+-   annual number of rainy days: decreasing trend in Thailand
+-   consecutive wet days: widespread decreasing trend in most regions (drastic decline in southern Thailand)
 
 ## Multiple comparisons of precipitation variations in different areas using simultaneous confidence intervals for all possible ratios of variances of several zero-inflated lognormal models
 
@@ -48,13 +47,12 @@
 
 <https://www-sciencedirect-com.ubproxy.ub.uni-heidelberg.de/science/article/pii/S0013935120309403?via%3Dihub>
 
-- dengue virus in tropical and sub-tropical regions
-- 2 Aedes mosquito types: *Aedes aegypti* and *Aedes albopictus*
-- 1970: dengue fever in 9 countries
-- now more than 100 countries
-- extreme weather events cause more clustered disease outbreaks 
-- precipitation also affects dengue fever outbreaks
-
+-   dengue virus in tropical and sub-tropical regions
+-   2 Aedes mosquito types: *Aedes aegypti* and *Aedes albopictus*
+-   1970: dengue fever in 9 countries
+-   now more than 100 countries
+-   extreme weather events cause more clustered disease outbreaks
+-   precipitation also affects dengue fever outbreaks
 
 ## A stage structured mosquito model incorporating effects of precipitation and daily temperature fluctuations
 
@@ -120,9 +118,15 @@
 
 <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0034651>
 
-#' General Review of all reviews
+# General Review of all reviews
 
 <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9197220/>
+
+# seasonality
+
+## Seasonal forecasting of Thailand summer monsoon rainfall
+
+<https://doi.org/10.1002/joc.1144>
 
 # notes wednesday
 
@@ -138,8 +142,7 @@ Monthly Data 2003 - 2020
 
 AREMA Model GAM Model for Prediction
 
-First descriptive analysis correlation Analysis and .... Tools for
-plotting maps Environmental Variables
+First descriptive analysis correlation Analysis and .... Tools for plotting maps Environmental Variables
 
 17.05 Project Proposal.
 
