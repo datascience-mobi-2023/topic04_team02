@@ -20,8 +20,6 @@
 
 <https://www.cambridge.org/core/journals/epidemiology-and-infection/article/geographical-structure-of-dengue-transmission-and-its-determinants-in-thailand/97D0F8EE84FCDE429C806F9EE8950631>
 
-
-
 # Precipitation (Thailand)
 
 ## Projection of the Precipitation Extremes in Thailand Under Climate Change Scenario RCP8.5
@@ -31,8 +29,6 @@
 ## Multiple comparisons of precipitation variations in different areas using simultaneous confidence intervals for all possible ratios of variances of several zero-inflated lognormal models
 
 <https://peerj.com/articles/12659/>
-
-
 
 # The impact of climate on dengue (general reports)
 
@@ -56,13 +52,27 @@
 
 <https://www.webofscience.com/wos/biosis/full-record/BIOSIS:PREV201400626986>
 
-
-
 # The impact of climate on dengue (Thailand based reports)
 
 ## Spatiotemporal patterns and climatic drivers of severe dengue in Thailand
 
 <https://researchonline.lshtm.ac.uk/id/eprint/4650940/6/Xu-etal-2018-Spatiotemporal-patterns-and-climatic-drivers-of-severe-dengue-in-Thailand.pdf>
+
+-   3 objectives: identify high-risk clusters of dengue, compare inter-annual seasonality in different provinces and quantify associations of temperature and relative humidity with dengue
+-   they used GLM and DLNM as methods
+-   ideas:
+    -   graph of dengue over time from 2006-2020 (like Fig. 1)
+    -   spatial patterns and identifying hot-spots of both dengue and rainfall in Thailand (for each month/year or something else) (like Fig. 2)
+    -   looking at seasonality changes (like Fig. 3)
+    -   is there a optimal/favored precipitation for dengue?
+-   seasonality changed in Central, Eastern and Southern Thailand but was stable in Northern/Northeastern Thailand
+-   mean temperature and humidity affect dengue occurence significantly
+-   different regions were affected differently
+    -   some regions more affected by temperature
+    -   some regions more affected by humidity
+-   cases peaked from June to August
+-   increased temperature speeds up dengue virus replication rate and extrinsic incubation period
+-   dengue cases clustered in certain provinces but the cluster location changed across the years
 
 ## Spatio-temporal climate-based model of dengue infection in Southern, Thailand
 
@@ -79,8 +89,6 @@
 ## The association between dengue incidences and provincial-level weather variables in Thailand from 2001 to 2014
 
 <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0226945>
-
-
 
 # The impact of climate on dengue (reports based on other locations)
 
