@@ -1,3 +1,9 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
 # Dengue in Thailand
 
 ## Does Bangkok have a central role in the dengue dynamics of Thailand?
@@ -47,12 +53,24 @@
 
 <https://www-sciencedirect-com.ubproxy.ub.uni-heidelberg.de/science/article/pii/S0013935120309403?via%3Dihub>
 
+<<<<<<< Updated upstream
 -   dengue virus in tropical and sub-tropical regions
 -   2 Aedes mosquito types: *Aedes aegypti* and *Aedes albopictus*
 -   1970: dengue fever in 9 countries
 -   now more than 100 countries
 -   extreme weather events cause more clustered disease outbreaks
 -   precipitation also affects dengue fever outbreaks
+=======
+**Nicht sonderlich relevant** 
+
+- dengue virus in tropical and sub-tropical regions
+- 2 Aedes mosquito types: *Aedes aegypti* and *Aedes albopictus*
+- 1970: dengue fever in 9 countries
+- now more than 100 countries
+- extreme weather events cause more clustered disease outbreaks 
+- precipitation also affects dengue fever outbreaks
+
+>>>>>>> Stashed changes
 
 ## A stage structured mosquito model incorporating effects of precipitation and daily temperature fluctuations
 
