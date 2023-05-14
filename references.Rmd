@@ -4,6 +4,7 @@ editor_options:
     wrap: 72
 ---
 
+
 # Dengue in Thailand
 
 ## Does Bangkok have a central role in the dengue dynamics of Thailand?
@@ -29,6 +30,7 @@ editor_options:
 
 <https://www.cambridge.org/core/journals/epidemiology-and-infection/article/geographical-structure-of-dengue-transmission-and-its-determinants-in-thailand/97D0F8EE84FCDE429C806F9EE8950631>
 
+
 # Precipitation (Thailand)
 
 ## Projection of the Precipitation Extremes in Thailand Under Climate Change Scenario RCP8.5
@@ -43,6 +45,7 @@ editor_options:
 
 <https://peerj.com/articles/12659/>
 
+
 # The impact of climate on dengue (general reports)
 
 ## A regional suitable conditions index to forecast the impact of climate change on dengue vectorial capacity
@@ -53,24 +56,12 @@ editor_options:
 
 <https://www-sciencedirect-com.ubproxy.ub.uni-heidelberg.de/science/article/pii/S0013935120309403?via%3Dihub>
 
-<<<<<<< Updated upstream
 -   dengue virus in tropical and sub-tropical regions
 -   2 Aedes mosquito types: *Aedes aegypti* and *Aedes albopictus*
 -   1970: dengue fever in 9 countries
 -   now more than 100 countries
 -   extreme weather events cause more clustered disease outbreaks
 -   precipitation also affects dengue fever outbreaks
-=======
-**Nicht sonderlich relevant** 
-
-- dengue virus in tropical and sub-tropical regions
-- 2 Aedes mosquito types: *Aedes aegypti* and *Aedes albopictus*
-- 1970: dengue fever in 9 countries
-- now more than 100 countries
-- extreme weather events cause more clustered disease outbreaks 
-- precipitation also affects dengue fever outbreaks
-
->>>>>>> Stashed changes
 
 ## A stage structured mosquito model incorporating effects of precipitation and daily temperature fluctuations
 
@@ -83,6 +74,7 @@ editor_options:
 ## Temporal relationship between environmental factors and the occurrence of dengue fever
 
 <https://www.webofscience.com/wos/biosis/full-record/BIOSIS:PREV201400626986>
+
 
 # The impact of climate on dengue (Thailand based reports)
 
@@ -136,15 +128,18 @@ editor_options:
 
 <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0034651>
 
+
 # General Review of all reviews
 
 <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9197220/>
+
 
 # seasonality
 
 ## Seasonal forecasting of Thailand summer monsoon rainfall
 
 <https://doi.org/10.1002/joc.1144>
+
 
 # notes wednesday
 
