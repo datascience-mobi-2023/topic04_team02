@@ -35,7 +35,7 @@ editor_options:
 
 ## Projection of the Precipitation Extremes in Thailand Under Climate Change Scenario RCP8.5
 
-<https://www.webofscience.com/wos/biosis/full-record/BIOSIS:PREV202100467603>
+<https://www.frontiersin.org/articles/10.3389/fenvs.2021.657810/full>
 
 -   annual precipitation total: decreasing trend in eastern Thailand, increasing trend in northern Thailand
 -   annual number of rainy days: decreasing trend in Thailand
