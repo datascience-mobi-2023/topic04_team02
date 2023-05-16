@@ -78,6 +78,38 @@ editor_options:
 
 # The impact of climate on dengue (Thailand based reports)
 
+## Association between climate variables and dengue incidence in Nakhon Si Thammarat Province, Thailand
+
+<https://www.geospatialhealth.net/index.php/gh/article/view/1012/1005/>
+
+**Plots**
+- Denuge cases per province in split areas (Fig 2)
+- Dengue peaks over years and months (Fig 3,4)
+- Rainfall in bars and dengue cases as curve --> similar peaks? (Fig 6)
+
+**Methods:**
+- complex non linear interactions
+- poisson propability distribution of generalized linear model (GLM) --> association between monthly weather data and dengue cases (2002-2018)
+- Geographic information systems (GIS)
+- spatial autocorrelation analysis
+- cluster analysis
+- tempral analysis
+- Hotspots: focus on statistically significant hotspots (high value and surrounding provinces with also high values), same for coldspots
+
+**Einführung**
+- Thailand: Tropical climate --> encourages very high mosquito densities in some areas of Thailand
+- ideal for dengue transmission, especially in southern region
+- Longest dengue fever transmission duration: Nakhon Si Thammarat --> affected by rainfall, rainy days, temperature and humidity (from June to September) others in South (June-August)
+- Risk of dengue incidence occuring during rainy season twice as high as during monsoon
+- climate change (temperature, precipitation, **extreme weather events**) influences geographical distribution and incidences of vector-borne diseases like dengue
+- Important driver + predictor if dengue epidemic Thailand: El-Nino Southern Oscillation (ENSO) --> occurs periodically (natural weather phenomenon)
+- OPTIMAL PUBLIC HEALTH RESPOND: direction and extent of climate effects need to be predicted 
+- 75% of global population with dengue is in Asia Pacific --> causes highest hospitalizations and deaths in children
+(in those regions: 1,3 billion people at risk, 2011)
+- Dengue epidemics in southeast Asia: occur in regular cycle of 3 tp 5 years
+- In Thailand: disease severity and cases increasing
+
+
 ## Spatiotemporal patterns and climatic drivers of severe dengue in Thailand
 
 <https://researchonline.lshtm.ac.uk/id/eprint/4650940/6/Xu-etal-2018-Spatiotemporal-patterns-and-climatic-drivers-of-severe-dengue-in-Thailand.pdf>
