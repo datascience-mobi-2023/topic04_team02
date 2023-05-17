@@ -134,6 +134,24 @@ editor_options:
 
 <https://europepmc.org/article/MED/33579141>
 
+Study area:
+- Southern Thailand (14 provinces): Gulf od Thailand + Andaman Sea 
+
+
+- highest dengue cases in Gulf of Thailand: in July 
+- highest dengue cases in Andaman Sea: in June (in Krabi in July)
+-> highest dengue cases in Southern Thailand in July 
+-> longest dengue transmission duration: June-September
+-> peak periods from "early summer to late fall" -> high mosquito numbers 
+- dengue cases in Gulf of Thailand depend on: number of rainy days and relative humidity 
+- dengue cases in Andaman Sea depend on: amount of rainfall and temperature
+-> in different regions/provinces of Southern Thailand different weather factors relevant
+
+**Methods:**
+- box and whoisker plots 
+- Spearman correlation analysis
+- time-series adjusted Poisson regresssion analysis 
+
 ## Knowledge, attitudes, and practices on climate change and dengue in Lao People's Democratic Republic and Thailand
 
 <https://www.sciencedirect.com/science/article/pii/S0013935120314067?via%3Dihub>
