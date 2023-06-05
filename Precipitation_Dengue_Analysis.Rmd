@@ -42,7 +42,8 @@ Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, D
 ## Each province gets its code (number)
 ```{r}
 library(readxl)
-province_numbers <- read_excel("province_numbers.xlsx")
+province_numbers <- as.data.frame(read_excel("province_numbers.xlsx"))
+province_numbers = province_numbers[-27,]
 ```
 
 #Data Copies for safety reasons 
@@ -74,6 +75,7 @@ Dengue_2020c = Dengue_2020
 ##Province numbers
 ```{r}
 province_numbersc = province_numbers
+
 ```
 
 #Data Cleaning
