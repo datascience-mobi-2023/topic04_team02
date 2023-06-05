@@ -47,9 +47,13 @@ province_numbers <- read_excel("province_numbers.xlsx")
 
 #Data Copies for safety reasons 
 
+##Precipitation
 ```{r}
 Precipitationc = Precipitation
+```
 
+##Dengue Fever
+```{r}
 Dengue_2006c = Dengue_2006
 Dengue_2007c = Dengue_2007
 Dengue_2008c = Dengue_2008
@@ -65,7 +69,10 @@ Dengue_2017c = Dengue_2017
 Dengue_2018c = Dengue_2018
 Dengue_2019c = Dengue_2019
 Dengue_2020c = Dengue_2020
+```
 
+##Province numbers
+```{r}
 province_numbersc = province_numbers
 ```
 
@@ -73,7 +80,7 @@ province_numbersc = province_numbers
 
 ## list of province names
 ```{r}
-province_names = c("Bangkok", "Samut Prakan", "Nonthaburi", "Pathum Thani", "Phra Nakhon Si Ayutthaya", "Ang Thong" ,               "Lop Buri",                 "Sing Buri",           "Chai Nat",                 "Saraburi" ,                "Chon Buri" ,               "Rayong"  ,                "Chanthaburi"   ,           "Trat"  ,                   "Chachoengsao"  ,           "Prachin Buri" ,           "Nakhon Nayok",             "Sa Kaeo" ,                 "Nakhon Ratchasima",        "Buri Ram" ,               "Surin"      ,              "Si Sa Ket" ,               "Ubon Ratchathani"  ,       "Yasothon",                "Chaiyaphum"    ,           "Amnat Charoen",            "Bungkan",                  "Nong Bua Lam Phu",        "Khon Kaen"      ,          "Udon Thani"    ,           "Loei"    ,                 "Nong Khai"        ,       "Maha Sarakham"   ,         "Roi Et"         ,          "Kalasin"  ,                "Sakon Nakhon"      ,      "Nakhon Phanom"    ,        "Mukdahan"        ,         "Chiang Mai",               "Lamphun"            ,     "Lampang"           ,       "Uttaradit"        ,        "Phrae"      ,              "Nan"                 ,    "Phayao"             ,      "Chiang Rai"        ,       "Mae Hong Son",             "Nakhon Sawan"         ,   "Uthai Thani"         ,     "Kamphaeng Phet"     ,      "Tak"          ,            "Sukhothai"             ,  "Phitsanulok"          ,    "Phichit"             ,     "Phetchabun"    ,           "Ratchaburi"             ,  "Kanchanaburi"      ,   "Suphan Buri"          ,    "Nakhon Pathom"  ,          "Samut Sakhon"            , "Samut Songkhram"        ,  "Phetchaburi"           ,   "Prachuap Khiri Khan",      "Nakhon Si Thammarat"     , "Krabi"            ,        "Phangnga"               ,  "Phuket"              ,     "Surat Thani"             , "Ranong"            ,       "Chumphon"                , "Songkhla"             ,    "Satun"                   , "Trang"              ,      "Phatthalung"              ,"Pattani"               ,   "Yala"                    , "Narathiwat")
+province_names = c("Bangkok", "Samut Prakan", "Nonthaburi", "Pathum Thani", "Phra Nakhon Si Ayutthaya", "Ang Thong", "Lop Buri", "Sing Buri", "Chai Nat", "Saraburi", "Chon Buri", "Rayong", "Chanthaburi", "Trat", "Chachoengsao", "Prachin Buri", "Nakhon Nayok", "Sa Kaeo", "Nakhon Ratchasima", "Buri Ram", "Surin", "Si Sa Ket", "Ubon Ratchathani", "Yasothon", "Chaiyaphum", "Amnat Charoen", "Bungkan", "Nong Bua Lam Phu", "Khon Kaen", "Udon Thani", "Loei", "Nong Khai", "Maha Sarakham", "Roi Et", "Kalasin", "Sakon Nakhon", "Nakhon Phanom", "Mukdahan", "Chiang Mai", "Lamphun",  "Lampang",  "Uttaradit", "Phrae", "Nan",    "Phayao", "Chiang Rai", "Mae Hong Son",  "Nakhon Sawan", "Uthai Thani", "Kamphaeng Phet", "Tak", "Sukhothai", "Phitsanulok", "Phichit", "Phetchabun", "Ratchaburi", "Kanchanaburi", "Suphan Buri", "Nakhon Pathom",  "Samut Sakhon", "Samut Songkhram", "Phetchaburi", "Prachuap Khiri Khan", "Nakhon Si Thammarat", "Krabi", "Phangnga", "Phuket", "Surat Thani", "Ranong", "Chumphon", "Songkhla", "Satun", "Trang", "Phatthalung", "Pattani", "Yala", "Narathiwat")
 
 province_names = as.data.frame(province_names)
 province_names
@@ -91,8 +98,6 @@ which((province_names[,1] %in% Dengue_2006[,1]) == FALSE) #which provinces are N
 province_names[which((province_names[,1] %in% Dengue_2006[,1]) == FALSE),1] #what are the names of these "missing" provinces
 
 Dengue_2006[28,1] = province_names[5,1]
-
-Dengue_2006
 ```
 
 ***Deletion of useless rows***
@@ -163,9 +168,9 @@ Dengue_2009[64,1] = province_names[35,1]
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2009 = Dengue_2009[which((Dengue_2009[,1] %in% province_names[,1])), ]
+rownames(Dengue_2009) = c(1:76)
+Dengue_2009
 ```
 
 ### Dengue 2010
@@ -181,9 +186,9 @@ Dengue_2010[6,1] = province_names1[5,1] #set the correct name for the province
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2010 = Dengue_2010[which((Dengue_2010[,1] %in% province_names[,1])), ]
+rownames(Dengue_2010) = c(1:76)
+Dengue_2010
 ```
 
 ### Dengue 2011
@@ -200,9 +205,9 @@ Dengue_2011[65,1] = province_names[35,1]
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2011 = Dengue_2011[which((Dengue_2011[,1] %in% province_names[,1])), ]
+rownames(Dengue_2011) = c(1:77)
+Dengue_2011
 ```
 
 ### Dengue 2012
@@ -219,9 +224,9 @@ Dengue_2012[14,1] = province_names[35,1]
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2012 = Dengue_2012[which((Dengue_2012[,1] %in% province_names[,1])), ]
+rownames(Dengue_2012) = c(1:77)
+Dengue_2012
 ```
 
 ### Dengue 2013
@@ -238,9 +243,9 @@ Dengue_2013[14,1] = province_names[35,1]
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2013 = Dengue_2013[which((Dengue_2013[,1] %in% province_names[,1])), ]
+rownames(Dengue_2013) = c(1:77)
+Dengue_2013
 ```
 
 ### Dengue 2014
@@ -256,9 +261,9 @@ Dengue_2014[37,1] = province_names[5,1] #set the correct name for the province
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2014 = Dengue_2014[which((Dengue_2014[,1] %in% province_names[,1])), ]
+rownames(Dengue_2014) = c(1:77)
+Dengue_2014
 ```
 
 ### Dengue 2015
@@ -274,9 +279,9 @@ Dengue_2015[37,1] = province_names[5,1] #set the correct name for the province
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2015 = Dengue_2015[which((Dengue_2015[,1] %in% province_names[,1])), ]
+rownames(Dengue_2015) = c(1:77)
+Dengue_2015
 ```
 
 ### Dengue 2016
@@ -292,9 +297,9 @@ Dengue_2016[37,1] = province_names[5,1] #set the correct name for the province
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2016 = Dengue_2016[which((Dengue_2016[,1] %in% province_names[,1])), ]
+rownames(Dengue_2016) = c(1:77)
+Dengue_2016
 ```
 
 ### Dengue 2017
@@ -310,9 +315,9 @@ Dengue_2017[31,1] = province_names[5,1] #set the correct name for the province
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2017 = Dengue_2017[which((Dengue_2017[,1] %in% province_names[,1])), ]
+rownames(Dengue_2017) = c(1:77)
+Dengue_2017
 ```
 
 ### Dengue 2018
@@ -328,9 +333,9 @@ Dengue_2018[31,1] = province_names[5,1] #set the correct name for the province
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2018 = Dengue_2018[which((Dengue_2018[,1] %in% province_names[,1])), ]
+rownames(Dengue_2018) = c(1:77)
+Dengue_2018
 ```
 
 ### Dengue 2019
@@ -346,9 +351,9 @@ Dengue_2019[31,1] = province_names[5,1] #set the correct name for the province
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2019 = Dengue_2019[which((Dengue_2019[,1] %in% province_names[,1])), ]
+rownames(Dengue_2019) = c(1:77)
+Dengue_2019
 ```
 
 ### Dengue 2020
@@ -364,9 +369,9 @@ Dengue_2020[31,1] = province_names[5,1] #set the correct name for the province
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Dengue_2020 = Dengue_2020[which((Dengue_2020[,1] %in% province_names[,1])), ]
+rownames(Dengue_2020) = c(1:77)
+Dengue_2020
 ```
 
 
