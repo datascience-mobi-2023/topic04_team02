@@ -162,6 +162,7 @@ tp_lowest_list
 
 ```{r}
 province_names = daymax[,2]
+province_names[27,1] = "Bungkan"
 province_names
 ```
 
