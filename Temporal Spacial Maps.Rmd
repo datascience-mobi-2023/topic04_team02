@@ -1,0 +1,70 @@
+---
+title: "Temporal Spacial Maps"
+author: "Lennard Moschner"
+date: "2023-06-05"
+output: html_document
+--- 
+
+```{r}
+centroids <- read.table(file = "/Users/lennardmoschner/Desktop/BioInfo Project/Regions, Longtitude, Latitude.csv",  sep = "|", header = TRUE)
+
+#"|"
+centroids
+class(centroids)
+#Table with Region; Latitude; Longtitude
+```
+
+```{r}
+library(sf)
+Thailand_Shape = st_read("/Users/lennardmoschner/Downloads/gadm36_THA_shp/gadm36_THA_1.shp")
+list(Thailand_Shape$NAME_1)
+
+ShapeData = as.data.frame(Thailand_Shape[,4])
+#View(ShapeData)
+ShapeDataFinal = as.data.frame(ShapeData[,1])
+#View(ShapeDataFinal)
+
+# Print the updated list
+ergebnis = as.data.frame(province_names)[,1] %in% ShapeDataFinal[,1]
+which(ergebnis == F)
+as.data.frame(province_names)[which((as.data.frame(province_names)[,1] %in% ShapeDataFinal[,1]) == FALSE),1]
+
+Bangkok
+```
+
+```{r}
+# load dplyr and tidyr library
+library(dplyr)
+library(tidyr)
+
+centroids <- centroids %>% separate(ADM1_EN.Longitude.Latitude, c('Province','Longtitude',"Latitude"), sep = ";")
+centroids
+
+```
+
+```{r}
+Thailand_Shape$NAME_1[Thailand_Shape$NAME_1 == "Bangkok Metropolis"] <- "Bangkok" 
+View(Thailand_Shape)
+
+# Adjust column header
+names(ShapeData)[1]  <- "Districts_names"
+# Adjust column header
+names(centroids)[1]  <- "Districts_names"
+```
+
+```{r}
+library(dplyr)
+geo_data <- left_join(x = centroids, y = ShapeData, by = c("Districts_names"))
+View(geo_data)
+```
+
+```{r}
+# create an sf object for plotting
+geo_data <- sf::st_as_sf(geo_data)
+class(geo_data)
+# [1] "sf"         "data.frame"
+
+# plot with basic plot function of R
+plot(geo_data) # "all data columns" are plotted
+```
+
