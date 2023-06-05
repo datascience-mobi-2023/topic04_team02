@@ -8,8 +8,58 @@ date: "2023-05-12"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+#Data Upload
 ```{r}
 library(readxl)
 Precipitation <- read_excel("ClimateData_2006_2020.xlsx", sheet = "era5_tp_2006_2020_thailand_monm")
 Precipitation
+
+Dengue_2006 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2006"))
+Dengue_2007 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2007"))
+Dengue_2008 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2008"))
+Dengue_2009 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2009"))
+Dengue_2010 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2010"))
+Dengue_2011 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2011"))
+Dengue_2012 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2012"))
+Dengue_2013 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2013"))
+Dengue_2014 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2014"))
+Dengue_2015 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2015"))
+Dengue_2016 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2016"))
+Dengue_2017 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2017"))
+Dengue_2018 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2018"))
+Dengue_2019 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2019"))
+Dengue_2020 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2020"))
+
+Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, Dengue_2011, Dengue_2012, Dengue_2013, Dengue_2014, Dengue_2015, Dengue_2016, Dengue_2017, Dengue_2018, Dengue_2019, Dengue_2020)
 ```
+
+#Data Cleaning
+```{r}
+class(Dengue_2006)
+
+Dengue_2006
+
+```
+
+## Align province names for all data sets
+### Dengue 2006
+```{r}
+province_names[,1] %in% Dengue_2006[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2006[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2006[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2006[28,1] = province_names[5,1]
+```
+
+```{r}
+Zone = c("Zone:1", "Zone:2", "Zone:3", "Zone:4", "Zone:5", "Zone:6", "Zone:7", "Zone:8", "Zone:9", "Zone:10", "Zone:11", "Zone:12","Zone:13", "Zone:14", "Zone:15", "Zone:16", "Zone:17", "Zone:18", "Zone:19")
+
+for(i in 1:19) 
+{print(which(Dengue_2006[,1] == Zone[i]))}
+
+
+
+
+```
+
+
