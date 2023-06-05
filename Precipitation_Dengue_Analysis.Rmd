@@ -41,6 +41,15 @@ Dengue_2006
 
 ```
 
+## Align province names for all data sets
+### Dengue 2006
+```{r}
+province_names[,1] %in% Dengue_2006[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2006[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2006[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2006[28,1] = province_names[5,1]
+```
 
 ```{r}
 Zone = c("Zone:1", "Zone:2", "Zone:3", "Zone:4", "Zone:5", "Zone:6", "Zone:7", "Zone:8", "Zone:9", "Zone:10", "Zone:11", "Zone:12","Zone:13", "Zone:14", "Zone:15", "Zone:16", "Zone:17", "Zone:18", "Zone:19")
