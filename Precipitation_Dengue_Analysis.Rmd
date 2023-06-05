@@ -9,11 +9,17 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #Data Upload
+
+## Precipitation data
 ```{r}
 library(readxl)
 Precipitation <- read_excel("ClimateData_2006_2020.xlsx", sheet = "era5_tp_2006_2020_thailand_monm")
 Precipitation
+```
 
+## Dengue data
+```{r}
+library(readxl)
 Dengue_2006 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2006"))
 Dengue_2007 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2007"))
 Dengue_2008 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2008"))
@@ -33,9 +39,17 @@ Dengue_2020 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2020"))
 Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, Dengue_2011, Dengue_2012, Dengue_2013, Dengue_2014, Dengue_2015, Dengue_2016, Dengue_2017, Dengue_2018, Dengue_2019, Dengue_2020)
 ```
 
+## Each province gets its code (number)
+```{r}
+library(readxl)
+province_numbers <- read_excel("province_numbers.xlsx")
+```
+
 #Data Copies for safety reasons 
 
 ```{r}
+Precipitationc = Precipitation
+
 Dengue_2006c = Dengue_2006
 Dengue_2007c = Dengue_2007
 Dengue_2008c = Dengue_2008
@@ -51,6 +65,8 @@ Dengue_2017c = Dengue_2017
 Dengue_2018c = Dengue_2018
 Dengue_2019c = Dengue_2019
 Dengue_2020c = Dengue_2020
+
+province_numbersc = province_numbers
 ```
 
 #Data Cleaning
