@@ -74,10 +74,139 @@ Province_numbers = c()
 
 
 ```{r}
-Dengue_2006c2 = cbind(Dengue_2006c
+Dengue_2006c2 = cbind(Dengue_2006c)
 Dengue_2006c2
 ```
 
+### Dengue 2007
+```{r}
+province_names[,1] %in% Dengue_2007[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2007[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2007[,1]) == FALSE),1] #what are the names of these "missing" provinces
 
+Dengue_2007[28,1] = province_names[5,1] #set the correct name for the province
+```
+
+### Dengue 2008
+```{r}
+province_names[,1] %in% Dengue_2008[,1]
+which((province_names[,1] %in% Dengue_2008[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2008[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2008[6,1] = province_names[5,1] #set the correct name for the province
+Dengue_2008[64,1] = province_names[35,1]
+```
+
+### Dengue 2009
+```{r}
+province_names[,1] %in% Dengue_2009[,1]
+which((province_names[,1] %in% Dengue_2009[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2009[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2009[6,1] = province_names[5,1] #set the correct name for the province
+Dengue_2009[64,1] = province_names[35,1]
+```
+
+### Dengue 2010
+```{r}
+province_names[,1] %in% Dengue_2010[,1]
+which((province_names[,1] %in% Dengue_2010[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2010[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2010[6,1] = province_names1[5,1] #set the correct name for the province
+```
+
+### Dengue 2011
+```{r}
+province_names[,1] %in% Dengue_2011[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2011[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2011[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2011[6,1] = province_names[5,1] #set the correct name for the province
+Dengue_2011[65,1] = province_names[35,1]
+```
+
+### Dengue 2012
+```{r}
+province_names[,1] %in% Dengue_2012[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2012[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2012[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2012[37,1] = province_names[5,1] #set the correct name for the province
+Dengue_2012[14,1] = province_names[35,1]
+```
+
+### Dengue 2013
+```{r}
+province_names[,1] %in% Dengue_2013[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2013[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2013[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2013[37,1] = province_names[5,1]  #set the correct name for the province
+Dengue_2013[14,1] = province_names[35,1]
+```
+
+### Dengue 2014
+```{r}
+province_names[,1] %in% Dengue_2014[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2014[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2014[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2014[37,1] = province_names[5,1] #set the correct name for the province
+```
+
+### Dengue 2015
+```{r}
+province_names[,1] %in% Dengue_2015[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2015[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2015[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2015[37,1] = province_names[5,1] #set the correct name for the province
+```
+
+### Dengue 2016
+```{r}
+province_names[,1] %in% Dengue_2016[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2016[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2016[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2016[37,1] = province_names[5,1] #set the correct name for the province
+```
+
+### Dengue 2017
+```{r}
+province_names[,1] %in% Dengue_2017[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2017[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2017[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2017[31,1] = province_names[5,1] #set the correct name for the province
+```
+
+### Dengue 2018
+```{r}
+province_names[,1] %in% Dengue_2018[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2018[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2018[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2018[31,1] = province_names[5,1] #set the correct name for the province
+```
+
+### Dengue 2019
+```{r}
+province_names[,1] %in% Dengue_2019[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2019[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2019[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2019[31,1] = province_names[5,1] #set the correct name for the province
+```
+
+### Dengue 2020
+```{r}
+province_names[,1] %in% Dengue_2020[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2020[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2020[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2020[31,1] = province_names[5,1] #set the correct name for the province
+```
 
 
