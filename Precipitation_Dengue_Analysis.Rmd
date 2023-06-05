@@ -8,8 +8,34 @@ date: "2023-05-12"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+#Data Upload
 ```{r}
 library(readxl)
 Precipitation <- read_excel("ClimateData_2006_2020.xlsx", sheet = "era5_tp_2006_2020_thailand_monm")
 Precipitation
+
+Dengue_2006 <- read_excel("dengue_data.xlsx", sheet = "2006")
+Dengue_2007 <- read_excel("dengue_data.xlsx", sheet = "2007")
+Dengue_2008 <- read_excel("dengue_data.xlsx", sheet = "2008")
+Dengue_2009 <- read_excel("dengue_data.xlsx", sheet = "2009")
+Dengue_2010 <- read_excel("dengue_data.xlsx", sheet = "2010")
+Dengue_2011 <- read_excel("dengue_data.xlsx", sheet = "2011")
+Dengue_2012 <- read_excel("dengue_data.xlsx", sheet = "2012")
+Dengue_2013 <- read_excel("dengue_data.xlsx", sheet = "2013")
+Dengue_2014 <- read_excel("dengue_data.xlsx", sheet = "2014")
+Dengue_2015 <- read_excel("dengue_data.xlsx", sheet = "2015")
+Dengue_2016 <- read_excel("dengue_data.xlsx", sheet = "2016")
+Dengue_2017 <- read_excel("dengue_data.xlsx", sheet = "2017")
+Dengue_2018 <- read_excel("dengue_data.xlsx", sheet = "2018")
+Dengue_2019 <- read_excel("dengue_data.xlsx", sheet = "2019")
+Dengue_2020 <- read_excel("dengue_data.xlsx", sheet = "2020")
+
+Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, Dengue_2011, Dengue_2012, Dengue_2013, Dengue_2014, Dengue_2015, Dengue_2016, Dengue_2017, Dengue_2018, Dengue_2019, Dengue_2020)
+
+Dengue
+
 ```
+
+#Data Cleaning
+
+
