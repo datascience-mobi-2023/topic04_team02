@@ -31,11 +31,19 @@ Dengue_2019 <- read_excel("dengue_data.xlsx", sheet = "2019")
 Dengue_2020 <- read_excel("dengue_data.xlsx", sheet = "2020")
 
 Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, Dengue_2011, Dengue_2012, Dengue_2013, Dengue_2014, Dengue_2015, Dengue_2016, Dengue_2017, Dengue_2018, Dengue_2019, Dengue_2020)
-
-Dengue
-
 ```
 
 #Data Cleaning
+```{r}
+Dengue_2006
+
+class(Dengue_2006)
+
+str(Dengue_2009)
+str(Dengue_2006)
+
+
+```
+
 
 
