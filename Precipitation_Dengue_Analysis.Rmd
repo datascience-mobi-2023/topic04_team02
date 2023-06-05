@@ -43,7 +43,7 @@ province_names = as.data.frame(province_names)
 province_names
 ```
 
-## Align province names, delete useless rows and add district numbers for all data sets
+## Align province names, delete useless rows and add province numbers for all data sets
 
 ### Dengue 2006
 
@@ -67,9 +67,9 @@ rownames(Dengue_2006c) = c(1:76)
 Dengue_2006c
 ```
 
-***Addition of district numbers***
+***Addition of province numbers***
 ```{r}
-
+Province_numbers = c()
 ```
 
 
