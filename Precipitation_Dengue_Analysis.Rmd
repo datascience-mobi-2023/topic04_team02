@@ -42,7 +42,10 @@ Dengue_2006
 ```
 ## list of province names
 ```{r}
-province_names1 = c("Bangkok", "Samut Prakan", "Nonthaburi", "Pathum Thani", "Phra Nakhon Si Ayutthaya", "Ang Thong" ,               "Lop Buri",                 "Sing Buri",           "Chai Nat",                 "Saraburi" ,                "Chon Buri" ,               "Rayong"  ,                "Chanthaburi"   ,           "Trat"  ,                   "Chachoengsao"  ,           "Prachin Buri" ,           "Nakhon Nayok",             "Sa Kaeo" ,                 "Nakhon Ratchasima",        "Buri Ram" ,               "Surin"      ,              "Si Sa Ket" ,               "Ubon Ratchathani"  ,       "Yasothon",                "Chaiyaphum"    ,           "Amnat Charoen",            "Bungkan",                  "Nong Bua Lam Phu",        "Khon Kaen"      ,          "Udon Thani"    ,           "Loei"    ,                 "Nong Khai"        ,       "Maha Sarakham"   ,         "Roi Et"         ,          "Kalasin"  ,                "Sakon Nakhon"      ,      "Nakhon Phanom"    ,        "Mukdahan"        ,         "Chiang Mai",               "Lamphun"            ,     "Lampang"           ,       "Uttaradit"        ,        "Phrae"      ,              "Nan"                 ,    "Phayao"             ,      "Chiang Rai"        ,       "Mae Hong Son",             "Nakhon Sawan"         ,   "Uthai Thani"         ,     "Kamphaeng Phet"     ,      "Tak"          ,            "Sukhothai"             ,  "Phitsanulok"          ,    "Phichit"             ,     "Phetchabun"    ,           "Ratchaburi"             ,  "Kanchanaburi"      ,   "Suphan Buri"          ,    "Nakhon Pathom"  ,          "Samut Sakhon"            , "Samut Songkhram"        ,  "Phetchaburi"           ,   "Prachuap Khiri Khan",      "Nakhon Si Thammarat"     , "Krabi"            ,        "Phangnga"               ,  "Phuket"              ,     "Surat Thani"             , "Ranong"            ,       "Chumphon"                , "Songkhla"             ,    "Satun"                   , "Trang"              ,      "Phatthalung"              ,"Pattani"               ,   "Yala"                    , "Narathiwat")
+province_names = c("Bangkok", "Samut Prakan", "Nonthaburi", "Pathum Thani", "Phra Nakhon Si Ayutthaya", "Ang Thong" ,               "Lop Buri",                 "Sing Buri",           "Chai Nat",                 "Saraburi" ,                "Chon Buri" ,               "Rayong"  ,                "Chanthaburi"   ,           "Trat"  ,                   "Chachoengsao"  ,           "Prachin Buri" ,           "Nakhon Nayok",             "Sa Kaeo" ,                 "Nakhon Ratchasima",        "Buri Ram" ,               "Surin"      ,              "Si Sa Ket" ,               "Ubon Ratchathani"  ,       "Yasothon",                "Chaiyaphum"    ,           "Amnat Charoen",            "Bungkan",                  "Nong Bua Lam Phu",        "Khon Kaen"      ,          "Udon Thani"    ,           "Loei"    ,                 "Nong Khai"        ,       "Maha Sarakham"   ,         "Roi Et"         ,          "Kalasin"  ,                "Sakon Nakhon"      ,      "Nakhon Phanom"    ,        "Mukdahan"        ,         "Chiang Mai",               "Lamphun"            ,     "Lampang"           ,       "Uttaradit"        ,        "Phrae"      ,              "Nan"                 ,    "Phayao"             ,      "Chiang Rai"        ,       "Mae Hong Son",             "Nakhon Sawan"         ,   "Uthai Thani"         ,     "Kamphaeng Phet"     ,      "Tak"          ,            "Sukhothai"             ,  "Phitsanulok"          ,    "Phichit"             ,     "Phetchabun"    ,           "Ratchaburi"             ,  "Kanchanaburi"      ,   "Suphan Buri"          ,    "Nakhon Pathom"  ,          "Samut Sakhon"            , "Samut Songkhram"        ,  "Phetchaburi"           ,   "Prachuap Khiri Khan",      "Nakhon Si Thammarat"     , "Krabi"            ,        "Phangnga"               ,  "Phuket"              ,     "Surat Thani"             , "Ranong"            ,       "Chumphon"                , "Songkhla"             ,    "Satun"                   , "Trang"              ,      "Phatthalung"              ,"Pattani"               ,   "Yala"                    , "Narathiwat")
+
+province_names = as.data.frame(province_names)
+province_names
 ```
 
 ## Align province names for all data sets
@@ -53,17 +56,14 @@ which((province_names[,1] %in% Dengue_2006[,1]) == FALSE) #which provinces are N
 province_names[which((province_names[,1] %in% Dengue_2006[,1]) == FALSE),1] #what are the names of these "missing" provinces
 
 Dengue_2006[28,1] = province_names[5,1]
+
+Dengue_2006
 ```
 
 ```{r}
-Zone = c("Zone:1", "Zone:2", "Zone:3", "Zone:4", "Zone:5", "Zone:6", "Zone:7", "Zone:8", "Zone:9", "Zone:10", "Zone:11", "Zone:12","Zone:13", "Zone:14", "Zone:15", "Zone:16", "Zone:17", "Zone:18", "Zone:19")
-
-for(i in 1:19) 
-{print(which(Dengue_2006[,1] == Zone[i]))}
-
-
-
-
+Dengue_2006c = Dengue_2006
+Dengue_2006c = Dengue_2006c[which((Dengue_2006[,1] %in% province_names[,1])), ]
+Dengue_2006c
 ```
 
 
