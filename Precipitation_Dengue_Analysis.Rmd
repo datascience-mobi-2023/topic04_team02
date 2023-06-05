@@ -34,12 +34,7 @@ Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, D
 ```
 
 #Data Cleaning
-```{r}
-class(Dengue_2006)
 
-Dengue_2006
-
-```
 ## list of province names
 ```{r}
 province_names = c("Bangkok", "Samut Prakan", "Nonthaburi", "Pathum Thani", "Phra Nakhon Si Ayutthaya", "Ang Thong" ,               "Lop Buri",                 "Sing Buri",           "Chai Nat",                 "Saraburi" ,                "Chon Buri" ,               "Rayong"  ,                "Chanthaburi"   ,           "Trat"  ,                   "Chachoengsao"  ,           "Prachin Buri" ,           "Nakhon Nayok",             "Sa Kaeo" ,                 "Nakhon Ratchasima",        "Buri Ram" ,               "Surin"      ,              "Si Sa Ket" ,               "Ubon Ratchathani"  ,       "Yasothon",                "Chaiyaphum"    ,           "Amnat Charoen",            "Bungkan",                  "Nong Bua Lam Phu",        "Khon Kaen"      ,          "Udon Thani"    ,           "Loei"    ,                 "Nong Khai"        ,       "Maha Sarakham"   ,         "Roi Et"         ,          "Kalasin"  ,                "Sakon Nakhon"      ,      "Nakhon Phanom"    ,        "Mukdahan"        ,         "Chiang Mai",               "Lamphun"            ,     "Lampang"           ,       "Uttaradit"        ,        "Phrae"      ,              "Nan"                 ,    "Phayao"             ,      "Chiang Rai"        ,       "Mae Hong Son",             "Nakhon Sawan"         ,   "Uthai Thani"         ,     "Kamphaeng Phet"     ,      "Tak"          ,            "Sukhothai"             ,  "Phitsanulok"          ,    "Phichit"             ,     "Phetchabun"    ,           "Ratchaburi"             ,  "Kanchanaburi"      ,   "Suphan Buri"          ,    "Nakhon Pathom"  ,          "Samut Sakhon"            , "Samut Songkhram"        ,  "Phetchaburi"           ,   "Prachuap Khiri Khan",      "Nakhon Si Thammarat"     , "Krabi"            ,        "Phangnga"               ,  "Phuket"              ,     "Surat Thani"             , "Ranong"            ,       "Chumphon"                , "Songkhla"             ,    "Satun"                   , "Trang"              ,      "Phatthalung"              ,"Pattani"               ,   "Yala"                    , "Narathiwat")
@@ -48,8 +43,12 @@ province_names = as.data.frame(province_names)
 province_names
 ```
 
-## Align province names for all data sets
+## Align province names, delete useless rows and add district numbers for all data sets
+
 ### Dengue 2006
+
+***Alignment of the province names***
+
 ```{r}
 province_names[,1] %in% Dengue_2006[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2006[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -60,10 +59,25 @@ Dengue_2006[28,1] = province_names[5,1]
 Dengue_2006
 ```
 
+***Deletion of useless rows***
 ```{r}
 Dengue_2006c = Dengue_2006
 Dengue_2006c = Dengue_2006c[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006c) = c(1:76)
 Dengue_2006c
 ```
+
+***Addition of district numbers***
+```{r}
+
+```
+
+
+```{r}
+Dengue_2006c2 = cbind(Dengue_2006c
+Dengue_2006c2
+```
+
+
 
 
