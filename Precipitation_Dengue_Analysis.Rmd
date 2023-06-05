@@ -14,36 +14,43 @@ library(readxl)
 Precipitation <- read_excel("ClimateData_2006_2020.xlsx", sheet = "era5_tp_2006_2020_thailand_monm")
 Precipitation
 
-Dengue_2006 <- read_excel("dengue_data.xlsx", sheet = "2006")
-Dengue_2007 <- read_excel("dengue_data.xlsx", sheet = "2007")
-Dengue_2008 <- read_excel("dengue_data.xlsx", sheet = "2008")
-Dengue_2009 <- read_excel("dengue_data.xlsx", sheet = "2009")
-Dengue_2010 <- read_excel("dengue_data.xlsx", sheet = "2010")
-Dengue_2011 <- read_excel("dengue_data.xlsx", sheet = "2011")
-Dengue_2012 <- read_excel("dengue_data.xlsx", sheet = "2012")
-Dengue_2013 <- read_excel("dengue_data.xlsx", sheet = "2013")
-Dengue_2014 <- read_excel("dengue_data.xlsx", sheet = "2014")
-Dengue_2015 <- read_excel("dengue_data.xlsx", sheet = "2015")
-Dengue_2016 <- read_excel("dengue_data.xlsx", sheet = "2016")
-Dengue_2017 <- read_excel("dengue_data.xlsx", sheet = "2017")
-Dengue_2018 <- read_excel("dengue_data.xlsx", sheet = "2018")
-Dengue_2019 <- read_excel("dengue_data.xlsx", sheet = "2019")
-Dengue_2020 <- read_excel("dengue_data.xlsx", sheet = "2020")
+Dengue_2006 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2006"))
+Dengue_2007 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2007"))
+Dengue_2008 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2008"))
+Dengue_2009 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2009"))
+Dengue_2010 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2010"))
+Dengue_2011 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2011"))
+Dengue_2012 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2012"))
+Dengue_2013 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2013"))
+Dengue_2014 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2014"))
+Dengue_2015 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2015"))
+Dengue_2016 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2016"))
+Dengue_2017 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2017"))
+Dengue_2018 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2018"))
+Dengue_2019 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2019"))
+Dengue_2020 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2020"))
 
 Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, Dengue_2011, Dengue_2012, Dengue_2013, Dengue_2014, Dengue_2015, Dengue_2016, Dengue_2017, Dengue_2018, Dengue_2019, Dengue_2020)
 ```
 
 #Data Cleaning
 ```{r}
-Dengue_2006
-
 class(Dengue_2006)
 
-str(Dengue_2009)
-str(Dengue_2006)
-
+Dengue_2006
 
 ```
 
+
+```{r}
+Zone = c("Zone:1", "Zone:2", "Zone:3", "Zone:4", "Zone:5", "Zone:6", "Zone:7", "Zone:8", "Zone:9", "Zone:10", "Zone:11", "Zone:12","Zone:13", "Zone:14", "Zone:15", "Zone:16", "Zone:17", "Zone:18", "Zone:19")
+
+for(i in 1:19) 
+{print(which(Dengue_2006[,1] == Zone[i]))}
+
+
+
+
+```
 
 
