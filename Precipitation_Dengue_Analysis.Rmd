@@ -33,6 +33,26 @@ Dengue_2020 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2020"))
 Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, Dengue_2011, Dengue_2012, Dengue_2013, Dengue_2014, Dengue_2015, Dengue_2016, Dengue_2017, Dengue_2018, Dengue_2019, Dengue_2020)
 ```
 
+#Data Copies for safety reasons 
+
+```{r}
+Dengue_2006c = Dengue_2006
+Dengue_2007c = Dengue_2007
+Dengue_2008c = Dengue_2008
+Dengue_2009c = Dengue_2009
+Dengue_2010c = Dengue_2010
+Dengue_2011c = Dengue_2011
+Dengue_2012c = Dengue_2012
+Dengue_2013c = Dengue_2013
+Dengue_2014c = Dengue_2014
+Dengue_2015c = Dengue_2015
+Dengue_2016c = Dengue_2016
+Dengue_2017c = Dengue_2017
+Dengue_2018c = Dengue_2018
+Dengue_2019c = Dengue_2019
+Dengue_2020c = Dengue_2020
+```
+
 #Data Cleaning
 
 ## list of province names
@@ -61,10 +81,9 @@ Dengue_2006
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006c = Dengue_2006
-Dengue_2006c = Dengue_2006c[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006c) = c(1:76)
-Dengue_2006c
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
 ```
 
 ***Addition of province numbers***
@@ -74,11 +93,13 @@ Province_numbers = c()
 
 
 ```{r}
-Dengue_2006c2 = cbind(Dengue_2006c)
-Dengue_2006c2
+Dengue_2006c2 = cbind()
+
 ```
 
 ### Dengue 2007
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2007[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2007[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -86,8 +107,16 @@ province_names[which((province_names[,1] %in% Dengue_2007[,1]) == FALSE),1] #wha
 
 Dengue_2007[28,1] = province_names[5,1] #set the correct name for the province
 ```
+***Deletion of useless rows***
+```{r}
+Dengue_2007 = Dengue_2007[which((Dengue_2007[,1] %in% province_names[,1])), ]
+rownames(Dengue_2007) = c(1:76)
+Dengue_2007
+```
 
 ### Dengue 2008
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2008[,1]
 which((province_names[,1] %in% Dengue_2008[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -97,7 +126,16 @@ Dengue_2008[6,1] = province_names[5,1] #set the correct name for the province
 Dengue_2008[64,1] = province_names[35,1]
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2008 = Dengue_2008[which((Dengue_2008[,1] %in% province_names[,1])), ]
+rownames(Dengue_2008) = c(1:76)
+Dengue_2008
+```
+
 ### Dengue 2009
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2009[,1]
 which((province_names[,1] %in% Dengue_2009[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -107,7 +145,16 @@ Dengue_2009[6,1] = province_names[5,1] #set the correct name for the province
 Dengue_2009[64,1] = province_names[35,1]
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
 ### Dengue 2010
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2010[,1]
 which((province_names[,1] %in% Dengue_2010[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -116,7 +163,16 @@ province_names[which((province_names[,1] %in% Dengue_2010[,1]) == FALSE),1] #wha
 Dengue_2010[6,1] = province_names1[5,1] #set the correct name for the province
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
 ### Dengue 2011
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2011[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2011[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -126,7 +182,16 @@ Dengue_2011[6,1] = province_names[5,1] #set the correct name for the province
 Dengue_2011[65,1] = province_names[35,1]
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
 ### Dengue 2012
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2012[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2012[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -136,7 +201,16 @@ Dengue_2012[37,1] = province_names[5,1] #set the correct name for the province
 Dengue_2012[14,1] = province_names[35,1]
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
 ### Dengue 2013
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2013[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2013[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -146,7 +220,16 @@ Dengue_2013[37,1] = province_names[5,1]  #set the correct name for the province
 Dengue_2013[14,1] = province_names[35,1]
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
 ### Dengue 2014
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2014[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2014[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -155,7 +238,16 @@ province_names[which((province_names[,1] %in% Dengue_2014[,1]) == FALSE),1] #wha
 Dengue_2014[37,1] = province_names[5,1] #set the correct name for the province
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
 ### Dengue 2015
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2015[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2015[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -164,7 +256,16 @@ province_names[which((province_names[,1] %in% Dengue_2015[,1]) == FALSE),1] #wha
 Dengue_2015[37,1] = province_names[5,1] #set the correct name for the province
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
 ### Dengue 2016
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2016[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2016[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -173,7 +274,16 @@ province_names[which((province_names[,1] %in% Dengue_2016[,1]) == FALSE),1] #wha
 Dengue_2016[37,1] = province_names[5,1] #set the correct name for the province
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
 ### Dengue 2017
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2017[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2017[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -182,7 +292,16 @@ province_names[which((province_names[,1] %in% Dengue_2017[,1]) == FALSE),1] #wha
 Dengue_2017[31,1] = province_names[5,1] #set the correct name for the province
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
 ### Dengue 2018
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2018[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2018[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -191,7 +310,16 @@ province_names[which((province_names[,1] %in% Dengue_2018[,1]) == FALSE),1] #wha
 Dengue_2018[31,1] = province_names[5,1] #set the correct name for the province
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
 ### Dengue 2019
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2019[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2019[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -200,13 +328,29 @@ province_names[which((province_names[,1] %in% Dengue_2019[,1]) == FALSE),1] #wha
 Dengue_2019[31,1] = province_names[5,1] #set the correct name for the province
 ```
 
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
 ### Dengue 2020
+
+***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Dengue_2020[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2020[,1]) == FALSE) #which provinces are NOT in the Dengue table?
 province_names[which((province_names[,1] %in% Dengue_2020[,1]) == FALSE),1] #what are the names of these "missing" provinces
 
 Dengue_2020[31,1] = province_names[5,1] #set the correct name for the province
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
 ```
 
 
