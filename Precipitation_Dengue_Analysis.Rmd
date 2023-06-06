@@ -183,7 +183,7 @@ province_names[,1] %in% Dengue_2010[,1]
 which((province_names[,1] %in% Dengue_2010[,1]) == FALSE) #which provinces are NOT in the Dengue table?
 province_names[which((province_names[,1] %in% Dengue_2010[,1]) == FALSE),1] #what are the names of these "missing" provinces
 
-Dengue_2010[6,1] = province_names1[5,1] #set the correct name for the province
+Dengue_2010[6,1] = province_names[5,1] #set the correct name for the province
 ```
 
 ***Deletion of useless rows***
