@@ -18,7 +18,10 @@ class(centroids)
 library(sf)
 Thailand_Shape = st_read("/Users/lennardmoschner/Downloads/gadm36_THA_shp/gadm36_THA_1.shp")
 list(Thailand_Shape$NAME_1)
+<<<<<<< HEAD
 View(Thailand_Shape)
+=======
+>>>>>>> f423c9b31fc0f102dfdead728f805b76476121f3
 
 ShapeData = as.data.frame(Thailand_Shape[,4])
 #View(ShapeData)
@@ -30,7 +33,11 @@ ergebnis = as.data.frame(province_names)[,1] %in% ShapeDataFinal[,1]
 which(ergebnis == F)
 as.data.frame(province_names)[which((as.data.frame(province_names)[,1] %in% ShapeDataFinal[,1]) == FALSE),1]
 
+<<<<<<< HEAD
 #Bangkok
+=======
+Bangkok
+>>>>>>> f423c9b31fc0f102dfdead728f805b76476121f3
 ```
 
 ```{r}
@@ -48,19 +55,28 @@ Thailand_Shape$NAME_1[Thailand_Shape$NAME_1 == "Bangkok Metropolis"] <- "Bangkok
 View(Thailand_Shape)
 
 # Adjust column header
+<<<<<<< HEAD
 names(Thailand_Shape)[4]  <- "Districts_names"
+=======
+names(ShapeData)[1]  <- "Districts_names"
+>>>>>>> f423c9b31fc0f102dfdead728f805b76476121f3
 # Adjust column header
 names(centroids)[1]  <- "Districts_names"
 ```
 
 ```{r}
 library(dplyr)
+<<<<<<< HEAD
 geo_data <- left_join(x = centroids, y = Thailand_Shape, by = c("Districts_names"))
 View(geo_data)
 head(geo_data)
 class(geo_data)
 summary(geo_data)
 str(geo_data)
+=======
+geo_data <- left_join(x = centroids, y = ShapeData, by = c("Districts_names"))
+View(geo_data)
+>>>>>>> f423c9b31fc0f102dfdead728f805b76476121f3
 ```
 
 ```{r}
@@ -72,10 +88,13 @@ class(geo_data)
 # plot with basic plot function of R
 plot(geo_data) # "all data columns" are plotted
 ```
+<<<<<<< HEAD
 ```{r}
 library(ggplot2)
 ggplot()+
   geom_sf (data = geo_data, col = "black", fill = NA) 
   geom_point(data = geo_data, aes(x = Longitude, y = Latitude))
 ```
+=======
+>>>>>>> f423c9b31fc0f102dfdead728f805b76476121f3
 
