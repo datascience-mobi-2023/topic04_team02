@@ -393,7 +393,7 @@ If the p-value from the test is more than alpha, then we can´t reject the null 
 
 ## ADF-Test 2006
 
-***ADF-Test 2006 for north Thailand*** -> ADF-Test result: non-stationary 
+***ADF-Test 2006 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8506)
 ```{r}
 # Data preparation 
 
@@ -412,7 +412,7 @@ north_2006 <- c(sum2006_north)
 adf.test(north_2006)
 ```
 
-***ADF-Test 2006 for northeastern Thailand*** -> ADF-Test result: non-stationary 
+***ADF-Test 2006 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0,956)
 ```{r}
 # Data preparation 
 
@@ -431,7 +431,7 @@ northeastern_2006 <- c(sum2006_northeastern)
 adf.test(northeastern_2006)
 ```
 
-***ADF-Test 2006 for central Thailand*** -> ADF-Test result: non-stationary 
+***ADF-Test 2006 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.99)
 ```{r}
 # Data preparation 
 
@@ -450,7 +450,7 @@ central_2006 <- c(sum2006_central)
 adf.test(central_2006)
 ```
 
-***ADF-Test 2006 for south Thailand*** -> ADF-Test result: stationary 
+***ADF-Test 2006 for south Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
 ```{r}
 # Data preparation 
 
