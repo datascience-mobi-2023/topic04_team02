@@ -797,6 +797,7 @@ colnames(Dengue_2020)[1] = "Code number"
 ```
 
 ## Normation of the Dengue Date according to the Population Data
+
 ### 2006 Incidence
 ```{r}
 Incidence_2006 = apply(Dengue_2006[,3:15], 2, function(x){x/Population$"2006"*100000}) #calculate the incidence (cases per 100k citizens)
