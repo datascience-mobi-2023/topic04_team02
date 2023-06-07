@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Precipitation data
 ```{r}
 library(readxl)
-Precipitation <- read_excel("ClimateData_2006_2020.xlsx", sheet = "era5_tp_2006_2020_thailand_monm")
+Precipitation <- as.data.frame(read_excel("ClimateData_2006_2020.xlsx", sheet = "era5_tp_2006_2020_thailand_monm"))
 Precipitation
 ```
 
@@ -123,7 +123,7 @@ Population
 Population_1 = Population
 
 for (x in 1:76)
-  Population[x,] = Population_1[which(province_numbers[x,2] == Population[,1]),]
+  Population[x,] = Population_1[which(province_numbers[x,2] == Population_1[,1]),]
 
 Population = cbind(province_numbers$Number, Population)
 colnames(Population)[1] = "Code number"
@@ -132,35 +132,33 @@ colnames(Population)[1] = "Code number"
 
 ***Deletion of Number Column***
 ```{r}
-
+Precipitation = Precipitation[,-1]
 ```
-
 
 ***Alignment of the province names***
 ```{r}
 province_names[,1] %in% Precipitation[,1] #is the province name in the Precipitation table?
 which((province_names[,1] %in% Precipitation[,1]) == FALSE) #which provinces are NOT in the Precipitation table?
 province_names[which((province_names[,1] %in% Precipitation[,1]) == FALSE),1] #what are the names of these "missing" provinces
-
-Dengue_2006[28,1] = province_names[5,1]
 ```
 
 ***Deletion of useless rows***
 ```{r}
-Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
-rownames(Dengue_2006) = c(1:76)
-Dengue_2006
+Precipitation = Precipitation[which((Precipitation[,1] %in% province_names[,1])), ]
+rownames(Precipitation) = c(1:77)
+Precipitation
 ```
 
 ***Addition of province numbers and sort rows by number***
 ```{r}
-Dengue_1 = Dengue_2006
+#NICHT ausführen --> noch nicht fertig
+Precipiation_1 = Precipitation
 
 for (x in 1:76)
-  Dengue_2006[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+  Precipitation[x,] = Precipiation_1[which(province_numbers[x,2] == Precipiation_1[,1]),]
 
-Dengue_2006 = cbind(province_numbers$Number, Dengue_2006)
-colnames(Dengue_2006)[1] = "Code number"
+Precipitation = cbind(province_numbers$Number, Precipitation)
+colnames(Precipitation)[1] = "Code number"
 ```
 
 ### Dengue 2006
