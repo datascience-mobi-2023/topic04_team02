@@ -117,6 +117,16 @@ Population = Population[which((Population[,1] %in% province_names[,1])), ]
 rownames(Population) = c(1:77)
 Population
 ```
+***Merge Bungkan and Nong Khai province together***
+```{r}
+Population[which(Population[,1] == "Bungkan"), 2:6] = 0 #set NAs to zero
+
+Population[which(Population[,1] == "Nong Khai"), 2:16] = Population[which(Population[,1] == "Nong Khai"), 2:16] + Population[which(Population[,1] == "Bungkan"), 2:16] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Population = Population[-which(Population[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Population) = 1:76 # rename the rows since one row was deleted
+```
 
 ***Addition of province numbers and sort rows by number***
 ```{r}
