@@ -8,7 +8,7 @@ date: "2023-05-12"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Data Upload
+# Data Upload
 
 ## Precipitation data
 ```{r}
@@ -39,6 +39,13 @@ Dengue_2020 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2020"))
 Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, Dengue_2011, Dengue_2012, Dengue_2013, Dengue_2014, Dengue_2015, Dengue_2016, Dengue_2017, Dengue_2018, Dengue_2019, Dengue_2020)
 ```
 
+## Population Data
+```{r}
+Population <- as.data.frame(read_excel("population.xlsx", sheet = "Tabelle1"))
+Population
+```
+
+
 ## Each province gets its code (number)
 ```{r}
 library(readxl)
@@ -46,14 +53,14 @@ province_numbers <- as.data.frame(read_excel("province_numbers.xlsx"))
 province_numbers = province_numbers[-27,]
 ```
 
-#Data Copies for safety reasons 
+# Data Copies for safety reasons 
 
-##Precipitation
+## Precipitation
 ```{r}
 Precipitationc = Precipitation
 ```
 
-##Dengue Fever
+## Dengue Fever
 ```{r}
 Dengue_2006c = Dengue_2006
 Dengue_2007c = Dengue_2007
@@ -72,13 +79,13 @@ Dengue_2019c = Dengue_2019
 Dengue_2020c = Dengue_2020
 ```
 
-##Province numbers
+## Province numbers
 ```{r}
 province_numbersc = province_numbers
 
 ```
 
-#Data Cleaning
+# Data Cleaning
 
 ## list of province names
 ```{r}
@@ -90,10 +97,16 @@ province_names
 
 ## Align province names, delete useless rows and add province numbers for all data sets
 
+### Population Data
+
+```{r}
+
+```
+
+
 ### Dengue 2006
 
 ***Alignment of the province names***
-
 ```{r}
 province_names[,1] %in% Dengue_2006[,1] #is the province name in the Dengue table?
 which((province_names[,1] %in% Dengue_2006[,1]) == FALSE) #which provinces are NOT in the Dengue table?
@@ -130,6 +143,7 @@ province_names[which((province_names[,1] %in% Dengue_2007[,1]) == FALSE),1] #wha
 
 Dengue_2007[28,1] = province_names[5,1] #set the correct name for the province
 ```
+
 ***Deletion of useless rows***
 ```{r}
 Dengue_2007 = Dengue_2007[which((Dengue_2007[,1] %in% province_names[,1])), ]
