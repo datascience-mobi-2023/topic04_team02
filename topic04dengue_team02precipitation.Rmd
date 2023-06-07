@@ -128,7 +128,40 @@ for (x in 1:76)
 Population = cbind(province_numbers$Number, Population)
 colnames(Population)[1] = "Code number"
 ```
+### Precipitation Data
 
+***Deletion of Number Column***
+```{r}
+
+```
+
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Precipitation[,1] #is the province name in the Precipitation table?
+which((province_names[,1] %in% Precipitation[,1]) == FALSE) #which provinces are NOT in the Precipitation table?
+province_names[which((province_names[,1] %in% Precipitation[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2006[28,1] = province_names[5,1]
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2006
+
+for (x in 1:76)
+  Dengue_2006[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2006 = cbind(province_numbers$Number, Dengue_2006)
+colnames(Dengue_2006)[1] = "Code number"
+```
 
 ### Dengue 2006
 
