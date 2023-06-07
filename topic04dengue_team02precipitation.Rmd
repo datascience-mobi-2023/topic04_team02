@@ -161,6 +161,28 @@ rownames(Precipitation) = c(1:77)
 Precipitation
 ```
 
+***Merge Bungkan and Nong Khai***
+```{r}
+area_Bungkan = 4305746
+area_Nong_Khai = 3026534
+
+Precipitation[which(Precipitation[,1] == "Nong Khai"), 4:183] = (area_Nong_Khai * Precipitation[which(Dengue_2012[,1] == "Nong Khai"), 4:183] + area_Bungkan * Precipitation[which(Precipitation[,1] == "Bungkan"), 4:183])/(area_Bungkan + area_Nong_Khai) #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Precipitation = Precipitation[-which(Precipitation[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Precipitation) = 1:76 # rename the rows since one row was deleted
+```
+
+```{r}
+Precipitation_1 = Precipitation
+
+for (x in 1:76)
+  Precipitation[x,] = Precipitation_1[which(province_numbers[x,2] == Precipitation_1[,1]),]
+
+Precipitation = cbind(province_numbers$Number, Precipitation)
+colnames(Precipitation)[1] = "Code number"
+```
+
 ### Dengue 2006
 
 ***Alignment of the province names***
