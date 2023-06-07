@@ -1,0 +1,756 @@
+---
+title: "Thailand Precipitation and Dengue Analysis"
+output: pdf_document
+date: "2023-05-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data Upload
+
+## Precipitation data
+```{r}
+library(readxl)
+Precipitation <- as.data.frame(read_excel("ClimateData_2006_2020.xlsx", sheet = "era5_tp_2006_2020_thailand_monm"))
+```
+
+## Dengue data
+```{r}
+library(readxl)
+Dengue_2006 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2006"))
+Dengue_2007 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2007"))
+Dengue_2008 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2008"))
+Dengue_2009 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2009"))
+Dengue_2010 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2010"))
+Dengue_2011 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2011"))
+Dengue_2012 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2012"))
+Dengue_2013 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2013"))
+Dengue_2014 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2014"))
+Dengue_2015 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2015"))
+Dengue_2016 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2016"))
+Dengue_2017 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2017"))
+Dengue_2018 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2018"))
+Dengue_2019 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2019"))
+Dengue_2020 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2020"))
+
+Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, Dengue_2011, Dengue_2012, Dengue_2013, Dengue_2014, Dengue_2015, Dengue_2016, Dengue_2017, Dengue_2018, Dengue_2019, Dengue_2020)
+```
+
+## Population Data
+```{r}
+Population <- as.data.frame(read_excel("population.xlsx", sheet = "Tabelle1"))
+```
+
+
+## Each province gets its code (number)
+```{r}
+library(readxl)
+province_numbers <- as.data.frame(read_excel("province_numbers.xlsx"))
+province_numbers = province_numbers[-27,]
+```
+
+# Data Copies for safety reasons 
+
+## Precipitation
+```{r}
+Precipitationc = Precipitation
+```
+
+## Dengue Fever
+```{r}
+Dengue_2006c = Dengue_2006
+Dengue_2007c = Dengue_2007
+Dengue_2008c = Dengue_2008
+Dengue_2009c = Dengue_2009
+Dengue_2010c = Dengue_2010
+Dengue_2011c = Dengue_2011
+Dengue_2012c = Dengue_2012
+Dengue_2013c = Dengue_2013
+Dengue_2014c = Dengue_2014
+Dengue_2015c = Dengue_2015
+Dengue_2016c = Dengue_2016
+Dengue_2017c = Dengue_2017
+Dengue_2018c = Dengue_2018
+Dengue_2019c = Dengue_2019
+Dengue_2020c = Dengue_2020
+```
+
+## Province numbers
+```{r}
+province_numbersc = province_numbers
+```
+
+## Population 
+```{r}
+Populationc = Population
+```
+
+# Data Cleaning
+
+## list of province names
+```{r}
+province_names = c("Bangkok", "Samut Prakan", "Nonthaburi", "Pathum Thani", "Phra Nakhon Si Ayutthaya", "Ang Thong", "Lop Buri", "Sing Buri", "Chai Nat", "Saraburi", "Chon Buri", "Rayong", "Chanthaburi", "Trat", "Chachoengsao", "Prachin Buri", "Nakhon Nayok", "Sa Kaeo", "Nakhon Ratchasima", "Buri Ram", "Surin", "Si Sa Ket", "Ubon Ratchathani", "Yasothon", "Chaiyaphum", "Amnat Charoen", "Bungkan", "Nong Bua Lam Phu", "Khon Kaen", "Udon Thani", "Loei", "Nong Khai", "Maha Sarakham", "Roi Et", "Kalasin", "Sakon Nakhon", "Nakhon Phanom", "Mukdahan", "Chiang Mai", "Lamphun",  "Lampang",  "Uttaradit", "Phrae", "Nan",    "Phayao", "Chiang Rai", "Mae Hong Son",  "Nakhon Sawan", "Uthai Thani", "Kamphaeng Phet", "Tak", "Sukhothai", "Phitsanulok", "Phichit", "Phetchabun", "Ratchaburi", "Kanchanaburi", "Suphan Buri", "Nakhon Pathom",  "Samut Sakhon", "Samut Songkhram", "Phetchaburi", "Prachuap Khiri Khan", "Nakhon Si Thammarat", "Krabi", "Phangnga", "Phuket", "Surat Thani", "Ranong", "Chumphon", "Songkhla", "Satun", "Trang", "Phatthalung", "Pattani", "Yala", "Narathiwat")
+
+province_names = as.data.frame(province_names)
+province_names
+```
+
+## Align province names, delete useless rows and add province numbers for all data sets
+
+### Population Data
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Population[,1] #is the province name in the Population table?
+which((province_names[,1] %in% Population[,1]) == FALSE) #which provinces are NOT in the Population table?
+province_names[which((province_names[,1] %in% Population[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Population[31,1] = province_names[5,1]
+```
+
+***Deletion of useless rows***
+```{r}
+Population = Population[which((Population[,1] %in% province_names[,1])), ]
+rownames(Population) = c(1:77)
+Population
+```
+
+***Merge Bungkan and Nong Khai province together***
+```{r}
+Population[which(Population[,1] == "Bungkan"), 2:6] = 0 #set NAs to zero
+
+Population[which(Population[,1] == "Nong Khai"), 2:16] = Population[which(Population[,1] == "Nong Khai"), 2:16] + Population[which(Population[,1] == "Bungkan"), 2:16] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Population = Population[-which(Population[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Population) = 1:76 # rename the rows since one row was deleted
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Population_1 = Population
+
+for (x in 1:76)
+  Population[x,] = Population_1[which(province_numbers[x,2] == Population_1[,1]),]
+
+Population = cbind(province_numbers$Number, Population)
+colnames(Population)[1] = "Code number"
+```
+
+### Precipitation Data
+
+***Deletion of Number Column***
+```{r}
+Precipitation = Precipitation[,-1]
+```
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Precipitation[,1] #is the province name in the Precipitation table?
+which((province_names[,1] %in% Precipitation[,1]) == FALSE) #which provinces are NOT in the Precipitation table?
+province_names[which((province_names[,1] %in% Precipitation[,1]) == FALSE),1] #what are the names of these "missing" provinces
+```
+
+***Deletion of useless rows***
+```{r}
+Precipitation = Precipitation[which((Precipitation[,1] %in% province_names[,1])), ]
+rownames(Precipitation) = c(1:77)
+Precipitation
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+area_Bungkan = 4305746
+area_Nong_Khai = 3026534
+
+Precipitation[which(Precipitation[,1] == "Nong Khai"), 4:183] = (area_Nong_Khai * Precipitation[which(Precipitation[,1] == "Nong Khai"), 4:183] + area_Bungkan * Precipitation[which(Precipitation[,1] == "Bungkan"), 4:183])/(area_Bungkan + area_Nong_Khai) #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Precipitation = Precipitation[-which(Precipitation[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Precipitation) = 1:76 # rename the rows since one row was deleted
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Precipitation_1 = Precipitation
+
+for (x in 1:76)
+  Precipitation[x,] = Precipitation_1[which(province_numbers[x,2] == Precipitation_1[,1]),]
+
+Precipitation = cbind(province_numbers$Number, Precipitation)
+colnames(Precipitation)[1] = "Code number"
+```
+
+### Dengue 2006
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2006[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2006[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2006[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2006[28,1] = province_names[5,1]
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
+rownames(Dengue_2006) = c(1:76)
+Dengue_2006
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2006
+
+for (x in 1:76)
+  Dengue_2006[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2006 = cbind(province_numbers$Number, Dengue_2006)
+colnames(Dengue_2006)[1] = "Code number"
+```
+
+### Dengue 2007
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2007[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2007[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2007[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2007[28,1] = province_names[5,1] #set the correct name for the province
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2007 = Dengue_2007[which((Dengue_2007[,1] %in% province_names[,1])), ]
+rownames(Dengue_2007) = c(1:76)
+Dengue_2007
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2007
+
+for (x in 1:76)
+  Dengue_2007[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2007 = cbind(province_numbers$Number, Dengue_2007)
+colnames(Dengue_2007)[1] = "Code number"
+```
+
+### Dengue 2008
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2008[,1]
+which((province_names[,1] %in% Dengue_2008[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2008[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2008[6,1] = province_names[5,1] #set the correct name for the province
+Dengue_2008[64,1] = province_names[35,1]
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2008 = Dengue_2008[which((Dengue_2008[,1] %in% province_names[,1])), ]
+rownames(Dengue_2008) = c(1:76)
+Dengue_2008
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2008
+
+for (x in 1:76)
+  Dengue_2008[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2008 = cbind(province_numbers$Number, Dengue_2008)
+colnames(Dengue_2008)[1] = "Code number"
+```
+
+### Dengue 2009
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2009[,1]
+which((province_names[,1] %in% Dengue_2009[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2009[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2009[6,1] = province_names[5,1] #set the correct name for the province
+Dengue_2009[64,1] = province_names[35,1]
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2009 = Dengue_2009[which((Dengue_2009[,1] %in% province_names[,1])), ]
+rownames(Dengue_2009) = c(1:76)
+Dengue_2009
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2009
+
+for (x in 1:76)
+  Dengue_2009[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2009 = cbind(province_numbers$Number, Dengue_2009)
+colnames(Dengue_2009)[1] = "Code number"
+```
+
+### Dengue 2010
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2010[,1]
+which((province_names[,1] %in% Dengue_2010[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2010[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2010[6,1] = province_names[5,1] #set the correct name for the province
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2010 = Dengue_2010[which((Dengue_2010[,1] %in% province_names[,1])), ]
+rownames(Dengue_2010) = c(1:76)
+Dengue_2010
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2010
+
+for (x in 1:76)
+  Dengue_2010[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2010 = cbind(province_numbers$Number, Dengue_2010)
+colnames(Dengue_2010)[1] = "Code number"
+```
+
+### Dengue 2011
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2011[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2011[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2011[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2011[6,1] = province_names[5,1] #set the correct name for the province
+Dengue_2011[65,1] = province_names[35,1]
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2011 = Dengue_2011[which((Dengue_2011[,1] %in% province_names[,1])), ]
+rownames(Dengue_2011) = c(1:77)
+Dengue_2011
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+Dengue_2011[which(Dengue_2011[,1] == "Nong Khai"), 2:14] = Dengue_2011[which(Dengue_2012[,1] == "Nong Khai"), 2:14] + Dengue_2011[which(Dengue_2011[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2011 = Dengue_2011[-which(Dengue_2011[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2011) = 1:76 # rename the rows since one row was deleted
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2011
+
+for (x in 1:76)
+  Dengue_2011[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2011 = cbind(province_numbers$Number, Dengue_2011)
+colnames(Dengue_2011)[1] = "Code number"
+```
+
+### Dengue 2012
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2012[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2012[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2012[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2012[37,1] = province_names[5,1] #set the correct name for the province
+Dengue_2012[14,1] = province_names[35,1]
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2012 = Dengue_2012[which((Dengue_2012[,1] %in% province_names[,1])), ]
+rownames(Dengue_2012) = c(1:77)
+Dengue_2012
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+Dengue_2012[which(Dengue_2012[,1] == "Nong Khai"), 2:13] = Dengue_2012[which(Dengue_2012[,1] == "Nong Khai"), 2:13] + Dengue_2012[which(Dengue_2012[,1] == "Bungkan"), 2:13] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2012 = Dengue_2012[-which(Dengue_2012[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2012) = 1:76 # rename the rows since one row was deleted
+```
+
+***Add total case number column***
+```{r}
+Total = apply(Dengue_2012[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
+
+Dengue_2012 = cbind(Dengue_2012, Total) #add total sums to dengue table
+
+Dengue_2012 = Dengue_2012[, c(1,2,15,3,4,5,6,7,8,9,10,11,12,13,14)] #sort dengue table
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2012
+
+for (x in 1:76)
+  Dengue_2012[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2012 = cbind(province_numbers$Number, Dengue_2012)
+colnames(Dengue_2012)[1] = "Code number"
+```
+
+### Dengue 2013
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2013[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2013[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2013[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2013[37,1] = province_names[5,1]  #set the correct name for the province
+Dengue_2013[14,1] = province_names[35,1]
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2013 = Dengue_2013[which((Dengue_2013[,1] %in% province_names[,1])), ]
+rownames(Dengue_2013) = c(1:77)
+Dengue_2013
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+Dengue_2013[which(Dengue_2013[,1] == "Nong Khai"), 2:13] = Dengue_2013[which(Dengue_2013[,1] == "Nong Khai"), 2:13] + Dengue_2013[which(Dengue_2013[,1] == "Bungkan"), 2:13] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2013 = Dengue_2013[-which(Dengue_2013[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2013) = 1:76 # rename the rows since one row was deleted
+```
+
+***Add total case number column***
+```{r}
+Total = apply(Dengue_2013[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
+
+Dengue_2013 = cbind(Dengue_2013, Total) #add total sums to dengue table
+Dengue_2013 = Dengue_2013[, c(1,2,15,3,4,5,6,7,8,9,10,11,12,13,14)] #sort dengue table
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2013
+
+for (x in 1:76)
+  Dengue_2013[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2013 = cbind(province_numbers$Number, Dengue_2013)
+colnames(Dengue_2013)[1] = "Code number"
+```
+
+### Dengue 2014
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2014[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2014[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2014[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2014[37,1] = province_names[5,1] #set the correct name for the province
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2014 = Dengue_2014[which((Dengue_2014[,1] %in% province_names[,1])), ]
+rownames(Dengue_2014) = c(1:77)
+Dengue_2014
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+Dengue_2014[which(Dengue_2014[,1] == "Nong Khai"), 2:13] = Dengue_2014[which(Dengue_2014[,1] == "Nong Khai"), 2:13] + Dengue_2014[which(Dengue_2014[,1] == "Bungkan"), 2:13] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2014 = Dengue_2014[-which(Dengue_2014[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2014) = 1:76 # rename the rows since one row was deleted
+```
+
+***Add total case number column***
+```{r}
+Total = apply(Dengue_2014[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
+
+Dengue_2014 = cbind(Dengue_2014, Total) #add total sums to dengue table
+Dengue_2014 = Dengue_2014[, c(1,2,15,3,4,5,6,7,8,9,10,11,12,13,14)] #sort dengue table
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2014
+
+for (x in 1:76)
+  Dengue_2014[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2014 = cbind(province_numbers$Number, Dengue_2014)
+colnames(Dengue_2014)[1] = "Code number"
+```
+
+### Dengue 2015
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2015[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2015[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2015[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2015[37,1] = province_names[5,1] #set the correct name for the province
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2015 = Dengue_2015[which((Dengue_2015[,1] %in% province_names[,1])), ]
+rownames(Dengue_2015) = c(1:77)
+Dengue_2015
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+Dengue_2015[which(Dengue_2015[,1] == "Nong Khai"), 2:13] = Dengue_2015[which(Dengue_2015[,1] == "Nong Khai"), 2:13] + Dengue_2015[which(Dengue_2015[,1] == "Bungkan"), 2:13] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2015 = Dengue_2015[-which(Dengue_2015[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2015) = 1:76 # rename the rows since one row was deleted
+```
+
+***Add total case number column***
+```{r}
+Total = apply(Dengue_2015[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
+
+Dengue_2015 = cbind(Dengue_2015, Total) #add total sums to dengue table
+Dengue_2015 = Dengue_2015[, c(1,2,15,3,4,5,6,7,8,9,10,11,12,13,14)] #sort dengue table
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2015
+
+for (x in 1:76)
+  Dengue_2015[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2015 = cbind(province_numbers$Number, Dengue_2015)
+colnames(Dengue_2015)[1] = "Code number"
+```
+
+### Dengue 2016
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2016[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2016[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2016[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2016[37,1] = province_names[5,1] #set the correct name for the province
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2016 = Dengue_2016[which((Dengue_2016[,1] %in% province_names[,1])), ]
+rownames(Dengue_2016) = c(1:77)
+Dengue_2016
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+Dengue_2016[which(Dengue_2016[,1] == "Nong Khai"), 2:13] = Dengue_2016[which(Dengue_2016[,1] == "Nong Khai"), 2:13] + Dengue_2016[which(Dengue_2016[,1] == "Bungkan"), 2:13] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2016 = Dengue_2016[-which(Dengue_2016[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2016) = 1:76 # rename the rows since one row was deleted
+```
+
+***Add total case number column***
+```{r}
+Total = apply(Dengue_2016[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
+
+Dengue_2016 = cbind(Dengue_2016, Total) #add total sums to dengue table
+Dengue_2016 = Dengue_2016[, c(1,2,15,3,4,5,6,7,8,9,10,11,12,13,14)] #sort dengue table
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2016
+
+for (x in 1:76)
+  Dengue_2016[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2016 = cbind(province_numbers$Number, Dengue_2016)
+colnames(Dengue_2016)[1] = "Code number"
+```
+
+### Dengue 2017
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2017[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2017[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2017[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2017[31,1] = province_names[5,1] #set the correct name for the province
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2017 = Dengue_2017[which((Dengue_2017[,1] %in% province_names[,1])), ]
+rownames(Dengue_2017) = c(1:77)
+Dengue_2017
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+Dengue_2017[which(Dengue_2017[,1] == "Nong Khai"), 2:14] = Dengue_2017[which(Dengue_2017[,1] == "Nong Khai"), 2:14] + Dengue_2017[which(Dengue_2017[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2017 = Dengue_2017[-which(Dengue_2017[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2017) = 1:76 # rename the rows since one row was deleted
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2017
+
+for (x in 1:76)
+  Dengue_2017[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2017 = cbind(province_numbers$Number, Dengue_2017)
+colnames(Dengue_2017)[1] = "Code number"
+```
+
+### Dengue 2018
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2018[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2018[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2018[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2018[31,1] = province_names[5,1] #set the correct name for the province
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2018 = Dengue_2018[which((Dengue_2018[,1] %in% province_names[,1])), ]
+rownames(Dengue_2018) = c(1:77)
+Dengue_2018
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+Dengue_2018[which(Dengue_2018[,1] == "Nong Khai"), 2:14] = Dengue_2018[which(Dengue_2018[,1] == "Nong Khai"), 2:14] + Dengue_2018[which(Dengue_2018[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2018 = Dengue_2018[-which(Dengue_2018[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2018) = 1:76 # rename the rows since one row was deleted
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2018
+
+for (x in 1:76)
+  Dengue_2018[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2018 = cbind(province_numbers$Number, Dengue_2018)
+colnames(Dengue_2018)[1] = "Code number"
+```
+
+### Dengue 2019
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2019[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2019[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2019[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2019[31,1] = province_names[5,1] #set the correct name for the province
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2019 = Dengue_2019[which((Dengue_2019[,1] %in% province_names[,1])), ]
+rownames(Dengue_2019) = c(1:77)
+Dengue_2019
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+Dengue_2019[which(Dengue_2019[,1] == "Nong Khai"), 2:14] = Dengue_2019[which(Dengue_2019[,1] == "Nong Khai"), 2:14] + Dengue_2019[which(Dengue_2019[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2019 = Dengue_2019[-which(Dengue_2019[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2019) = 1:76 # rename the rows since one row was deleted
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2019
+
+for (x in 1:76)
+  Dengue_2019[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2019 = cbind(province_numbers$Number, Dengue_2019)
+colnames(Dengue_2019)[1] = "Code number"
+```
+
+### Dengue 2020
+
+***Alignment of the province names***
+```{r}
+province_names[,1] %in% Dengue_2020[,1] #is the province name in the Dengue table?
+which((province_names[,1] %in% Dengue_2020[,1]) == FALSE) #which provinces are NOT in the Dengue table?
+province_names[which((province_names[,1] %in% Dengue_2020[,1]) == FALSE),1] #what are the names of these "missing" provinces
+
+Dengue_2020[31,1] = province_names[5,1] #set the correct name for the province
+```
+
+***Deletion of useless rows***
+```{r}
+Dengue_2020 = Dengue_2020[which((Dengue_2020[,1] %in% province_names[,1])), ]
+rownames(Dengue_2020) = c(1:77)
+Dengue_2020
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+Dengue_2020[which(Dengue_2020[,1] == "Nong Khai"), 2:14] = Dengue_2020[which(Dengue_2020[,1] == "Nong Khai"), 2:14] + Dengue_2020[which(Dengue_2020[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2020 = Dengue_2020[-which(Dengue_2020[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2020) = 1:76 # rename the rows since one row was deleted
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2020
+
+for (x in 1:76)
+  Dengue_2020[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2020 = cbind(province_numbers$Number, Dengue_2020)
+colnames(Dengue_2020)[1] = "Code number"
+```
+
