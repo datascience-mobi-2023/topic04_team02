@@ -189,6 +189,41 @@ Precipitation = cbind(province_numbers$Number, Precipitation)
 colnames(Precipitation)[1] = "Code number"
 ```
 
+***Seperation of the Data to one year dataframes***
+```{r}
+Precipitation_2006 = Precipitation[, 1:16]
+Precipitation_2007 = Precipitation[, c(1:4,17:28)]
+Precipitation_2008 = Precipitation[, c(1:4,29:40)]
+Precipitation_2009 = Precipitation[, c(1:4,41:52)]
+Precipitation_2010 = Precipitation[, c(1:4,53:64)]
+Precipitation_2011 = Precipitation[, c(1:4,65:76)]
+Precipitation_2012 = Precipitation[, c(1:4,77:88)]
+Precipitation_2013 = Precipitation[, c(1:4,89:100)]
+Precipitation_2014 = Precipitation[, c(1:4,101:112)]
+Precipitation_2015 = Precipitation[, c(1:4,113:124)]
+Precipitation_2016 = Precipitation[, c(1:4,125:136)]
+Precipitation_2017 = Precipitation[, c(1:4,137:148)]
+Precipitation_2018 = Precipitation[, c(1:4,149:160)]
+Precipitation_2019 = Precipitation[, c(1:4,161:172)]
+Precipitation_2020 = Precipitation[, c(1:4,173:184)]
+
+colnames(Precipitation_2006)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2007)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2008)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2009)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2010)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2011)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2012)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2013)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2014)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2015)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2016)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2017)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2018)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2019)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2020)[5:16] = colnames(Dengue_2020)[4:15]
+```
+
 ### Dengue 2006
 
 ***Alignment of the province names***
