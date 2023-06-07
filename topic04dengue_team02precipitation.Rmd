@@ -51,6 +51,7 @@ Population <- as.data.frame(read_excel("population.xlsx", sheet = "Tabelle1"))
 library(readxl)
 province_numbers <- as.data.frame(read_excel("province_numbers.xlsx"))
 province_numbers = province_numbers[-27,]
+rownames(province_numbers) = 1:76
 ```
 
 
@@ -187,6 +188,41 @@ for (x in 1:76)
 
 Precipitation = cbind(province_numbers$Number, Precipitation)
 colnames(Precipitation)[1] = "Code number"
+```
+
+***Seperation of the Data to one year dataframes***
+```{r}
+Precipitation_2006 = Precipitation[, 1:16]
+Precipitation_2007 = Precipitation[, c(1:4,17:28)]
+Precipitation_2008 = Precipitation[, c(1:4,29:40)]
+Precipitation_2009 = Precipitation[, c(1:4,41:52)]
+Precipitation_2010 = Precipitation[, c(1:4,53:64)]
+Precipitation_2011 = Precipitation[, c(1:4,65:76)]
+Precipitation_2012 = Precipitation[, c(1:4,77:88)]
+Precipitation_2013 = Precipitation[, c(1:4,89:100)]
+Precipitation_2014 = Precipitation[, c(1:4,101:112)]
+Precipitation_2015 = Precipitation[, c(1:4,113:124)]
+Precipitation_2016 = Precipitation[, c(1:4,125:136)]
+Precipitation_2017 = Precipitation[, c(1:4,137:148)]
+Precipitation_2018 = Precipitation[, c(1:4,149:160)]
+Precipitation_2019 = Precipitation[, c(1:4,161:172)]
+Precipitation_2020 = Precipitation[, c(1:4,173:184)]
+
+colnames(Precipitation_2006)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2007)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2008)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2009)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2010)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2011)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2012)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2013)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2014)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2015)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2016)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2017)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2018)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2019)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2020)[5:16] = colnames(Dengue_2020)[4:15]
 ```
 
 ### Dengue 2006
@@ -761,9 +797,109 @@ colnames(Dengue_2020)[1] = "Code number"
 ```
 
 ## Normation of the Dengue Date according to the Population Data
-
+### 2006 Incidence
 ```{r}
+Incidence_2006 = apply(Dengue_2006[,3:15], 2, function(x){x/Population$"2006"*100000}) #calculate the incidence (cases per 100k citizens)
 
+Incidence_2006 = cbind(province_numbers[,3:2], Incidence_2006) #add the Province code and name
+```
+
+### 2007 Incidence
+```{r}
+Incidence_2007 = apply(Dengue_2007[,3:15], 2, function(x){x/Population$"2007"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2007 = cbind(province_numbers[,3:2], Incidence_2007) #add the Province code and name
+```
+
+### 2008 Incidence
+```{r}
+Incidence_2008 = apply(Dengue_2008[,3:15], 2, function(x){x/Population$"2008"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2008 = cbind(province_numbers[,3:2], Incidence_2008) #add the Province code and name
+```
+
+### 2009 Incidence
+```{r}
+Incidence_2009 = apply(Dengue_2009[,3:15], 2, function(x){x/Population$"2009"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2009 = cbind(province_numbers[,3:2], Incidence_2009) #add the Province code and name
+```
+
+### 2010 Incidence
+```{r}
+Incidence_2010 = apply(Dengue_2010[,3:15], 2, function(x){x/Population$"2010"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2010 = cbind(province_numbers[,3:2], Incidence_2010) #add the Province code and name
+```
+
+### 2011 Incidence
+```{r}
+Incidence_2011 = apply(Dengue_2011[,3:15], 2, function(x){x/Population$"2011"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2011 = cbind(province_numbers[,3:2], Incidence_2011) #add the Province code and name
+```
+
+### 2012 Incidence
+```{r}
+Incidence_2012 = apply(Dengue_2012[,3:15], 2, function(x){x/Population$"2012"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2012 = cbind(province_numbers[,3:2], Incidence_2012) #add the Province code and name
+```
+
+### 2013 Incidence
+```{r}
+Incidence_2013 = apply(Dengue_2013[,3:15], 2, function(x){x/Population$"2013"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2013 = cbind(province_numbers[,3:2], Incidence_2013) #add the Province code and name
+```
+
+### 2014 Incidence
+```{r}
+Incidence_2014 = apply(Dengue_2014[,3:15], 2, function(x){x/Population$"2014"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2014 = cbind(province_numbers[,3:2], Incidence_2014) #add the Province code and name
+```
+
+### 2015 Incidence
+```{r}
+Incidence_2015 = apply(Dengue_2015[,3:15], 2, function(x){x/Population$"2015"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2015 = cbind(province_numbers[,3:2], Incidence_2015) #add the Province code and name
+```
+
+### 2016 Incidence
+```{r}
+Incidence_2016 = apply(Dengue_2016[,3:15], 2, function(x){x/Population$"2016"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2016 = cbind(province_numbers[,3:2], Incidence_2016) #add the Province code and name
+```
+
+### 2017 Incidence
+```{r}
+Incidence_2017 = apply(Dengue_2017[,3:15], 2, function(x){x/Population$"2017"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2017 = cbind(province_numbers[,3:2], Incidence_2017) #add the Province code and name
+```
+
+### 2018 Incidence
+```{r}
+Incidence_2018 = apply(Dengue_2018[,3:15], 2, function(x){x/Population$"2018"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2018 = cbind(province_numbers[,3:2], Incidence_2018) #add the Province code and name
+```
+
+### 2019 Incidence
+```{r}
+Incidence_2019 = apply(Dengue_2019[,3:15], 2, function(x){x/Population$"2019"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2019 = cbind(province_numbers[,3:2], Incidence_2019) #add the Province code and name
+```
+
+### 2020 Incidence
+```{r}
+Incidence_2020 = apply(Dengue_2020[,3:15], 2, function(x){x/Population$"2020"*100000}) #calculate the incidence (cases per 100k citizens)
+
+Incidence_2020 = cbind(province_numbers[,3:2], Incidence_2020) #add the Province code and name
 ```
 
 
@@ -785,7 +921,15 @@ provinces_south = list("Chumphon", "Krabi", "Nakhon Si Thammarat", "Narathiwat",
 ## By Code Number
 
 ```{r}
+# North: Leading digit 5
+# Northeastern: Leading digit 3,4
+# Central: Leading digit 1,2,6,7
+# South: Leading digit 8,9
 
+provinces_north_rows = province_numbers[38:46, 3]
+provinces_northeastern_rows = province_numbers[19:37, 3]
+provinces_central_rows = province_numbers[c(1:18,47:62), 3]
+provinces_south_rows = province_numbers[63:76, 3]
 ```
 
 
