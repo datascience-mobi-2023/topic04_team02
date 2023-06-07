@@ -161,18 +161,6 @@ rownames(Precipitation) = c(1:77)
 Precipitation
 ```
 
-***Addition of province numbers and sort rows by number***
-```{r}
-#NICHT ausführen --> noch nicht fertig
-Precipiation_1 = Precipitation
-
-for (x in 1:76)
-  Precipitation[x,] = Precipiation_1[which(province_numbers[x,2] == Precipiation_1[,1]),]
-
-Precipitation = cbind(province_numbers$Number, Precipitation)
-colnames(Precipitation)[1] = "Code number"
-```
-
 ### Dengue 2006
 
 ***Alignment of the province names***
