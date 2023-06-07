@@ -109,15 +109,15 @@ rownames(Dengue_2006) = c(1:76)
 Dengue_2006
 ```
 
-***Addition of province numbers***
+***Addition of province numbers and sort rows by number***
 ```{r}
-Province_numbers = c()
-```
+Dengue_1 = Dengue_2006
 
+for (x in 1:76)
+  Dengue_2006[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
 
-```{r}
-Dengue_2006c2 = cbind()
-
+Dengue_2006 = cbind(province_numbers$Number, Dengue_2006)
+colnames(Dengue_2006)[1] = "Code number"
 ```
 
 ### Dengue 2007
@@ -135,6 +135,17 @@ Dengue_2007[28,1] = province_names[5,1] #set the correct name for the province
 Dengue_2007 = Dengue_2007[which((Dengue_2007[,1] %in% province_names[,1])), ]
 rownames(Dengue_2007) = c(1:76)
 Dengue_2007
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2007
+
+for (x in 1:76)
+  Dengue_2007[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2007 = cbind(province_numbers$Number, Dengue_2007)
+colnames(Dengue_2007)[1] = "Code number"
 ```
 
 ### Dengue 2008
@@ -156,6 +167,17 @@ rownames(Dengue_2008) = c(1:76)
 Dengue_2008
 ```
 
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2008
+
+for (x in 1:76)
+  Dengue_2008[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2008 = cbind(province_numbers$Number, Dengue_2008)
+colnames(Dengue_2008)[1] = "Code number"
+```
+
 ### Dengue 2009
 
 ***Alignment of the province names***
@@ -175,6 +197,17 @@ rownames(Dengue_2009) = c(1:76)
 Dengue_2009
 ```
 
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2009
+
+for (x in 1:76)
+  Dengue_2009[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2009 = cbind(province_numbers$Number, Dengue_2009)
+colnames(Dengue_2009)[1] = "Code number"
+```
+
 ### Dengue 2010
 
 ***Alignment of the province names***
@@ -191,6 +224,17 @@ Dengue_2010[6,1] = province_names[5,1] #set the correct name for the province
 Dengue_2010 = Dengue_2010[which((Dengue_2010[,1] %in% province_names[,1])), ]
 rownames(Dengue_2010) = c(1:76)
 Dengue_2010
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Dengue_1 = Dengue_2010
+
+for (x in 1:76)
+  Dengue_2010[x,] = Dengue_1[which(province_numbers[x,2] == Dengue_1[,1]),]
+
+Dengue_2010 = cbind(province_numbers$Number, Dengue_2010)
+colnames(Dengue_2010)[1] = "Code number"
 ```
 
 ### Dengue 2011
