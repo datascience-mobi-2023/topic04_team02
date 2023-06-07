@@ -139,6 +139,7 @@ for (x in 1:76)
 Population = cbind(province_numbers$Number, Population)
 colnames(Population)[1] = "Code number"
 ```
+
 ### Precipitation Data
 
 ***Deletion of Number Column***
