@@ -248,7 +248,7 @@ provinces_northeastern = list("Amnat Charoen", "Buri Ram", "Chaiyaphum", "Kalasi
 
 provinces_south = list("Chumphon", "Krabi", "Nakhon Si Thammarat", "Narathiwat", "Pattani", "Phangnga", "Phatthalung", "Phuket", "Ranong", "Satun", "Songkhla", "Surat Thani", "Trang", "Yala")
 
-provinces_central = list("Ang Thong", "Chachoengsao", "Chai Nat", "Chanthaburi", "Chon Buri", "Kamphaeng Phet", "Kanchanaburi", "Lop Buri", "Nakhon Nayok", "Nakhon Pathom", "Nakhon Sawan", "Nonthaburi", "Pathum Thani", "Phetchabun", "Phetchaburi", "Phichit", "Phitsanulok", "Phra Nakhon Si Ayutthaya", "Prachin Buri", "Prachuap Khiri Khan", "Ratchaburi", "Rayong", "Sa Keao", "Samut Prakan", "Samut Sakhon", "Samut Songkhram", "Saraburi", "Sing Buri", "Sukhothai", "Suphan Buri", "Tak", "Trat", "Uthai Thani")
+provinces_central = list("Bangkok", "Ang Thong", "Chachoengsao", "Chai Nat", "Chanthaburi", "Chon Buri", "Kamphaeng Phet", "Kanchanaburi", "Lop Buri", "Nakhon Nayok", "Nakhon Pathom", "Nakhon Sawan", "Nonthaburi", "Pathum Thani", "Phetchabun", "Phetchaburi", "Phichit", "Phitsanulok", "Phra Nakhon Si Ayutthaya", "Prachin Buri", "Prachuap Khiri Khan", "Ratchaburi", "Rayong", "Sa Keao", "Samut Prakan", "Samut Sakhon", "Samut Songkhram", "Saraburi", "Sing Buri", "Sukhothai", "Suphan Buri", "Tak", "Trat", "Uthai Thani")
 ```
 
 ###Location of the provinces with the highest mean temperature over the years 2008-2022
