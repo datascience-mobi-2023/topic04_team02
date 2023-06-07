@@ -1,6 +1,6 @@
 
 ```{r}
-centroids <- read.table(file = "/Users/lennardmoschner/Desktop/BioInfo Project/Regions, Longtitude, Latitude.csv",  sep = "|", header = TRUE)
+centroids <- read.table(file = "Regions, Longtitude, Latitude.csv",  sep = "|", header = TRUE)
 
 #"|"
 centroids
@@ -10,7 +10,7 @@ class(centroids)
 
 ```{r}
 library(sf)
-Thailand_Shape = st_read("/Users/lennardmoschner/Downloads/gadm36_THA_shp/gadm36_THA_1.shp")
+Thailand_Shape = st_read("gadm36_THA_shp/gadm36_THA_1.shp")
 list(Thailand_Shape$NAME_1)
 View(Thailand_Shape)
 
