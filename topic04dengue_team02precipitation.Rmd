@@ -42,7 +42,6 @@ Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, D
 ## Population Data
 ```{r}
 Population <- as.data.frame(read_excel("population.xlsx", sheet = "Tabelle1"))
-Population
 ```
 
 
@@ -82,7 +81,11 @@ Dengue_2020c = Dengue_2020
 ## Province numbers
 ```{r}
 province_numbersc = province_numbers
+```
 
+## Population 
+```{r}
+Populationc = Population
 ```
 
 # Data Cleaning
@@ -99,8 +102,31 @@ province_names
 
 ### Population Data
 
+***Alignment of the province names***
 ```{r}
+province_names[,1] %in% Population[,1] #is the province name in the Population table?
+which((province_names[,1] %in% Population[,1]) == FALSE) #which provinces are NOT in the Population table?
+province_names[which((province_names[,1] %in% Population[,1]) == FALSE),1] #what are the names of these "missing" provinces
 
+Population[31,1] = province_names[5,1]
+```
+
+***Deletion of useless rows***
+```{r}
+Population = Population[which((Population[,1] %in% province_names[,1])), ]
+rownames(Population) = c(1:77)
+Population
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+Population_1 = Population
+
+for (x in 1:76)
+  Population[x,] = Population_1[which(province_numbers[x,2] == Population[,1]),]
+
+Population = cbind(province_numbers$Number, Population)
+colnames(Population)[1] = "Code number"
 ```
 
 
