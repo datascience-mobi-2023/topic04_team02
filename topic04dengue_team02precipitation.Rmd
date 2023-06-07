@@ -117,6 +117,7 @@ Population = Population[which((Population[,1] %in% province_names[,1])), ]
 rownames(Population) = c(1:77)
 Population
 ```
+
 ***Merge Bungkan and Nong Khai province together***
 ```{r}
 Population[which(Population[,1] == "Bungkan"), 2:6] = 0 #set NAs to zero
