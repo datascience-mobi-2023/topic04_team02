@@ -327,6 +327,14 @@ rownames(Dengue_2011) = c(1:77)
 Dengue_2011
 ```
 
+```{r}
+Dengue_2011[which(Dengue_2012[,1] == "Nong Khai"), 2:14] = Dengue_2011[which(Dengue_2012[,1] == "Nong Khai"), 2:14] + Dengue_2011[which(Dengue_2011[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2011 = Dengue_2011[-which(Dengue_2011[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2011) = 1:76 # rename the rows since one row was deleted
+```
+
 ### Dengue 2012
 
 ***Alignment of the province names***
@@ -344,6 +352,23 @@ Dengue_2012[14,1] = province_names[35,1]
 Dengue_2012 = Dengue_2012[which((Dengue_2012[,1] %in% province_names[,1])), ]
 rownames(Dengue_2012) = c(1:77)
 Dengue_2012
+```
+
+***Merge Bungkan and Nong Khai***
+```{r}
+Dengue_2012[which(Dengue_2012[,1] == "Nong Khai"), 2:14] = Dengue_2012[which(Dengue_2012[,1] == "Nong Khai"), 2:14] + Dengue_2012[which(Dengue_2012[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2012 = Dengue_2012[-which(Dengue_2012[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2012) = 1:76 # rename the rows since one row was deleted
+```
+
+***Add total case number column***
+```{r}
+Total = apply(Dengue_2012[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
+
+Dengue_2012 = cbind(Dengue_2012, Total) #add total sums to dengue table
+Dengue_2012 = Dengue_2012[, colnames(Dengue_2011)] #sort dengue table
 ```
 
 ### Dengue 2013
@@ -365,6 +390,21 @@ rownames(Dengue_2013) = c(1:77)
 Dengue_2013
 ```
 
+```{r}
+Dengue_2013[which(Dengue_2013[,1] == "Nong Khai"), 2:14] = Dengue_2013[which(Dengue_2013[,1] == "Nong Khai"), 2:14] + Dengue_2013[which(Dengue_2013[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2013 = Dengue_2013[-which(Dengue_2013[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2013) = 1:76 # rename the rows since one row was deleted
+```
+
+```{r}
+Total = apply(Dengue_2013[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
+
+Dengue_2013 = cbind(Dengue_2013, Total) #add total sums to dengue table
+Dengue_2013 = Dengue_2013[, colnames(Dengue_2011)] #sort dengue table
+```
+
 ### Dengue 2014
 
 ***Alignment of the province names***
@@ -381,6 +421,21 @@ Dengue_2014[37,1] = province_names[5,1] #set the correct name for the province
 Dengue_2014 = Dengue_2014[which((Dengue_2014[,1] %in% province_names[,1])), ]
 rownames(Dengue_2014) = c(1:77)
 Dengue_2014
+```
+
+```{r}
+Dengue_2014[which(Dengue_2014[,1] == "Nong Khai"), 2:14] = Dengue_2014[which(Dengue_2014[,1] == "Nong Khai"), 2:14] + Dengue_2014[which(Dengue_2014[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2014 = Dengue_2014[-which(Dengue_2014[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2014) = 1:76 # rename the rows since one row was deleted
+```
+
+```{r}
+Total = apply(Dengue_2014[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
+
+Dengue_2014 = cbind(Dengue_2014, Total) #add total sums to dengue table
+Dengue_2014 = Dengue_2014[, colnames(Dengue_2011)] #sort dengue table
 ```
 
 ### Dengue 2015
@@ -401,6 +456,21 @@ rownames(Dengue_2015) = c(1:77)
 Dengue_2015
 ```
 
+```{r}
+Dengue_2015[which(Dengue_2015[,1] == "Nong Khai"), 2:14] = Dengue_2015[which(Dengue_2015[,1] == "Nong Khai"), 2:14] + Dengue_2015[which(Dengue_2015[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2015 = Dengue_2015[-which(Dengue_2015[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2015) = 1:76 # rename the rows since one row was deleted
+```
+
+```{r}
+Total = apply(Dengue_2015[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
+
+Dengue_2015 = cbind(Dengue_2015, Total) #add total sums to dengue table
+Dengue_2015 = Dengue_2015[, colnames(Dengue_2011)] #sort dengue table
+```
+
 ### Dengue 2016
 
 ***Alignment of the province names***
@@ -417,6 +487,21 @@ Dengue_2016[37,1] = province_names[5,1] #set the correct name for the province
 Dengue_2016 = Dengue_2016[which((Dengue_2016[,1] %in% province_names[,1])), ]
 rownames(Dengue_2016) = c(1:77)
 Dengue_2016
+```
+
+```{r}
+Dengue_2016[which(Dengue_2016[,1] == "Nong Khai"), 2:14] = Dengue_2016[which(Dengue_2016[,1] == "Nong Khai"), 2:14] + Dengue_2016[which(Dengue_2016[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2016 = Dengue_2016[-which(Dengue_2016[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2016) = 1:76 # rename the rows since one row was deleted
+```
+
+```{r}
+Total = apply(Dengue_2016[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
+
+Dengue_2016 = cbind(Dengue_2016, Total) #add total sums to dengue table
+Dengue_2016 = Dengue_2016[, colnames(Dengue_2011)] #sort dengue table
 ```
 
 ### Dengue 2017
@@ -437,6 +522,14 @@ rownames(Dengue_2017) = c(1:77)
 Dengue_2017
 ```
 
+```{r}
+Dengue_2017[which(Dengue_2012[,1] == "Nong Khai"), 2:14] = Dengue_2017[which(Dengue_2017[,1] == "Nong Khai"), 2:14] + Dengue_2017[which(Dengue_2017[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2017 = Dengue_2017[-which(Dengue_2017[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2017) = 1:76 # rename the rows since one row was deleted
+```
+
 ### Dengue 2018
 
 ***Alignment of the province names***
@@ -453,6 +546,14 @@ Dengue_2018[31,1] = province_names[5,1] #set the correct name for the province
 Dengue_2018 = Dengue_2018[which((Dengue_2018[,1] %in% province_names[,1])), ]
 rownames(Dengue_2018) = c(1:77)
 Dengue_2018
+```
+
+```{r}
+Dengue_2018[which(Dengue_2018[,1] == "Nong Khai"), 2:14] = Dengue_2018[which(Dengue_2018[,1] == "Nong Khai"), 2:14] + Dengue_2018[which(Dengue_2018[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2018 = Dengue_2018[-which(Dengue_2018[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2018) = 1:76 # rename the rows since one row was deleted
 ```
 
 ### Dengue 2019
@@ -473,6 +574,14 @@ rownames(Dengue_2019) = c(1:77)
 Dengue_2019
 ```
 
+```{r}
+Dengue_2019[which(Dengue_2019[,1] == "Nong Khai"), 2:14] = Dengue_2019[which(Dengue_2019[,1] == "Nong Khai"), 2:14] + Dengue_2019[which(Dengue_2019[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2019 = Dengue_2019[-which(Dengue_2019[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2019) = 1:76 # rename the rows since one row was deleted
+```
+
 ### Dengue 2020
 
 ***Alignment of the province names***
@@ -489,6 +598,14 @@ Dengue_2020[31,1] = province_names[5,1] #set the correct name for the province
 Dengue_2020 = Dengue_2020[which((Dengue_2020[,1] %in% province_names[,1])), ]
 rownames(Dengue_2020) = c(1:77)
 Dengue_2020
+```
+
+```{r}
+Dengue_2020[which(Dengue_2020[,1] == "Nong Khai"), 2:14] = Dengue_2020[which(Dengue_2020[,1] == "Nong Khai"), 2:14] + Dengue_2020[which(Dengue_2020[,1] == "Bungkan"), 2:14] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+Dengue_2020 = Dengue_2020[-which(Dengue_2020[,1] == "Bungkan"), ] #delete Bungkan row
+
+rownames(Dengue_2020) = 1:76 # rename the rows since one row was deleted
 ```
 
 
