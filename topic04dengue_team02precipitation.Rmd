@@ -8,6 +8,8 @@ date: "2023-05-12"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+
 # Data Upload
 
 ## Precipitation data
@@ -51,6 +53,8 @@ province_numbers <- as.data.frame(read_excel("province_numbers.xlsx"))
 province_numbers = province_numbers[-27,]
 ```
 
+
+
 # Data Copies for safety reasons 
 
 ## Precipitation
@@ -86,6 +90,8 @@ province_numbersc = province_numbers
 ```{r}
 Populationc = Population
 ```
+
+
 
 # Data Cleaning
 
@@ -759,6 +765,8 @@ colnames(Dengue_2020)[1] = "Code number"
 ```{r}
 
 ```
+
+
 
 # 4 Region Classification of the provinces in Thailand
 
