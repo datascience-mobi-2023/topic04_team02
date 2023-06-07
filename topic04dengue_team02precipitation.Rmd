@@ -409,7 +409,7 @@ Total = apply(Dengue_2012[,2:13], 1, function(x){sum(x)}) #calculate total sum o
 
 Dengue_2012 = cbind(Dengue_2012, Total) #add total sums to dengue table
 
-Dengue_2012 = Dengue_2012[, c(1,2,15,3,4,5,6,7,8,9,10,11,12,13,14)] #sort dengue table
+Dengue_2012 = Dengue_2012[, c(1,14,2,3,4,5,6,7,8,9,10,11,12,13)] #sort dengue table
 ```
 
 ***Addition of province numbers and sort rows by number***
@@ -456,7 +456,7 @@ rownames(Dengue_2013) = 1:76 # rename the rows since one row was deleted
 Total = apply(Dengue_2013[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
 
 Dengue_2013 = cbind(Dengue_2013, Total) #add total sums to dengue table
-Dengue_2013 = Dengue_2013[, c(1,2,15,3,4,5,6,7,8,9,10,11,12,13,14)] #sort dengue table
+Dengue_2013 = Dengue_2013[, c(1,14,2,3,4,5,6,7,8,9,10,11,12,13)] #sort dengue table
 ```
 
 ***Addition of province numbers and sort rows by number***
@@ -502,7 +502,7 @@ rownames(Dengue_2014) = 1:76 # rename the rows since one row was deleted
 Total = apply(Dengue_2014[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
 
 Dengue_2014 = cbind(Dengue_2014, Total) #add total sums to dengue table
-Dengue_2014 = Dengue_2014[, c(1,2,15,3,4,5,6,7,8,9,10,11,12,13,14)] #sort dengue table
+Dengue_2014 = Dengue_2014[, c(1,14,2,3,4,5,6,7,8,9,10,11,12,13)] #sort dengue table
 ```
 
 ***Addition of province numbers and sort rows by number***
@@ -548,7 +548,7 @@ rownames(Dengue_2015) = 1:76 # rename the rows since one row was deleted
 Total = apply(Dengue_2015[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
 
 Dengue_2015 = cbind(Dengue_2015, Total) #add total sums to dengue table
-Dengue_2015 = Dengue_2015[, c(1,2,15,3,4,5,6,7,8,9,10,11,12,13,14)] #sort dengue table
+Dengue_2015 = Dengue_2015[, c(1,14,2,3,4,5,6,7,8,9,10,11,12,13)] #sort dengue table
 ```
 
 ***Addition of province numbers and sort rows by number***
@@ -594,7 +594,7 @@ rownames(Dengue_2016) = 1:76 # rename the rows since one row was deleted
 Total = apply(Dengue_2016[,2:13], 1, function(x){sum(x)}) #calculate total sum of cases
 
 Dengue_2016 = cbind(Dengue_2016, Total) #add total sums to dengue table
-Dengue_2016 = Dengue_2016[, c(1,2,15,3,4,5,6,7,8,9,10,11,12,13,14)] #sort dengue table
+Dengue_2016 = Dengue_2016[, c(1,14,2,3,4,5,6,7,8,9,10,11,12,13)] #sort dengue table
 ```
 
 ***Addition of province numbers and sort rows by number***
