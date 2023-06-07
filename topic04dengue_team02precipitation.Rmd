@@ -909,10 +909,10 @@ Incidence_2020 = cbind(province_numbers[,3:2], Incidence_2020) #add the Province
 ## By district names
 
 ```{r}
-provinces_north = province_names[38:46,]
-provinces_northeastern = province_names[19:37, ]
-provinces_central = province_names[c(1:18,47:62), ]
-provinces_south = province_names[63:76, ]
+provinces_north = province_numbers[38:46,2]
+provinces_northeastern = province_numbers[19:37, 2]
+provinces_central = province_numbers[c(1:18,47:62), 2]
+provinces_south = province_numbers[63:76, 2]
 ```
 
 ## By Code Number
@@ -923,10 +923,10 @@ provinces_south = province_names[63:76, ]
 # Central: Leading digit 1,2,6,7
 # South: Leading digit 8,9
 
-provinces_north_rows = province_numbers[38:46, 3]
-provinces_northeastern_rows = province_numbers[19:37, 3]
-provinces_central_rows = province_numbers[c(1:18,47:62), 3]
-provinces_south_rows = province_numbers[63:76, 3]
+provinces_north_rows = province_numbers[38:46, 2:3]
+provinces_northeastern_rows = province_numbers[19:37, 2:3]
+provinces_central_rows = province_numbers[c(1:18,47:62), 2:3]
+provinces_south_rows = province_numbers[63:76, 2:3]
 ```
 
 
