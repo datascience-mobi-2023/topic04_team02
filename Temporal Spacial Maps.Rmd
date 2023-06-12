@@ -49,23 +49,33 @@ names(centroids)[1]  <- "Districts_names"
 
 ```{r}
 library(dplyr)
+
+colnames(Population)[2]="Districts_names"
+Population
+
+colnames(Precipitation)[2]="Districts_names"
+
 geo_data <- left_join(x = centroids, y = Thailand_Shape, by = c("Districts_names"))
-View(geo_data)
+geo_data_prec <- left_join(x = Precipitation[, -c(3, 4)], y = geo_data, by = c("Districts_names"))
+View(geo_data_prec)
+
 head(geo_data)
 class(geo_data)
 summary(geo_data)
 str(geo_data)      
 names(geo_data)
+View(geo_data)
 ```
 
 ```{r}
 # create an sf object for plotting
 geo_data <- sf::st_as_sf(geo_data)
 class(geo_data)
+
 # [1] "sf"         "data.frame"
 
 # plot with basic plot function of R
-plot(geo_data) # "all data columns" are plotted
+#plot(geo_data) # "all data columns" are plotted
 ```
 ```{r}
 library(ggplot2)
@@ -121,3 +131,62 @@ my_plot <- ggplot() +
               fill = District_Group)) + scale_fill_brewer(palette = "Dark2") + theme_bw()
 my_plot
 ```
+
+
+
+
+
+```{r}
+library(ggplot2)
+library(viridis)
+
+years <- c("2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020")
+
+for (year in years) {
+  pop_plot <- ggplot(data = geo_data_pop) +
+    geom_sf(aes(fill = !!as.name(year)), alpha = 0.95) +
+    ggtitle(label = "Population Data", subtitle = year) +
+    labs(x = "Latitude", y = "Longitude") +
+    scale_fill_viridis(option = "plasma", direction = -1) +
+    geom_sf_text(aes(label = Districts_names), size = 1, hjust = 1)
+  
+  print(pop_plot)
+}
+
+```
+
+```{r}
+library(ggplot2)
+library(viridis)
+
+Month2020 <- c("2020.01.", "2020.02.", "2020.03.", "2020.04.", "2020.05.", "2020.06.", "2020.07.", "2020.08.", "2020.09.", "2020.10.", "2020.11.", "2020.12.")
+
+for (Month in Month2020) {
+  prec_plot <- ggplot(data = geo_data_prec) +
+    geom_sf(aes(geometry = geometry, fill = !!as.name(Month), alpha = 0.95, geometry = geo_data_prec$geometry) +
+    ggtitle(label = "Precipitation Data", subtitle = Month) +
+    labs(x = "Latitude", y = "Longitude") +
+    scale_fill_viridis(option = "plasma", direction = -1) +
+    geom_sf_text(aes(label = Districts_names), size = 1, hjust = 1)
+  
+  print(prec_plot)
+}
+```
+
+```{r}
+library(ggplot2)
+library(viridis)
+
+Month2020 <- c("2020.01.", "2020.02.", "2020.03.", "2020.04.", "2020.05.", "2020.06.", "2020.07.", "2020.08.", "2020.09.", "2020.10.", "2020.11.", "2020.12.")
+
+for (Month in Month2020) {
+  prec_plot <- ggplot(data = geo_data_prec) +
+    geom_sf(aes(fill = !!as.name(Month)), alpha = 0.95) +
+    ggtitle(label = "Precipitation Data", subtitle = Month) +
+    labs(x = "Latitude", y = "Longitude") +
+    scale_fill_viridis(option = "plasma", direction = -1) +
+    geom_sf_text(aes(label = Districts_names), size = 1, hjust = 1)
+  print(prec_plot)
+}
+```
+
