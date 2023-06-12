@@ -1,0 +1,653 @@
+---
+title: "Thailand Precipitation and Dengue Analysis"
+output: pdf_document
+date: "2023-05-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+# Augmented Dickey-Fuller Test (ADF-TEST)
+
+"Computes the Augmented  Dickey-Fuller Test for the null that x (a numeric vector or time series) has a unit root."
+
+H0: The time series is non-stationary.
+H1: The time series is stationary.
+
+If the p-value from the test is less than alpha (significance level -> e.g. alpha = 0.05), then we can reject the null hypothesis and conclude that the time series is stationary.
+If the p-value from the test is more than alpha, then we can´t reject the null hypothesis and conclude that the time series is non-stationary.
+
+## ADF-Test 2006
+
+***ADF-Test 2006 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8506)
+```{r}
+library(tseries)
+
+sum2006_north <- data.frame(t(apply(Dengue_2006[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2006 <- c(sum2006_north)
+
+adf.test(north_2006)
+```
+
+***ADF-Test 2006 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.956)
+```{r}
+library(tseries)
+
+sum2006_northeastern <- data.frame(t(apply(Dengue_2006[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2006 <- c(sum2006_northeastern)
+
+adf.test(northeastern_2006)
+```
+
+***ADF-Test 2006 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9014)
+```{r}
+library(tseries)
+
+sum2006_central <- data.frame(t(apply(Dengue_2006[1:18,4:15], 2,sum))+t(apply(Dengue_2006[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2006 <- c(sum2006_central)
+
+adf.test(central_2006)
+```
+
+***ADF-Test 2006 for south Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+sum2006_south <- data.frame(t(apply(Dengue_2006[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2006 <- c(sum2006_south)
+
+adf.test(south_2006)
+```
+
+# ADF-Test 2007
+
+***ADF-Test 2007 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8823)
+```{r}
+library(tseries)
+
+sum2007_north <- data.frame(t(apply(Dengue_2007[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2007 <- c(sum2007_north)
+
+adf.test(north_2007)
+```
+
+***ADF-Test 2007 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9048)
+```{r}
+library(tseries)
+
+sum2007_northeastern <- data.frame(t(apply(Dengue_2007[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2007 <- c(sum2007_northeastern)
+
+adf.test(northeastern_2007)
+```
+
+***ADF-Test 2007 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9527)
+```{r}
+library(tseries)
+
+sum2007_central <- data.frame(t(apply(Dengue_2007[1:18,4:15], 2,sum))+t(apply(Dengue_2007[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2007 <- c(sum2007_central)
+
+adf.test(central_2007)
+```
+
+***ADF-Test 2007 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8606)
+```{r}
+library(tseries)
+
+sum2007_south <- data.frame(t(apply(Dengue_2007[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2007 <- c(sum2007_south)
+
+adf.test(south_2007)
+```
+
+# ADF-Test 2008
+
+***ADF-Test 2008 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9766)
+```{r}
+library(tseries)
+
+sum2008_north <- data.frame(t(apply(Dengue_2008[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2008 <- c(sum2008_north)
+
+adf.test(north_2008)
+```
+
+***ADF-Test 2008 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9197)
+```{r}
+library(tseries)
+
+sum2008_northeastern <- data.frame(t(apply(Dengue_2008[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2008 <- c(sum2008_northeastern)
+
+adf.test(northeastern_2008)
+```
+
+***ADF-Test 2008 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9571)
+```{r}
+library(tseries)
+
+sum2008_central <- data.frame(t(apply(Dengue_2008[1:18,4:15], 2,sum))+t(apply(Dengue_2008[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2008 <- c(sum2008_central)
+
+adf.test(central_2008)
+```
+
+***ADF-Test 2008 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9054)
+```{r}
+library(tseries)
+
+sum2008_south <- data.frame(t(apply(Dengue_2008[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2008 <- c(sum2008_south)
+
+adf.test(south_2008)
+```
+
+# ADF-Test 2009
+
+***ADF-Test 2009 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.79
+```{r}
+library(tseries)
+
+sum2009_north <- data.frame(t(apply(Dengue_2009[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2009 <- c(sum2009_north)
+
+adf.test(north_2009)
+```
+
+***ADF-Test 2009 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8119)
+```{r}
+library(tseries)
+
+sum2009_northeastern <- data.frame(t(apply(Dengue_2009[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2009 <- c(sum2009_northeastern)
+
+adf.test(northeastern_2009)
+```
+
+***ADF-Test 2009 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.952)
+```{r}
+library(tseries)
+
+sum2009_central <- data.frame(t(apply(Dengue_2009[1:18,4:15], 2,sum))+t(apply(Dengue_2009[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2009 <- c(sum2009_central)
+
+adf.test(central_2009)
+```
+
+***ADF-Test 2009 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.4625)
+```{r}
+library(tseries)
+
+sum2009_south <- data.frame(t(apply(Dengue_2009[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2009 <- c(sum2009_south)
+
+adf.test(south_2009)
+```
+
+# ADF-Test 2010
+
+***ADF-Test 2010 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9501)
+```{r}
+library(tseries)
+
+sum2010_north <- data.frame(t(apply(Dengue_2010[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2010 <- c(sum2010_north)
+
+adf.test(north_2010)
+```
+
+***ADF-Test 2010 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8942)
+```{r}
+library(tseries)
+
+sum2010_northeastern <- data.frame(t(apply(Dengue_2010[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2010 <- c(sum2010_northeastern)
+
+adf.test(northeastern_2010)
+```
+
+***ADF-Test 2010 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9153)
+```{r}
+library(tseries)
+
+sum2010_central <- data.frame(t(apply(Dengue_2010[1:18,4:15], 2,sum))+t(apply(Dengue_2010[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2010 <- c(sum2010_central)
+
+adf.test(central_2010)
+```
+
+***ADF-Test 2010 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9303)
+```{r}
+library(tseries)
+
+sum2010_south <- data.frame(t(apply(Dengue_2010[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2010 <- c(sum2010_south)
+
+adf.test(south_2010)
+```
+
+# ADF-Test 2011
+
+***ADF-Test 2011 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8142)
+```{r}
+library(tseries)
+
+sum2011_north <- data.frame(t(apply(Dengue_2011[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2011 <- c(sum2011_north)
+
+adf.test(north_2011)
+```
+
+***ADF-Test 2011 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9374)
+```{r}
+library(tseries)
+
+sum2011_northeastern <- data.frame(t(apply(Dengue_2011[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2011 <- c(sum2011_northeastern)
+
+adf.test(northeastern_2011)
+```
+
+***ADF-Test 2011 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.99)
+```{r}
+library(tseries)
+
+sum2011_central <- data.frame(t(apply(Dengue_2011[1:18,4:15], 2,sum))+t(apply(Dengue_2011[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2011 <- c(sum2011_central)
+
+adf.test(central_2011)
+```
+
+***ADF-Test 2011 for south Thailand*** -> ADF-Test result: stationary (p-value = 0.01378)
+```{r}
+library(tseries)
+
+sum2011_south <- data.frame(t(apply(Dengue_2011[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2011 <- c(sum2011_south)
+
+adf.test(south_2011)
+```
+
+# ADF-Test 2012
+
+***ADF-Test 2012 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9544)
+```{r}
+library(tseries)
+
+sum2012_north <- data.frame(t(apply(Dengue_2012[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2012 <- c(sum2012_north)
+
+adf.test(north_2012)
+```
+
+***ADF-Test 2012 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.99)
+```{r}
+library(tseries)
+
+sum2012_northeastern <- data.frame(t(apply(Dengue_2012[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2012 <- c(sum2012_northeastern)
+
+adf.test(northeastern_2012)
+```
+
+***ADF-Test 2012 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.99)
+```{r}
+library(tseries)
+
+sum2012_central <- data.frame(t(apply(Dengue_2012[1:18,4:15], 2,sum))+t(apply(Dengue_2012[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2012 <- c(sum2012_central)
+
+adf.test(central_2012)
+```
+
+***ADF-Test 2012 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.6082)
+```{r}
+library(tseries)
+
+sum2012_south <- data.frame(t(apply(Dengue_2012[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2012 <- c(sum2012_south)
+
+adf.test(south_2012)
+```
+
+# ADF-Test 2013
+
+***ADF-Test 2013 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9626)
+```{r}
+library(tseries)
+
+sum2013_north <- data.frame(t(apply(Dengue_2013[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2013 <- c(sum2013_north)
+
+adf.test(north_2013)
+```
+
+***ADF-Test 2013 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9546)
+```{r}
+library(tseries)
+
+sum2013_northeastern <- data.frame(t(apply(Dengue_2013[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2013 <- c(sum2013_northeastern)
+
+adf.test(northeastern_2013)
+```
+
+***ADF-Test 2013 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9847)
+```{r}
+library(tseries)
+
+sum2013_central <- data.frame(t(apply(Dengue_2013[1:18,4:15], 2,sum))+t(apply(Dengue_2013[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2013 <- c(sum2013_central)
+
+adf.test(central_2013)
+```
+
+***ADF-Test 2013 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.6502)
+```{r}
+library(tseries)
+
+sum2013_south <- data.frame(t(apply(Dengue_2013[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2013 <- c(sum2013_south)
+
+adf.test(south_2013)
+```
+
+# ADF-Test 2014
+
+***ADF-Test 2014 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9766)
+```{r}
+library(tseries)
+
+sum2014_north <- data.frame(t(apply(Dengue_2008[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2014 <- c(sum2014_north)
+
+adf.test(north_2014)
+```
+
+***ADF-Test 2014 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9539)
+```{r}
+library(tseries)
+
+sum2014_northeastern <- data.frame(t(apply(Dengue_2014[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2014 <- c(sum2014_northeastern)
+
+adf.test(northeastern_2014)
+```
+
+***ADF-Test 2014 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.6665)
+```{r}
+library(tseries)
+
+sum2014_central <- data.frame(t(apply(Dengue_2014[1:18,4:15], 2,sum))+t(apply(Dengue_2014[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2014 <- c(sum2014_central)
+
+adf.test(central_2014)
+```
+
+***ADF-Test 2014 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9256)
+```{r}
+library(tseries)
+
+sum2014_south <- data.frame(t(apply(Dengue_2014[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2014 <- c(sum2014_south)
+
+adf.test(south_2014)
+```
+
+# ADF-Test 2015
+
+***ADF-Test 2015 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.2958)
+```{r}
+library(tseries)
+
+sum2015_north <- data.frame(t(apply(Dengue_2015[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2015 <- c(sum2015_north)
+
+adf.test(north_2015)
+```
+
+***ADF-Test 2015 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9073)
+```{r}
+library(tseries)
+
+sum2015_northeastern <- data.frame(t(apply(Dengue_2015[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2015 <- c(sum2015_northeastern)
+
+adf.test(northeastern_2015)
+```
+
+***ADF-Test 2015 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.4513)
+```{r}
+library(tseries)
+
+sum2015_central <- data.frame(t(apply(Dengue_2015[1:18,4:15], 2,sum))+t(apply(Dengue_2015[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2015 <- c(sum2015_central)
+
+adf.test(central_2015)
+```
+
+***ADF-Test 2015 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9706)
+```{r}
+library(tseries)
+
+sum2015_south <- data.frame(t(apply(Dengue_2015[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2015 <- c(sum2015_south)
+
+adf.test(south_2015)
+```
+
+# ADF-Test 2016
+
+***ADF-Test 2016 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9623)
+```{r}
+library(tseries)
+
+sum2016_north <- data.frame(t(apply(Dengue_2016[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2016 <- c(sum2016_north)
+
+adf.test(north_2016)
+```
+
+***ADF-Test 2016 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.5795)
+```{r}
+library(tseries)
+
+sum2016_northeastern <- data.frame(t(apply(Dengue_2016[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2016 <- c(sum2016_northeastern)
+
+adf.test(northeastern_2016)
+```
+
+***ADF-Test 2016 for central Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+sum2016_central <- data.frame(t(apply(Dengue_2016[1:18,4:15], 2,sum))+t(apply(Dengue_2016[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2016 <- c(sum2016_central)
+
+adf.test(central_2016)
+```
+
+***ADF-Test 2016 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.2966)
+```{r}
+library(tseries)
+
+sum2016_south <- data.frame(t(apply(Dengue_2016[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2016 <- c(sum2016_south)
+
+adf.test(south_2016)
+```
+
+# ADF-Test 2017
+
+***ADF-Test 2017 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.99)
+```{r}
+library(tseries)
+
+sum2017_north <- data.frame(t(apply(Dengue_2017[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2017 <- c(sum2017_north)
+
+adf.test(north_2017)
+```
+
+***ADF-Test 2017 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.824)
+```{r}
+library(tseries)
+
+sum2017_northeastern <- data.frame(t(apply(Dengue_2017[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2017 <- c(sum2017_northeastern)
+
+adf.test(northeastern_2017)
+```
+
+***ADF-Test 2017 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.99)
+```{r}
+library(tseries)
+
+sum2017_central <- data.frame(t(apply(Dengue_2017[1:18,4:15], 2,sum))+t(apply(Dengue_2017[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2017 <- c(sum2017_central)
+
+adf.test(central_2017)
+```
+
+***ADF-Test 2017 for south Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+sum2017_south <- data.frame(t(apply(Dengue_2017[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2017 <- c(sum2017_south)
+
+adf.test(south_2017)
+```
+
+# ADF-Test 2018
+
+***ADF-Test 2018 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9702)
+```{r}
+library(tseries)
+
+sum2018_north <- data.frame(t(apply(Dengue_2018[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2018 <- c(sum2018_north)
+
+adf.test(north_2018)
+```
+
+***ADF-Test 2018 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9041)
+```{r}
+library(tseries)
+
+sum2018_northeastern <- data.frame(t(apply(Dengue_2018[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2018 <- c(sum2018_northeastern)
+
+adf.test(northeastern_2018)
+```
+
+***ADF-Test 2018 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9668)
+```{r}
+library(tseries)
+
+sum2018_central <- data.frame(t(apply(Dengue_2018[1:18,4:15], 2,sum))+t(apply(Dengue_2018[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2018 <- c(sum2018_central)
+
+adf.test(central_2018)
+```
+
+***ADF-Test 2018 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9025)
+```{r}
+library(tseries)
+
+sum2018_south <- data.frame(t(apply(Dengue_2018[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2018 <- c(sum2018_south)
+
+adf.test(south_2018)
+```
+
+# ADF-Test 2019
+
+***ADF-Test 2019 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9088)
+```{r}
+library(tseries)
+
+sum2019_north <- data.frame(t(apply(Dengue_2019[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2019 <- c(sum2019_north)
+
+adf.test(north_2019)
+```
+
+***ADF-Test 2019 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9593)
+```{r}
+library(tseries)
+
+sum2019_northeastern <- data.frame(t(apply(Dengue_2019[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2019 <- c(sum2019_northeastern)
+
+adf.test(northeastern_2019)
+```
+
+***ADF-Test 2019 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9854)
+```{r}
+library(tseries)
+
+sum2019_central <- data.frame(t(apply(Dengue_2019[1:18,4:15], 2,sum))+t(apply(Dengue_2019[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2019 <- c(sum2019_central)
+
+adf.test(central_2019)
+```
+
+***ADF-Test 2019 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9054)
+```{r}
+library(tseries)
+
+sum2019_south <- data.frame(t(apply(Dengue_2019[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2019 <- c(sum2019_south)
+
+adf.test(south_2008)
+```
+
+# ADF-Test 2020
+
+***ADF-Test 2020 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9088)
+```{r}
+library(tseries)
+
+sum2020_north <- data.frame(t(apply(Dengue_2020[38:46,4:15], 2,sum))) # provinces_north = province_numbers[38:46,2]
+north_2020 <- c(sum2020_north)
+
+adf.test(north_2020)
+```
+
+***ADF-Test 2020 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9593)
+```{r}
+library(tseries)
+
+sum2020_northeastern <- data.frame(t(apply(Dengue_2020[19:37,4:15], 2,sum))) # provinces_northeastern = province_numbers[19:37, 2]
+northeastern_2020 <- c(sum2020_northeastern)
+
+adf.test(northeastern_2020)
+```
+
+***ADF-Test 2020 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9854)
+```{r}
+library(tseries)
+
+sum2020_central <- data.frame(t(apply(Dengue_2020[1:18,4:15], 2,sum))+t(apply(Dengue_2020[47:62,4:15], 2,sum))) # provinces_central = province_numbers[c(1:18,47:62), 2]
+central_2020 <- c(sum2020_central)
+
+adf.test(central_2020)
+```
+
+***ADF-Test 2020 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9873)
+```{r}
+library(tseries)
+
+sum2020_south <- data.frame(t(apply(Dengue_2020[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2020 <- c(sum2020_south)
+
+adf.test(south_2020)
+```
+
+
