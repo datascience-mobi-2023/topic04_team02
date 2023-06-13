@@ -930,6 +930,34 @@ provinces_central_rows = province_numbers[c(1:18,47:62), 2:3]
 provinces_south_rows = province_numbers[63:76, 2:3]
 ```
 
+# Combine all years of Dengue Data into one big dataframe
+## total Dengue cases
+```{r}
+Dengue_combined = cbind(Dengue_2006, Dengue_2007[4:15], Dengue_2008[4:15], Dengue_2009[4:15], Dengue_2010[4:15], Dengue_2011[4:15], Dengue_2012[4:15], Dengue_2013[4:15], Dengue_2014[4:15], Dengue_2015[4:15], Dengue_2016[4:15], Dengue_2017[4:15], Dengue_2018[4:15], Dengue_2019[4:15], Dengue_2020[4:15]) # data frame with all years
 
+colnames(Dengue_combined)[4:183] = colnames(Precipitation)[5:184] # set colnames to the same format as precipitation
+colnames(Dengue_combined)[2] = "Districts_names" # change reported areas colname to Districts_names
+```
 
+## Incidence
+```{r}
+Incidence_combined = cbind(Incidence_2006, Incidence_2007[4:15], Incidence_2008[4:15], Incidence_2008[4:15], Incidence_2010[4:15], Incidence_2011[4:15], Incidence_2012[4:15], Incidence_2013[4:15], Incidence_2014[4:15], Incidence_2015[4:15], Incidence_2016[4:15], Incidence_2017[4:15], Incidence_2018[4:15], Incidence_2019[4:15], Incidence_2020[4:15]) # data frame with all years
 
+colnames(Incidence_combined)[4:183] = colnames(Precipitation)[5:184] # set colnames to the same format as precipitation
+colnames(Incidence_combined)[2] = "Districts_names" # change reported areas colname to Districts_names
+```
+
+# lag data
+After periods of rain, it takes a while until the Aeges mosquitos breed and proliferate, so there is a time lag between the rainfall and the dengue cases. This will be taken into consideration by moving the Dengue cases up one month.
+
+## For Dengue data
+```{r}
+lag_Dengue_combined = Dengue_combined[,-4] #remove January 2006
+colnames(lag_Dengue_combined)[4:182] = colnames(Dengue_combined)[4:182] #move month name one coloum up
+```
+
+## For Incidence data
+```{r}
+lag_Incidence_combined = Incidence_combined[,-4] #remove January 2006
+colnames(lag_Incidence_combined)[4:182] = colnames(Incidence_combined)[4:182] #move month name one coloum up
+```
