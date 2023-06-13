@@ -946,3 +946,18 @@ Incidence_combined = cbind(Incidence_2006, Incidence_2007[4:15], Incidence_2008[
 colnames(Incidence_combined)[4:183] = colnames(Precipitation)[5:184] # set colnames to the same format as precipitation
 colnames(Incidence_combined)[2] = "Districts_names" # change reported areas colname to Districts_names
 ```
+
+# lag data
+After periods of rain, it takes a while until the Aeges mosquitos breed and proliferate, so there is a time lag between the rainfall and the dengue cases. This will be taken into consideration by moving the Dengue cases up one month.
+
+## For Dengue data
+```{r}
+lag_Dengue_combined = Dengue_combined[,-4] #remove January 2006
+colnames(lag_Dengue_combined)[4:182] = colnames(Dengue_combined)[4:182] #move month name one coloum up
+```
+
+## For Incidence data
+```{r}
+lag_Incidence_combined = Incidence_combined[,-4] #remove January 2006
+colnames(lag_Incidence_combined)[4:182] = colnames(Incidence_combined)[4:182] #move month name one coloum up
+```
