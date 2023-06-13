@@ -20,7 +20,7 @@ H1: The time series is stationary.
 If the p-value from the test is less than alpha (significance level -> e.g. alpha = 0.05), then we can reject the null hypothesis and conclude that the time series is stationary.
 If the p-value from the test is more than alpha, then we can´t reject the null hypothesis and conclude that the time series is non-stationary.
 
-## ADF-Test 2006
+# ADF-Test 2006
 
 ***ADF-Test 2006 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8506)
 ```{r}
@@ -650,4 +650,46 @@ south_2020 <- c(sum2020_south)
 adf.test(south_2020)
 ```
 
+# ADF-Test 2006-2020
 
+***ADF-Test 2006-2020 for north Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+north <- c(sum2006_north, sum2007_north, sum2008_north, sum2009_north, sum2010_north, sum2011_north, sum2012_north, sum2013_north, sum2014_north, sum2015_north, sum2016_north, sum2017_north, sum2018_north, sum2019_north, sum2020_north)
+
+adf.test(north)
+```
+
+***ADF-Test 2006-2020 for northeastern Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+northeastern <- c(sum2006_northeastern, sum2007_northeastern, sum2008_northeastern, sum2009_northeastern, sum2010_northeastern, sum2011_northeastern, sum2012_northeastern, sum2013_northeastern, sum2014_northeastern, sum2015_northeastern, sum2016_northeastern, sum2017_northeastern, sum2018_northeastern, sum2019_northeastern, sum2020_northeastern)
+
+adf.test(northeastern)
+```
+
+***ADF-Test 2006-2020 for central Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+central <- c(sum2006_central, sum2007_central, sum2008_central, sum2009_central, sum2010_central, sum2011_central, sum2012_central, sum2013_central, sum2014_central, sum2015_central, sum2016_central, sum2017_central, sum2018_central, sum2019_central, sum2020_central)
+
+adf.test(central)
+```
+
+***ADF-Test 2006-2020 for south Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+south <- c(sum2006_south, sum2007_south, sum2008_south, sum2009_south, sum2010_south, sum2011_south, sum2012_south, sum2013_south, sum2014_south, sum2015_south, sum2016_south, sum2017_south, sum2018_south, sum2019_south, sum2020_south)
+
+adf.test(south)
+```
+
+# results
+
+- dengue cases are in general non-stationary/seasonal over a year 
+- exception: 2006 south, 2011 south, 2016 central, 2017 south
+- dengue cases are stationary over the years (2006-2020)
