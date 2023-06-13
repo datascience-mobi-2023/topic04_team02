@@ -238,7 +238,7 @@ colnames(Precipitation_2020)[5:16] = colnames(Dengue_2020)[4:15]
 
 ***convert sq. km2 into sp. m2***
 ```{r}
-
+area[,2] = area[,2]*1000
 ```
 
 
