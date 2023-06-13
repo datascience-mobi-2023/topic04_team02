@@ -236,11 +236,6 @@ colnames(Precipitation_2020)[5:16] = colnames(Dengue_2020)[4:15]
 
 ### Area Data
 
-***delete useless columns***
-```{r}
-area = area[,1:2]
-```
-
 ***convert sq. km2 into sp. m2***
 ```{r}
 
