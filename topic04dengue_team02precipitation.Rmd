@@ -930,6 +930,12 @@ provinces_central_rows = province_numbers[c(1:18,47:62), 2:3]
 provinces_south_rows = province_numbers[63:76, 2:3]
 ```
 
+# Combine all years of Dengue Data into one big dataframe
+```{r}
+Dengue_combined = cbind(Dengue_2006, Dengue_2007[4:15], Dengue_2008[4:15], Dengue_2009[4:15], Dengue_2010[4:15], Dengue_2011[4:15], Dengue_2012[4:15], Dengue_2013[4:15], Dengue_2014[4:15], Dengue_2015[4:15], Dengue_2016[4:15], Dengue_2017[4:15], Dengue_2018[4:15], Dengue_2019[4:15], Dengue_2020[4:15]) # data frame with all years
 
+colnames(Dengue_combined)[4:183] = colnames(Precipitation)[5:184] # set colnames to the same format as precipitation
+colnames(Dengue_combined)[2] = "Districts_names" # change reported areas colname to Districts_names
+```
 
 
