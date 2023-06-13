@@ -903,35 +903,8 @@ Incidence_2020 = apply(Dengue_2020[,3:15], 2, function(x){x/Population$"2020"*10
 Incidence_2020 = cbind(province_numbers[,3:2], Incidence_2020) #add the Province code and name
 ```
 
-
-
-# 4 Region Classification of the provinces in Thailand
-
-## By district names
-
-```{r}
-provinces_north = province_numbers[38:46,2]
-provinces_northeastern = province_numbers[19:37, 2]
-provinces_central = province_numbers[c(1:18,47:62), 2]
-provinces_south = province_numbers[63:76, 2]
-```
-
-## By Code Number
-
-```{r}
-# North: Leading digit 5
-# Northeastern: Leading digit 3,4
-# Central: Leading digit 1,2,6,7
-# South: Leading digit 8,9
-
-provinces_north_rows = province_numbers[38:46, 2:3]
-provinces_northeastern_rows = province_numbers[19:37, 2:3]
-provinces_central_rows = province_numbers[c(1:18,47:62), 2:3]
-provinces_south_rows = province_numbers[63:76, 2:3]
-```
-
-# Combine all years of Dengue Data into one big dataframe
-## Total Dengue cases
+## Combine all years of Dengue Data into one big dataframe
+### Total Dengue cases
 
 ```{r}
 Dengue_combined = cbind(Dengue_2006[,-3], Dengue_2007[4:15], Dengue_2008[4:15], Dengue_2009[4:15], Dengue_2010[4:15], Dengue_2011[4:15], Dengue_2012[4:15], Dengue_2013[4:15], Dengue_2014[4:15], Dengue_2015[4:15], Dengue_2016[4:15], Dengue_2017[4:15], Dengue_2018[4:15], Dengue_2019[4:15], Dengue_2020[4:15])
@@ -962,3 +935,29 @@ colnames(lag_Dengue_combined)[3:181] = colnames(Dengue_combined)[3:181] #move mo
 lag_Incidence_combined = Incidence_combined[,-3] #remove January 2006
 colnames(lag_Incidence_combined)[3:181] = colnames(Incidence_combined)[3:181] #move month name one column up
 ```
+
+# 4 Region Classification of the provinces in Thailand
+
+## By district names
+
+```{r}
+provinces_north = province_numbers[38:46,2]
+provinces_northeastern = province_numbers[19:37, 2]
+provinces_central = province_numbers[c(1:18,47:62), 2]
+provinces_south = province_numbers[63:76, 2]
+```
+
+## By Code Number
+
+```{r}
+# North: Leading digit 5
+# Northeastern: Leading digit 3,4
+# Central: Leading digit 1,2,6,7
+# South: Leading digit 8,9
+
+provinces_north_rows = province_numbers[38:46, 2:3]
+provinces_northeastern_rows = province_numbers[19:37, 2:3]
+provinces_central_rows = province_numbers[c(1:18,47:62), 2:3]
+provinces_south_rows = province_numbers[63:76, 2:3]
+```
+
