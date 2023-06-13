@@ -1011,7 +1011,7 @@ provinces_south_rows = province_numbers[63:76, 2:3]
 
 ## Total dengue cases per region 
 
-### Total dengue cases north 
+### North total dengue cases 
 ```{r}
 sum2006_north <- data.frame(t(apply(Dengue_2006[38:46,4:15], 2,sum))) 
 sum2007_north <- data.frame(t(apply(Dengue_2007[38:46,4:15], 2,sum)))
@@ -1033,7 +1033,7 @@ Dengue_North = rbind(sum2006_north, sum2007_north, sum2008_north, sum2009_north,
 rownames(Dengue_North) = colnames(Population)[3:17]
 ```
 
-### Total dengue cases northeastern
+### Northeastern total dengue cases 
 ```{r}
 sum2006_northeastern <- data.frame(t(apply(Dengue_2006[19:37,4:15], 2,sum))) 
 sum2007_northeastern <- data.frame(t(apply(Dengue_2007[19:37,4:15], 2,sum))) 
@@ -1055,7 +1055,7 @@ Dengue_Northeast = rbind(sum2006_northeastern, sum2007_northeastern, sum2008_nor
 rownames(Dengue_Northeast) = colnames(Population)[3:17]
 ```
 
-### Total dengue cases central
+### Central total dengue cases
 ```{r}
 sum2006_central <- data.frame(t(apply(Dengue_2006[1:18,4:15], 2,sum))+t(apply(Dengue_2006[47:62,4:15], 2,sum)))
 sum2007_central <- data.frame(t(apply(Dengue_2007[1:18,4:15], 2,sum))+t(apply(Dengue_2007[47:62,4:15], 2,sum)))
@@ -1077,7 +1077,7 @@ Dengue_Central = rbind(sum2006_central, sum2007_central, sum2008_central, sum200
 rownames(Dengue_Central) = colnames(Population)[3:17]
 ```
 
-### Total dengue cases south
+### South total dengue cases
 ```{r}
 sum2006_south <- data.frame(t(apply(Dengue_2006[63:76,4:15], 2,sum)))
 sum2007_south <- data.frame(t(apply(Dengue_2007[63:76,4:15], 2,sum)))
@@ -1099,7 +1099,7 @@ Dengue_South = rbind(sum2006_south, sum2007_south, sum2008_south, sum2009_south,
 rownames(Dengue_South) = colnames(Population)[3:17]
 ```
 
-### Norming total dengue data according to the regional population data
+### Incidence per Region
 
 ***Total population per region***
 ```{r}
