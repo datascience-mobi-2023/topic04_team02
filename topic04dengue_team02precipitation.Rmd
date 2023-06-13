@@ -930,14 +930,9 @@ provinces_central_rows = province_numbers[c(1:18,47:62), 2:3]
 provinces_south_rows = province_numbers[63:76, 2:3]
 ```
 
-<<<<<<< Updated upstream
-## Combine all years of Dengue Data into one big dataframe
-
-### Total Dengue cases
-=======
 # Combine all years of Dengue Data into one big dataframe
 ## Total Dengue cases
->>>>>>> Stashed changes
+
 ```{r}
 Dengue_combined = cbind(Dengue_2006[,-3], Dengue_2007[4:15], Dengue_2008[4:15], Dengue_2009[4:15], Dengue_2010[4:15], Dengue_2011[4:15], Dengue_2012[4:15], Dengue_2013[4:15], Dengue_2014[4:15], Dengue_2015[4:15], Dengue_2016[4:15], Dengue_2017[4:15], Dengue_2018[4:15], Dengue_2019[4:15], Dengue_2020[4:15])
 
@@ -958,22 +953,12 @@ After periods of rain, it takes a while until the Aeges mosquitos breed and prol
 
 ### For Dengue data
 ```{r}
-<<<<<<< Updated upstream
-lag_Dengue_combined = Dengue_combined[,-4] #remove January 2006
-colnames(lag_Dengue_combined)[4:182] = colnames(Dengue_combined)[4:182] #move month name one column up
-=======
 lag_Dengue_combined = Dengue_combined[,-3] #remove January 2006
 colnames(lag_Dengue_combined)[3:181] = colnames(Dengue_combined)[3:181] #move month name one column up
->>>>>>> Stashed changes
 ```
 
 ### For Incidence data
 ```{r}
-<<<<<<< Updated upstream
-lag_Incidence_combined = Incidence_combined[,-4] #remove January 2006
-colnames(lag_Incidence_combined)[4:182] = colnames(Incidence_combined)[4:182] #move month name one column up
-=======
 lag_Incidence_combined = Incidence_combined[,-3] #remove January 2006
 colnames(lag_Incidence_combined)[3:181] = colnames(Incidence_combined)[3:181] #move month name one column up
->>>>>>> Stashed changes
 ```
