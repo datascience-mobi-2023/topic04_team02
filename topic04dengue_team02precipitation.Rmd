@@ -730,7 +730,6 @@ province_names[which((province_names[,1] %in% Dengue_2018[,1]) == FALSE),1] #wha
 
 Dengue_2018[31,1] = province_names[5,1] #set the correct name for the province
 ```
-
 ***Deletion of useless rows***
 ```{r}
 Dengue_2018 = Dengue_2018[which((Dengue_2018[,1] %in% province_names[,1])), ]
@@ -756,6 +755,9 @@ for (x in 1:76)
 
 Dengue_2018 = cbind(province_numbers$Number, Dengue_2018)
 colnames(Dengue_2018)[1] = "Code number"
+colnames(Dengue_2018)[9] = "June" #Correcting the colnames
+colnames(Dengue_2018)[10] = "July"
+colnames(Dengue_2018)[12] = "Sept"
 ```
 
 ### Dengue 2019
@@ -794,6 +796,9 @@ for (x in 1:76)
 
 Dengue_2019 = cbind(province_numbers$Number, Dengue_2019)
 colnames(Dengue_2019)[1] = "Code number"
+colnames(Dengue_2019)[9] = "June" #Correcting the colnames
+colnames(Dengue_2019)[10] = "July"
+colnames(Dengue_2019)[12] = "Sept"
 ```
 
 ### Dengue 2020
@@ -832,6 +837,9 @@ for (x in 1:76)
 
 Dengue_2020 = cbind(province_numbers$Number, Dengue_2020)
 colnames(Dengue_2020)[1] = "Code number"
+colnames(Dengue_2020)[9] = "June" #Correcting the colnames
+colnames(Dengue_2020)[10] = "July"
+colnames(Dengue_2020)[12] = "Sept"
 ```
 
 ## Normation of the Dengue Date according to the Population Data
@@ -1020,6 +1028,9 @@ sum2017_north <- data.frame(t(apply(Dengue_2017[38:46,4:15], 2,sum)))
 sum2018_north <- data.frame(t(apply(Dengue_2018[38:46,4:15], 2,sum))) 
 sum2019_north <- data.frame(t(apply(Dengue_2019[38:46,4:15], 2,sum)))
 sum2020_north <- data.frame(t(apply(Dengue_2020[38:46,4:15], 2,sum)))
+
+Dengue_North = rbind(sum2006_north, sum2007_north, sum2008_north, sum2009_north, sum2010_north, sum2011_north, sum2012_north, sum2013_north, sum2014_north, sum2015_north, sum2016_north, sum2017_north, sum2018_north, sum2019_north, sum2020_north) 
+rownames(Dengue_North) = colnames(Population)[3:17]
 ```
 
 ### Total dengue cases northeastern
@@ -1039,6 +1050,9 @@ sum2017_northeastern <- data.frame(t(apply(Dengue_2017[19:37,4:15], 2,sum)))
 sum2018_northeastern <- data.frame(t(apply(Dengue_2018[19:37,4:15], 2,sum))) 
 sum2019_northeastern <- data.frame(t(apply(Dengue_2019[19:37,4:15], 2,sum))) 
 sum2020_northeastern <- data.frame(t(apply(Dengue_2020[19:37,4:15], 2,sum))) 
+
+Dengue_Northeast = rbind(sum2006_northeastern, sum2007_northeastern, sum2008_northeastern, sum2009_northeastern, sum2010_northeastern, sum2011_northeastern, sum2012_northeastern, sum2013_northeastern, sum2014_northeastern, sum2015_northeastern, sum2016_northeastern, sum2017_northeastern, sum2018_northeastern, sum2019_northeastern, sum2020_northeastern) 
+rownames(Dengue_Northeast) = colnames(Population)[3:17]
 ```
 
 ### Total dengue cases central
@@ -1058,6 +1072,9 @@ sum2017_central <- data.frame(t(apply(Dengue_2017[1:18,4:15], 2,sum))+t(apply(De
 sum2018_central <- data.frame(t(apply(Dengue_2018[1:18,4:15], 2,sum))+t(apply(Dengue_2018[47:62,4:15], 2,sum)))
 sum2019_central <- data.frame(t(apply(Dengue_2019[1:18,4:15], 2,sum))+t(apply(Dengue_2019[47:62,4:15], 2,sum)))
 sum2020_central <- data.frame(t(apply(Dengue_2020[1:18,4:15], 2,sum))+t(apply(Dengue_2020[47:62,4:15], 2,sum)))
+
+Dengue_Central = rbind(sum2006_central, sum2007_central, sum2008_central, sum2009_central, sum2010_central, sum2011_central, sum2012_central, sum2013_central, sum2014_central, sum2015_central, sum2016_central, sum2017_central, sum2018_central, sum2019_central, sum2020_central) 
+rownames(Dengue_Central) = colnames(Population)[3:17]
 ```
 
 ### Total dengue cases south
@@ -1077,5 +1094,42 @@ sum2017_south <- data.frame(t(apply(Dengue_2017[63:76,4:15], 2,sum)))
 sum2018_south <- data.frame(t(apply(Dengue_2018[63:76,4:15], 2,sum)))
 sum2019_south <- data.frame(t(apply(Dengue_2019[63:76,4:15], 2,sum)))
 sum2020_south <- data.frame(t(apply(Dengue_2020[63:76,4:15], 2,sum)))
+
+Dengue_South = rbind(sum2006_south, sum2007_south, sum2008_south, sum2009_south, sum2010_south, sum2011_south, sum2012_south, sum2013_south, sum2014_south, sum2015_south, sum2016_south, sum2017_south, sum2018_south, sum2019_south, sum2020_south) 
+rownames(Dengue_South) = colnames(Population)[3:17]
 ```
+
+### Norming total dengue data according to the regional population data
+
+***Total population per region***
+```{r}
+Population_North = data.frame(t(apply(Population[38:46, 3:17], 2, sum)))
+colnames(Population_North) = colnames(Population)[3:17]
+
+Population_Northeast = data.frame(t(apply(Population[19:37, 3:17], 2, sum)))
+colnames(Population_Northeast) = colnames(Population)[3:17]
+
+Population_Central = data.frame(t(apply(Population[c(1:18, 47:62), 3:17], 2, sum)))
+colnames(Population_Central) = colnames(Population)[3:17]
+
+Population_South = data.frame(t(apply(Population[63:76, 3:17], 2, sum)))
+colnames(Population_South) = colnames(Population)[3:17]
+```
+
+***Normed dengue cases per region***
+```{r}
+Incidence_North = apply(Dengue_North, 2, function(x){(x/ t(Population_North)) * 100000}) 
+rownames(Incidence_North) = colnames(Population)[3:17]
+
+Incidence_Northeast = apply(Dengue_Northeast, 2, function(x){(x/ t(Population_Northeast)) * 100000}) 
+rownames(Incidence_Northeast) = colnames(Population)[3:17]
+
+Incidence_Central = apply(Dengue_Central, 2, function(x){(x/ t(Population_Central)) * 100000}) 
+rownames(Incidence_Central) = colnames(Population)[3:17]
+
+Incidence_South = apply(Dengue_South, 2, function(x){(x/ t(Population_South)) * 100000}) 
+rownames(Incidence_South) = colnames(Population)[3:17]
+```
+
+
 
