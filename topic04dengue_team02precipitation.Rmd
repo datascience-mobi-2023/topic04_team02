@@ -54,6 +54,11 @@ province_numbers = province_numbers[-27,]
 rownames(province_numbers) = 1:76
 ```
 
+## Area Data
+```{r}
+library(readxl)
+area <- as.data.frame(read_excel("area_data.xlsx"))
+```
 
 
 # Data Copies for safety reasons 
@@ -92,6 +97,10 @@ province_numbersc = province_numbers
 Populationc = Population
 ```
 
+## Area
+```{r}
+areac = area
+```
 
 
 # Data Cleaning
@@ -224,6 +233,40 @@ colnames(Precipitation_2018)[5:16] = colnames(Dengue_2020)[4:15]
 colnames(Precipitation_2019)[5:16] = colnames(Dengue_2020)[4:15]
 colnames(Precipitation_2020)[5:16] = colnames(Dengue_2020)[4:15]
 ```
+
+### Area Data
+
+***delete useless columns***
+```{r}
+area = area[,1:2]
+```
+
+***convert sq. km2 into sp. m2***
+```{r}
+
+```
+
+
+***Merge Bungkan and Nong Khai***
+```{r}
+area[which(area[,1] == "Nong Khai"), 2] = area[which(area[,1] == "Nong Khai"), 2] + area[which(area[,1] == "Bueng Kan"), 2] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+area = area[-which(area[,1] == "Bueng Kan"), ] #delete Bungkan row
+
+rownames(area) = 1:76 # rename the rows since one row was deleted
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+area_1 = area
+
+for (x in 1:76)
+  area[x,] = area_1[which(province_numbers[x,2] == area_1[,1]),]
+
+area = cbind(province_numbers$Number, area)
+colnames(area)[1] = "Code number"
+```
+
 
 ### Dengue 2006
 
