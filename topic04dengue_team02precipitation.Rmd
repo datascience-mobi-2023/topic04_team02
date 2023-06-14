@@ -877,6 +877,36 @@ Incidence_16_20 = cbind(province_numbers[,2], apply(as.data.frame(sapply(2016:20
 colnames(Incidence_16_20) = c("Province", "Incidence")
 ```
 
+## Precipitation
+```{r}
+# 2006-2010
+Prec_06_10 = as.data.frame(sapply(2006:2010, function(year) as.data.frame(apply(get(paste0("Precipitation_", year))[, 5:16], 1, sum))))
+
+Precipitation_06_10 = cbind(province_numbers[, 2], as.data.frame(apply(Prec_06_10, 1, sum)))
+
+colnames(Precipitation_06_10) = c("district_names", "Prec 06-10")
+
+# 2011-2015
+Prec_11_15 = as.data.frame(sapply(2011:2015, function(year) as.data.frame(apply(get(paste0("Precipitation_", year))[, 5:16], 1, sum))))
+
+Precipitation_11_15 = cbind(province_numbers[, 2], as.data.frame(apply(Prec_11_15, 1, sum)))
+
+colnames(Precipitation_11_15) = c("district_names", "Prec 11-15")
+
+# 2016-2020
+Prec_16_20 = as.data.frame(sapply(2016:2020, function(year) as.data.frame(apply(get(paste0("Precipitation_", year))[, 5:16], 1, sum))))
+
+Precipitation_16_20 = cbind(province_numbers[, 2], as.data.frame(apply(Prec_16_20, 1, sum)))
+
+colnames(Precipitation_16_20) = c("district_names", "Prec 16-20")
+
+
+Prec_Inc_06_20 = cbind(Precipitation_06_10, Precipitation_11_15[,2], Precipitation_16_20[,2], Incidence_06_10[,2], Incidence_11_15[,2], Incidence_16_20[,2])
+
+colnames(Prec_Inc_06_20) = c("Districts_names", "Prec 06-10", "Prec 11-15", "Prec 16-20", "Inc 06-10", "Inc 11-15", "Inc 16-20")
+
+
+```
 
 
 # 4 Region Classification of the provinces in Thailand
