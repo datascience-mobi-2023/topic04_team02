@@ -865,6 +865,20 @@ lag_Incidence_combined = Incidence_combined[,-3] #remove January 2006
 colnames(lag_Incidence_combined)[3:181] = colnames(Incidence_combined)[3:181] #move month name one column up
 ```
 
+# Incidence for 5 years
+```{r}
+Incidence_06_10 = cbind(province_numbers[,2], apply(as.data.frame(sapply(2006:2010, function(year) get(paste0("Incidence_", year))[, 3])), 1, sum))
+colnames(Incidence_06_10) = c("Province", "Incidence")
+
+Incidence_11_15 = cbind(province_numbers[,2], apply(as.data.frame(sapply(2011:2015, function(year) get(paste0("Incidence_", year))[, 3])), 1, sum))
+colnames(Incidence_11_15) = c("Province", "Incidence")
+
+Incidence_16_20 = cbind(province_numbers[,2], apply(as.data.frame(sapply(2016:2020, function(year) get(paste0("Incidence_", year))[, 3])), 1, sum))
+colnames(Incidence_16_20) = c("Province", "Incidence")
+```
+
+
+
 # 4 Region Classification of the provinces in Thailand
 
 ## By district names
