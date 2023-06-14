@@ -87,8 +87,9 @@ class(geo_data)
 ```{r}
 library(ggplot2)
 ggplot()+
-  geom_sf (data = geo_data, col = "black", fill = NA) 
-  geom_point(data = geo_data, aes(x = Longitude, y = Latitude))
+  geom_sf (data = geo_data, col = "black", fill = NA)
+ 
+ 
 ```
 
 ```{r}
@@ -181,20 +182,144 @@ for (Month in Month2020) {
 }
 ```
 
+#Plot dot plot with relative incidenz over Precipitation plot, and take time lagging into consideration
+
+Monthly table without time lag Relative Incidence (comnbined)
+Monthly Time Lag Table(1 Monat) Relative Incidence (combined + lag)
+Yearly Incidence pro province change over the years (added up pro province jeden monat)
+
+
+
 ```{r}
+# Left: use size and color
 library(ggplot2)
 library(viridis)
 
 Month2020 <- c("2020.01.", "2020.02.", "2020.03.", "2020.04.", "2020.05.", "2020.06.", "2020.07.", "2020.08.", "2020.09.", "2020.10.", "2020.11.", "2020.12.")
 
+#scale_limits = (0:700)
+
 for (Month in Month2020) {
-  prec_plot <- ggplot(data = geo_data_prec) +
-    geom_sf(aes(fill = !!as.name(Month)), alpha = 0.95) +
+  prec_plot <- ggplot() +
+    geom_sf(data = geo_data_prec_sf, aes(fill = !!as.name(Month)), alpha = 0.95) +
     ggtitle(label = "Precipitation Data", subtitle = Month) +
+    geom_point( data=geo_data_pop_sf, aes(x=Longtitude, y=Latitude, size=2020, color=2020)) +
     labs(x = "Latitude", y = "Longitude") +
-    scale_fill_viridis(option = "plasma", direction = -1) +
-    geom_sf_text(aes(label = Districts_names), size = 1, hjust = 1)
+    scale_fill_viridis(option = "plasma", direction = -1, limits= range(0:700), name = "Rainfall [mm]"
+  ) +
+    geom_sf_text(data = geo_data_prec_sf, aes(label = Districts_names), size = 1, hjust = 1)+
+  coord_sf(lims = "geometry_bbox")
   print(prec_plot)
 }
+
+
+
+
+  
 ```
+```{r}
+#library(ggplot2)
+#library(viridis)
+
+#Month2020 <- c("2020.01.", "2020.02.", "2020.03.", "2020.04.", "2020.05.", "2020.06.", "2020.07.", "2020.08.", "2020.09.", "2020.10.", "2020.11.", "2020.12.")
+
+#for (Month in Month2020) {
+  #prec_plot <- ggplot() +
+    #geom_sf(data = geo_data_prec_sf, aes(fill = !!as.name(Month)), alpha = 0.95) +
+   # ggtitle(label = "Precipitation Data", subtitle = Month) +
+    
+    #geom_point(data = geo_data_pop, aes(x = Longtitude, y = Latitude, size = geo_data_pop_sf$"2020", color = geo_data_pop_sf$"2020"),position = "identity") +
+    
+    
+    #labs(x = "Latitude", y = "Longitude") +
+    #scale_fill_viridis(option = "plasma", direction = -1, name = "Rainfall [mm]") +
+   # geom_sf_text(data = geo_data_prec_sf, aes(label = Districts_names), size = 1, hjust = 1) +
+   # coord_sf(lims = "geometry_bbox")
+
+ # print(prec_plot)
+}
+
+
+```
+
+```{r}
+library(ggplot2)
+library(viridis)
+library(sf)
+
+prec_plot <- ggplot() +
+    geom_sf(data = geo_data_prec_sf, aes(fill = `2020.01.`), alpha = 0.95) +
+    ggtitle(label = "Precipitation Data", subtitle = "Month") +
+    geom_point(data = geo_data_pop_sf, aes(x = Longtitude, y = Latitude, size = `2020`)) +
+    labs(x = "Longitude", y = "Latitude") +
+    scale_fill_viridis(option = "plasma", direction = -1, name = "Rainfall [mm]") +
+    geom_sf_text(data = geo_data_prec_sf, aes(label = Districts_names), size = 1, hjust = 1) +
+    #coord_sf()
+    #coord_sf(default_crs = st_crs(4326))
+    coord_sf(lims = "geometry_bbox")
+    #coord_sf(default_crs = st_crs(3857))
+
+prec_plot
+
+
+
+```
+```{r}
+
+
+  
+
+
+#for (Month in Month2020.01) {
+ # prec_plot <- ggplot() +
+  #  geom_sf(data = geo_data_prec_sf, aes(fill = !!as.name(Month)), alpha = 0.95) +
+  #  ggtitle(label = "Precipitation Data", subtitle = Month) +
+    
+  #  geom_point(data = geo_data_pop, aes(x = Longtitude, y = Latitude, size = `2020`))+
+    
+  #  labs(x = "Longtitude", y = "Latitude") +
+  #  scale_fill_viridis(option = "plasma", direction = -1, name = "Rainfall [mm]") +
+  #  geom_sf_text(data = geo_data_prec_sf, aes(label = Districts_names), size = 1, hjust = 1) +
+  #  coord_sf(default_crs = st_crs(4326))
+
+#prec_plot
+}
+```
+
+```{r}
+#Show this Version? 
+
+
+#colnames(geo_data_prec_sf)
+
+library(ggplot2)
+library(viridis)
+
+prec_plot <- ggplot() +
+  geom_sf(data = geo_data_prec_sf, aes(fill = `2020.01.`), alpha = 0.95) +
+  #ggtitle(label = "Precipitation Data", subtitle = "Month") +
+  #labs(x = "Latitude", y = "Longtitude") +
+  #scale_fill_viridis(option = "plasma", direction = -1, name = "Rainfall [mm]") +
+  #geom_sf_text(data = geo_data_prec_sf, aes(label = Districts_names), size = 1, hjust = 1) +
+  geom_point(data = geo_data_pop_sf, mapping = aes(x = `Longtitude`, y = `Latitude`, size = `2020`)) +
+  #coord_sf(lims = "geometry_bbox")
+  #coord_sf()
+  #coord_sf(default_crs = NULL)
+  #coord_sf(default_crs = st_crs(4326))
+  coord_sf(lims = "geometry_bbox")
+  #coord_sf(default_crs = st_crs(3857))
+
+
+prec_plot
+
+```
+
+```{r}
+d=data.frame(beauty=c(1,2,6,4,4,6,7,8), intelligence=c(8,4,7,5,4,9,2,3), speed=c(7,6,9,5,7,6,7,8), gender=c('m','m','f','m','f','f','f','m'))
+ggplot() + 
+geom_point(data=d, mapping=aes(x=intelligence, y=beauty, shape=gender, color=gender, size=speed))
+coord_sf()
+```
+
+GAM Models
 
