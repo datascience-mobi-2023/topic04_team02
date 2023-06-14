@@ -54,6 +54,11 @@ province_numbers = province_numbers[-27,]
 rownames(province_numbers) = 1:76
 ```
 
+## Area Data
+```{r}
+library(readxl)
+area <- as.data.frame(read_excel("area_data.xlsx"))
+```
 
 
 # Data Copies for safety reasons 
@@ -65,21 +70,11 @@ Precipitationc = Precipitation
 
 ## Dengue Fever
 ```{r}
-Dengue_2006c = Dengue_2006
-Dengue_2007c = Dengue_2007
-Dengue_2008c = Dengue_2008
-Dengue_2009c = Dengue_2009
-Dengue_2010c = Dengue_2010
-Dengue_2011c = Dengue_2011
-Dengue_2012c = Dengue_2012
-Dengue_2013c = Dengue_2013
-Dengue_2014c = Dengue_2014
-Dengue_2015c = Dengue_2015
-Dengue_2016c = Dengue_2016
-Dengue_2017c = Dengue_2017
-Dengue_2018c = Dengue_2018
-Dengue_2019c = Dengue_2019
-Dengue_2020c = Dengue_2020
+for (year in 2006:2020) 
+{
+  data = get(paste0("Dengue_", year))
+  assign(paste0("Dengue_", year, "c"), data)
+}
 ```
 
 ## Province numbers
@@ -92,6 +87,10 @@ province_numbersc = province_numbers
 Populationc = Population
 ```
 
+## Area
+```{r}
+areac = area
+```
 
 
 # Data Cleaning
@@ -208,22 +207,51 @@ Precipitation_2018 = Precipitation[, c(1:4,149:160)]
 Precipitation_2019 = Precipitation[, c(1:4,161:172)]
 Precipitation_2020 = Precipitation[, c(1:4,173:184)]
 
-colnames(Precipitation_2006)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2007)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2008)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2009)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2010)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2011)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2012)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2013)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2014)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2015)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2016)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2017)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2018)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2019)[5:16] = colnames(Dengue_2020)[4:15]
-colnames(Precipitation_2020)[5:16] = colnames(Dengue_2020)[4:15]
+colnames(Precipitation_2006)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2007)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2008)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2009)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2010)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2011)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2012)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2013)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2014)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2015)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2016)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2017)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2018)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2019)[5:16] = colnames(Dengue_2020)[3:14]
+colnames(Precipitation_2020)[5:16] = colnames(Dengue_2020)[3:14]
 ```
+
+### Area Data
+
+***convert sq. km2 into sp. m2***
+```{r}
+area[,2] = area[,2]*1000
+```
+
+
+***Merge Bungkan and Nong Khai***
+```{r}
+area[which(area[,1] == "Nong Khai"), 2] = area[which(area[,1] == "Nong Khai"), 2] + area[which(area[,1] == "Bueng Kan"), 2] #add Bungkan and Nong Khai row together and display in Nong Khai row
+
+area = area[-which(area[,1] == "Bueng Kan"), ] #delete Bungkan row
+
+rownames(area) = 1:76 # rename the rows since one row was deleted
+```
+
+***Addition of province numbers and sort rows by number***
+```{r}
+area_1 = area
+
+for (x in 1:76)
+  area[x,] = area_1[which(province_numbers[x,2] == area_1[,1]),]
+
+area = cbind(province_numbers$Number, area)
+colnames(area)[1] = "Code number"
+```
+
 
 ### Dengue 2006
 
@@ -240,7 +268,6 @@ Dengue_2006[28,1] = province_names[5,1]
 ```{r}
 Dengue_2006 = Dengue_2006[which((Dengue_2006[,1] %in% province_names[,1])), ]
 rownames(Dengue_2006) = c(1:76)
-Dengue_2006
 ```
 
 ***Addition of province numbers and sort rows by number***
@@ -269,7 +296,6 @@ Dengue_2007[28,1] = province_names[5,1] #set the correct name for the province
 ```{r}
 Dengue_2007 = Dengue_2007[which((Dengue_2007[,1] %in% province_names[,1])), ]
 rownames(Dengue_2007) = c(1:76)
-Dengue_2007
 ```
 
 ***Addition of province numbers and sort rows by number***
@@ -299,7 +325,6 @@ Dengue_2008[64,1] = province_names[35,1]
 ```{r}
 Dengue_2008 = Dengue_2008[which((Dengue_2008[,1] %in% province_names[,1])), ]
 rownames(Dengue_2008) = c(1:76)
-Dengue_2008
 ```
 
 ***Addition of province numbers and sort rows by number***
@@ -329,7 +354,6 @@ Dengue_2009[64,1] = province_names[35,1]
 ```{r}
 Dengue_2009 = Dengue_2009[which((Dengue_2009[,1] %in% province_names[,1])), ]
 rownames(Dengue_2009) = c(1:76)
-Dengue_2009
 ```
 
 ***Addition of province numbers and sort rows by number***
@@ -358,7 +382,6 @@ Dengue_2010[6,1] = province_names[5,1] #set the correct name for the province
 ```{r}
 Dengue_2010 = Dengue_2010[which((Dengue_2010[,1] %in% province_names[,1])), ]
 rownames(Dengue_2010) = c(1:76)
-Dengue_2010
 ```
 
 ***Addition of province numbers and sort rows by number***
@@ -388,7 +411,6 @@ Dengue_2011[65,1] = province_names[35,1]
 ```{r}
 Dengue_2011 = Dengue_2011[which((Dengue_2011[,1] %in% province_names[,1])), ]
 rownames(Dengue_2011) = c(1:77)
-Dengue_2011
 ```
 
 ***Merge Bungkan and Nong Khai***
@@ -427,7 +449,6 @@ Dengue_2012[14,1] = province_names[35,1]
 ```{r}
 Dengue_2012 = Dengue_2012[which((Dengue_2012[,1] %in% province_names[,1])), ]
 rownames(Dengue_2012) = c(1:77)
-Dengue_2012
 ```
 
 ***Merge Bungkan and Nong Khai***
@@ -475,7 +496,6 @@ Dengue_2013[14,1] = province_names[35,1]
 ```{r}
 Dengue_2013 = Dengue_2013[which((Dengue_2013[,1] %in% province_names[,1])), ]
 rownames(Dengue_2013) = c(1:77)
-Dengue_2013
 ```
 
 ***Merge Bungkan and Nong Khai***
@@ -521,7 +541,6 @@ Dengue_2014[37,1] = province_names[5,1] #set the correct name for the province
 ```{r}
 Dengue_2014 = Dengue_2014[which((Dengue_2014[,1] %in% province_names[,1])), ]
 rownames(Dengue_2014) = c(1:77)
-Dengue_2014
 ```
 
 ***Merge Bungkan and Nong Khai***
@@ -567,7 +586,6 @@ Dengue_2015[37,1] = province_names[5,1] #set the correct name for the province
 ```{r}
 Dengue_2015 = Dengue_2015[which((Dengue_2015[,1] %in% province_names[,1])), ]
 rownames(Dengue_2015) = c(1:77)
-Dengue_2015
 ```
 
 ***Merge Bungkan and Nong Khai***
@@ -613,7 +631,6 @@ Dengue_2016[37,1] = province_names[5,1] #set the correct name for the province
 ```{r}
 Dengue_2016 = Dengue_2016[which((Dengue_2016[,1] %in% province_names[,1])), ]
 rownames(Dengue_2016) = c(1:77)
-Dengue_2016
 ```
 
 ***Merge Bungkan and Nong Khai***
@@ -659,7 +676,6 @@ Dengue_2017[31,1] = province_names[5,1] #set the correct name for the province
 ```{r}
 Dengue_2017 = Dengue_2017[which((Dengue_2017[,1] %in% province_names[,1])), ]
 rownames(Dengue_2017) = c(1:77)
-Dengue_2017
 ```
 
 ***Merge Bungkan and Nong Khai***
@@ -692,12 +708,10 @@ province_names[which((province_names[,1] %in% Dengue_2018[,1]) == FALSE),1] #wha
 
 Dengue_2018[31,1] = province_names[5,1] #set the correct name for the province
 ```
-
 ***Deletion of useless rows***
 ```{r}
 Dengue_2018 = Dengue_2018[which((Dengue_2018[,1] %in% province_names[,1])), ]
 rownames(Dengue_2018) = c(1:77)
-Dengue_2018
 ```
 
 ***Merge Bungkan and Nong Khai***
@@ -718,6 +732,9 @@ for (x in 1:76)
 
 Dengue_2018 = cbind(province_numbers$Number, Dengue_2018)
 colnames(Dengue_2018)[1] = "Code number"
+colnames(Dengue_2018)[9] = "June" #Correcting the colnames
+colnames(Dengue_2018)[10] = "July"
+colnames(Dengue_2018)[12] = "Sept"
 ```
 
 ### Dengue 2019
@@ -735,7 +752,6 @@ Dengue_2019[31,1] = province_names[5,1] #set the correct name for the province
 ```{r}
 Dengue_2019 = Dengue_2019[which((Dengue_2019[,1] %in% province_names[,1])), ]
 rownames(Dengue_2019) = c(1:77)
-Dengue_2019
 ```
 
 ***Merge Bungkan and Nong Khai***
@@ -756,6 +772,9 @@ for (x in 1:76)
 
 Dengue_2019 = cbind(province_numbers$Number, Dengue_2019)
 colnames(Dengue_2019)[1] = "Code number"
+colnames(Dengue_2019)[9] = "June" #Correcting the colnames
+colnames(Dengue_2019)[10] = "July"
+colnames(Dengue_2019)[12] = "Sept"
 ```
 
 ### Dengue 2020
@@ -773,7 +792,6 @@ Dengue_2020[31,1] = province_names[5,1] #set the correct name for the province
 ```{r}
 Dengue_2020 = Dengue_2020[which((Dengue_2020[,1] %in% province_names[,1])), ]
 rownames(Dengue_2020) = c(1:77)
-Dengue_2020
 ```
 
 ***Merge Bungkan and Nong Khai***
@@ -794,116 +812,58 @@ for (x in 1:76)
 
 Dengue_2020 = cbind(province_numbers$Number, Dengue_2020)
 colnames(Dengue_2020)[1] = "Code number"
+colnames(Dengue_2020)[9] = "June" #Correcting the colnames
+colnames(Dengue_2020)[10] = "July"
+colnames(Dengue_2020)[12] = "Sept"
 ```
 
 ## Normation of the Dengue Date according to the Population Data
 
-### 2006 Incidence
+### Incidence
 ```{r}
-Incidence_2006 = apply(Dengue_2006[,3:15], 2, function(x){x/Population$"2006"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2006 = cbind(province_numbers[,3:2], Incidence_2006) #add the Province code and name
+for (year in 2006:2020) 
+{
+  data = get(paste0("Dengue_", year))
+  population = Population[[as.character(year)]]
+  province_numbers_subset = province_numbers[, 3:2]
+  incidence = apply(data[, 3:15], 2, function(x) {x / population * 100000})
+  incidence = cbind(province_numbers_subset, incidence)
+  assign(paste0("Incidence_", year), incidence)
+}
 ```
 
-### 2007 Incidence
-```{r}
-Incidence_2007 = apply(Dengue_2007[,3:15], 2, function(x){x/Population$"2007"*100000}) #calculate the incidence (cases per 100k citizens)
+## Combine all years of Dengue Data into one big dataframe
+### Total Dengue cases
 
-Incidence_2007 = cbind(province_numbers[,3:2], Incidence_2007) #add the Province code and name
+```{r}
+Dengue_combined = cbind(Dengue_2006[,-3], Dengue_2007[4:15], Dengue_2008[4:15], Dengue_2009[4:15], Dengue_2010[4:15], Dengue_2011[4:15], Dengue_2012[4:15], Dengue_2013[4:15], Dengue_2014[4:15], Dengue_2015[4:15], Dengue_2016[4:15], Dengue_2017[4:15], Dengue_2018[4:15], Dengue_2019[4:15], Dengue_2020[4:15])
+
+colnames(Dengue_combined)[3:182] = colnames(Precipitation)[5:184]
+colnames(Dengue_combined)[2] = "Districts_names"
 ```
 
-### 2008 Incidence
+### Incidence
 ```{r}
-Incidence_2008 = apply(Dengue_2008[,3:15], 2, function(x){x/Population$"2008"*100000}) #calculate the incidence (cases per 100k citizens)
+Incidence_combined = cbind(Incidence_2006[,-3], Incidence_2007[4:15], Incidence_2008[4:15], Incidence_2008[4:15], Incidence_2010[4:15], Incidence_2011[4:15], Incidence_2012[4:15], Incidence_2013[4:15], Incidence_2014[4:15], Incidence_2015[4:15], Incidence_2016[4:15], Incidence_2017[4:15], Incidence_2018[4:15], Incidence_2019[4:15], Incidence_2020[4:15])
 
-Incidence_2008 = cbind(province_numbers[,3:2], Incidence_2008) #add the Province code and name
+colnames(Incidence_combined)[3:182] = colnames(Precipitation)[5:184]
+colnames(Incidence_combined)[2] = "Districts_names"
 ```
 
-### 2009 Incidence
-```{r}
-Incidence_2009 = apply(Dengue_2009[,3:15], 2, function(x){x/Population$"2009"*100000}) #calculate the incidence (cases per 100k citizens)
+## Lag data
+After periods of rain, it takes a while until the Aeges mosquitos breed and proliferate, so there is a time lag between the rainfall and the dengue cases. This will be taken into consideration by moving the Dengue cases up one month.
 
-Incidence_2009 = cbind(province_numbers[,3:2], Incidence_2009) #add the Province code and name
+### For Dengue data
+```{r}
+lag_Dengue_combined = Dengue_combined[,-3] #remove January 2006
+colnames(lag_Dengue_combined)[3:181] = colnames(Dengue_combined)[3:181] #move month name one column up
 ```
 
-### 2010 Incidence
+### For Incidence data
 ```{r}
-Incidence_2010 = apply(Dengue_2010[,3:15], 2, function(x){x/Population$"2010"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2010 = cbind(province_numbers[,3:2], Incidence_2010) #add the Province code and name
+lag_Incidence_combined = Incidence_combined[,-3] #remove January 2006
+colnames(lag_Incidence_combined)[3:181] = colnames(Incidence_combined)[3:181] #move month name one column up
 ```
-
-### 2011 Incidence
-```{r}
-Incidence_2011 = apply(Dengue_2011[,3:15], 2, function(x){x/Population$"2011"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2011 = cbind(province_numbers[,3:2], Incidence_2011) #add the Province code and name
-```
-
-### 2012 Incidence
-```{r}
-Incidence_2012 = apply(Dengue_2012[,3:15], 2, function(x){x/Population$"2012"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2012 = cbind(province_numbers[,3:2], Incidence_2012) #add the Province code and name
-```
-
-### 2013 Incidence
-```{r}
-Incidence_2013 = apply(Dengue_2013[,3:15], 2, function(x){x/Population$"2013"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2013 = cbind(province_numbers[,3:2], Incidence_2013) #add the Province code and name
-```
-
-### 2014 Incidence
-```{r}
-Incidence_2014 = apply(Dengue_2014[,3:15], 2, function(x){x/Population$"2014"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2014 = cbind(province_numbers[,3:2], Incidence_2014) #add the Province code and name
-```
-
-### 2015 Incidence
-```{r}
-Incidence_2015 = apply(Dengue_2015[,3:15], 2, function(x){x/Population$"2015"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2015 = cbind(province_numbers[,3:2], Incidence_2015) #add the Province code and name
-```
-
-### 2016 Incidence
-```{r}
-Incidence_2016 = apply(Dengue_2016[,3:15], 2, function(x){x/Population$"2016"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2016 = cbind(province_numbers[,3:2], Incidence_2016) #add the Province code and name
-```
-
-### 2017 Incidence
-```{r}
-Incidence_2017 = apply(Dengue_2017[,3:15], 2, function(x){x/Population$"2017"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2017 = cbind(province_numbers[,3:2], Incidence_2017) #add the Province code and name
-```
-
-### 2018 Incidence
-```{r}
-Incidence_2018 = apply(Dengue_2018[,3:15], 2, function(x){x/Population$"2018"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2018 = cbind(province_numbers[,3:2], Incidence_2018) #add the Province code and name
-```
-
-### 2019 Incidence
-```{r}
-Incidence_2019 = apply(Dengue_2019[,3:15], 2, function(x){x/Population$"2019"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2019 = cbind(province_numbers[,3:2], Incidence_2019) #add the Province code and name
-```
-
-### 2020 Incidence
-```{r}
-Incidence_2020 = apply(Dengue_2020[,3:15], 2, function(x){x/Population$"2020"*100000}) #calculate the incidence (cases per 100k citizens)
-
-Incidence_2020 = cbind(province_numbers[,3:2], Incidence_2020) #add the Province code and name
-```
-
-
 
 # 4 Region Classification of the provinces in Thailand
 
@@ -930,6 +890,90 @@ provinces_central_rows = province_numbers[c(1:18,47:62), 2:3]
 provinces_south_rows = province_numbers[63:76, 2:3]
 ```
 
+# Data per region
 
+## Total dengue cases per region 
 
+### North total dengue cases 
+```{r}
+for (year in 2006:2020) {
+  data = get(paste0("Dengue_", year))
+  subset_data = data[38:46, 4:15]
+  sum_data = data.frame(t(apply(subset_data, 2, sum)))
+  assign(paste0("sum", year, "_north"), sum_data)
+}
 
+Dengue_North = rbind(sum2006_north, sum2007_north, sum2008_north, sum2009_north, sum2010_north, sum2011_north, sum2012_north, sum2013_north, sum2014_north, sum2015_north, sum2016_north, sum2017_north, sum2018_north, sum2019_north, sum2020_north) 
+rownames(Dengue_North) = colnames(Population)[3:17]
+```
+
+### Northeastern total dengue cases 
+```{r}
+for (year in 2006:2020) {
+  data = get(paste0("Dengue_", year))
+  subset_data = data[19:37, 4:15]
+  sum_data = data.frame(t(apply(subset_data, 2, sum)))
+  assign(paste0("sum", year, "_northeast"), sum_data)
+}
+
+Dengue_Northeast = rbind(sum2006_northeastern, sum2007_northeastern, sum2008_northeastern, sum2009_northeastern, sum2010_northeastern, sum2011_northeastern, sum2012_northeastern, sum2013_northeastern, sum2014_northeastern, sum2015_northeastern, sum2016_northeastern, sum2017_northeastern, sum2018_northeastern, sum2019_northeastern, sum2020_northeastern) 
+rownames(Dengue_Northeast) = colnames(Population)[3:17]
+```
+
+### Central total dengue cases
+```{r}
+for (year in 2006:2020) {
+  data = get(paste0("Dengue_", year))
+  subset_data = data[c(1:18, 47:62), 4:15]
+  sum_data = data.frame(t(apply(subset_data, 2, sum)))
+  assign(paste0("sum", year, "_central"), sum_data)
+}
+
+Dengue_Central = rbind(sum2006_central, sum2007_central, sum2008_central, sum2009_central, sum2010_central, sum2011_central, sum2012_central, sum2013_central, sum2014_central, sum2015_central, sum2016_central, sum2017_central, sum2018_central, sum2019_central, sum2020_central) 
+rownames(Dengue_Central) = colnames(Population)[3:17]
+```
+
+### South total dengue cases
+```{r}
+for (year in 2006:2020) {
+  data = get(paste0("Dengue_", year))
+  subset_data = data[63:76, 4:15]
+  sum_data = data.frame(t(apply(subset_data, 2, sum)))
+  assign(paste0("sum", year, "_south"), sum_data)
+}
+
+Dengue_South = rbind(sum2006_south, sum2007_south, sum2008_south, sum2009_south, sum2010_south, sum2011_south, sum2012_south, sum2013_south, sum2014_south, sum2015_south, sum2016_south, sum2017_south, sum2018_south, sum2019_south, sum2020_south) 
+rownames(Dengue_South) = colnames(Population)[3:17]
+```
+
+## Incidence per Region
+
+### Total population per region
+```{r}
+Population_North = data.frame(t(apply(Population[38:46, 3:17], 2, sum)))
+colnames(Population_North) = colnames(Population)[3:17]
+
+Population_Northeast = data.frame(t(apply(Population[19:37, 3:17], 2, sum)))
+colnames(Population_Northeast) = colnames(Population)[3:17]
+
+Population_Central = data.frame(t(apply(Population[c(1:18, 47:62), 3:17], 2, sum)))
+colnames(Population_Central) = colnames(Population)[3:17]
+
+Population_South = data.frame(t(apply(Population[63:76, 3:17], 2, sum)))
+colnames(Population_South) = colnames(Population)[3:17]
+```
+
+### Normed dengue cases per region
+```{r}
+for (region in c("North", "Northeast", "Central", "South")) 
+{
+  dataD = get(paste0("Dengue_", region))
+  dataP = get(paste0("Population_", region))
+  assign(paste0("Incidence_", region), apply(dataD, 2, function(x){(x/ t(dataP)) * 100000}))
+}
+
+rownames(Incidence_North) = colnames(Population)[3:17]
+rownames(Incidence_Northeast) = colnames(Population)[3:17]
+rownames(Incidence_Central) = colnames(Population)[3:17]
+rownames(Incidence_South) = colnames(Population)[3:17]
+```
