@@ -963,7 +963,7 @@ Population_South = data.frame(t(apply(Population[63:76, 3:17], 2, sum)))
 colnames(Population_South) = colnames(Population)[3:17]
 ```
 
-### Normed dengue cases per region
+### Incidences per region
 ```{r}
 for (region in c("North", "Northeast", "Central", "South")) 
 {
