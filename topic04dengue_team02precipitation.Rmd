@@ -916,7 +916,7 @@ for (year in 2006:2020) {
   assign(paste0("sum", year, "_northeast"), sum_data)
 }
 
-Dengue_Northeast = rbind(sum2006_northeastern, sum2007_northeastern, sum2008_northeastern, sum2009_northeastern, sum2010_northeastern, sum2011_northeastern, sum2012_northeastern, sum2013_northeastern, sum2014_northeastern, sum2015_northeastern, sum2016_northeastern, sum2017_northeastern, sum2018_northeastern, sum2019_northeastern, sum2020_northeastern) 
+Dengue_Northeast = rbind(sum2006_northeast, sum2007_northeast, sum2008_northeast, sum2009_northeast, sum2010_northeast, sum2011_northeast, sum2012_northeast, sum2013_northeast, sum2014_northeast, sum2015_northeast, sum2016_northeast, sum2017_northeast, sum2018_northeast, sum2019_northeast, sum2020_northeast) 
 rownames(Dengue_Northeast) = colnames(Population)[3:17]
 ```
 
