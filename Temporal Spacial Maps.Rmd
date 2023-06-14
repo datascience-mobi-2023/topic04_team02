@@ -71,7 +71,6 @@ colnames(geo_data_prec_incidence)
 View(geo_data_prec_incidence[,160:220])
 geo_data_prec_incidence_sf <- st_as_sf(geo_data_prec_incidence)
 
-
 #Longtitude and Latitude into Numeric Data
 geo_data_prec_incidence_sf$Longtitude <- gsub(",", ".", geo_data_prec_incidence_sf$Longtitude)
 geo_data_prec_incidence_sf$Latitude <- gsub(",", ".", geo_data_prec_incidence_sf$Latitude)
@@ -87,6 +86,9 @@ class(geo_data_prec_incidence_sf$Longtitude)
 View(geo_data_prec_incidence_sf[,360:374])
 
 geo_data_prec_incidence_sf$Longtitude
+
+geo_data_prec_incidence_yearframe <- left_join(x = , y = geo_data_prec, by = c("Districts_names"))
+geo_data_prec_incidence_yearframe_sf <- st_as_sf(geo_data_prec_incidence)
 
 head(geo_data)
 class(geo_data)
@@ -275,7 +277,7 @@ for (yearframe_prec in years2006_2020_prec) {
   prec_incidence_plot <- ggplot() +
   geom_sf(data = geo_data_prec_incidence_sf, aes(fill = !!as.name(yearframe_prec)) +
   ggtitle(label = "Precipitation and Incidence", subtitle = yearframe_prec) +
-  geom_point(data = geo_data_prec_incidence_sf, aes(x = Longtitude, y = Latitude, size = !!as.name(yearframe_incidence), color = !!as.name(yearframe_incidence)), alpha = 0,95) +
+  geom_point(data = geo_data_prec_incidence_sf, aes(x = Longtitude, y = Latitude, size = !!as.name(yearframe_incidence), color = !!as.name(yearframe_incidence)), alpha = 0.95) +
   scale_size_continuous(breaks = c(0,5,10,15,20)) +
   labs(x = "Longitude", y = "Latitude") +
   scale_fill_viridis(option = "plasma", direction = -1, name = "Rainfall [mm]") +
