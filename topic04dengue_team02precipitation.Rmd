@@ -868,13 +868,13 @@ colnames(lag_Incidence_combined)[3:181] = colnames(Incidence_combined)[3:181] #m
 ## Incidence for 5 years
 ```{r}
 Incidence_06_10 = cbind(province_numbers[,2], apply(as.data.frame(sapply(2006:2010, function(year) get(paste0("Incidence_", year))[, 3])), 1, sum))
-colnames(Incidence_06_10) = c("Province", "Incidence")
+colnames(Incidence_06_10) = c("Districts_names", "Incidence")
 
 Incidence_11_15 = cbind(province_numbers[,2], apply(as.data.frame(sapply(2011:2015, function(year) get(paste0("Incidence_", year))[, 3])), 1, sum))
-colnames(Incidence_11_15) = c("Province", "Incidence")
+colnames(Incidence_11_15) = c("Districts_names", "Incidence")
 
 Incidence_16_20 = cbind(province_numbers[,2], apply(as.data.frame(sapply(2016:2020, function(year) get(paste0("Incidence_", year))[, 3])), 1, sum))
-colnames(Incidence_16_20) = c("Province", "Incidence")
+colnames(Incidence_16_20) = c("Districts_names", "Incidence")
 ```
 
 ## Precipitation for 5 years
