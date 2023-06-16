@@ -1,0 +1,172 @@
+---
+title: "Test_Plots"
+author: "Lena Koch"
+date: "2023-06-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Incidence
+
+## Incidences per year
+```{r}
+months_numbers <- 1:12
+colors_regions <- c("purple2", "orangered2", "mediumseagreen", "maroon2")
+names_regions <- c("North", "Northeast", "Central", "South")
+years <- c(2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020)
+
+for (i in 1:15) {
+  par(mar = c(5.1, 4.1, 4.1, 8.1), xpd = TRUE)
+  plot(x = months_numbers, y = Incidence_North[i,], type = "b", pch = 20, lwd = 2, col = colors_regions[1], xlab = "month", ylab = "Incidences", main = paste("Incidences", years[i]), ylim = c(0, 170))
+  for (j in 2:4) {
+    lines(months_numbers, get(paste0("Incidence_", names_regions[j]))[i,], type = "b", pch = 20, lwd = 2, col = colors_regions[j])
+  }
+  
+  legend(x = "topright",
+         inset = c(-0.3,0),
+         legend = names_regions,
+         lty = 1,
+         col = colors_regions,
+         lwd = 2)
+  
+}
+```
+
+## Incidences 2006-2020
+```{r}
+par(mar = c(5.1, 4.1, 4.1, 8.1), xpd = TRUE)
+
+plot(x = 1:180, y = c(Incidence_North[1,],Incidence_North[2,],Incidence_North[3,],Incidence_North[4,],Incidence_North[5,],Incidence_North[6,],Incidence_North[7,],Incidence_North[8,],Incidence_North[9,],Incidence_North[10,],Incidence_North[11,],Incidence_North[12,], Incidence_North[13,],Incidence_North[14,],Incidence_North[15,]), type = "l", pch = 20, col = "purple2", xlab = "month", ylab = "Incidences", main = "Incidences 2006-2020", ylim = c(0,170)); 
+
+lines(1:180, c(Incidence_Northeast[1,],Incidence_Northeast[2,], Incidence_Northeast[3,],Incidence_Northeast[4,], Incidence_Northeast[5,],Incidence_Northeast[6,], Incidence_Northeast[7,],Incidence_Northeast[8,], Incidence_Northeast[9,],Incidence_Northeast[10,], Incidence_Northeast[11,],Incidence_Northeast[12,], Incidence_Northeast[13,],Incidence_Northeast[14,], Incidence_Northeast[15,]), type = "l", pch = 20, col = "orangered2");  
+
+lines(1:180, c(Incidence_Central[1,],Incidence_Central[2,], Incidence_Central[3,],Incidence_Central[4,], Incidence_Central[5,],Incidence_Central[6,], Incidence_Central[7,],Incidence_Central[8,], Incidence_Central[9,],Incidence_Central[10,], Incidence_Central[11,],Incidence_Central[12,], Incidence_Central[13,],Incidence_Central[14,], Incidence_Central[15,]), type = "l", pch = 20, col = "mediumseagreen"); 
+
+lines(1:180, c(Incidence_South[1,],Incidence_South[2,], Incidence_South[3,],Incidence_South[4,], Incidence_South[5,],Incidence_South[6,], Incidence_South[7,],Incidence_South[8,], Incidence_South[9,],Incidence_South[10,], Incidence_South[11,],Incidence_South[12,], Incidence_South[13,],Incidence_South[14,], Incidence_South[15,]), type = "l", pch = 20, col = "maroon2");
+
+legend(x = "topright", 
+       inset = c(-0.3,0),
+       legend = c("North", "Northeast", "Central", "South"),  
+       lty = c(1),           
+       col = c(col= "purple2",col="orangered2",col="mediumseagreen", col="maroon2"),
+       lwd = 2)    
+```
+
+```{r}
+par(mar = c(5.1, 4.1, 4.1, 8.1), xpd = TRUE)
+
+plot(x = 1:180, y = c(Incidence_North[1,],Incidence_North[2,],Incidence_North[3,],Incidence_North[4,],Incidence_North[5,],Incidence_North[6,],Incidence_North[7,],Incidence_North[8,],Incidence_North[9,],Incidence_North[10,],Incidence_North[11,],Incidence_North[12,], Incidence_North[13,],Incidence_North[14,],Incidence_North[15,]), type = "l", pch = 20, col = "purple2", xlab = "month", ylab = "Incidences", main = "Incidences 2006-2020", ylim = c(0,170)); 
+
+lines(1:180, c(Incidence_Northeast[1,],Incidence_Northeast[2,], Incidence_Northeast[3,],Incidence_Northeast[4,], Incidence_Northeast[5,],Incidence_Northeast[6,], Incidence_Northeast[7,],Incidence_Northeast[8,], Incidence_Northeast[9,],Incidence_Northeast[10,], Incidence_Northeast[11,],Incidence_Northeast[12,], Incidence_Northeast[13,],Incidence_Northeast[14,], Incidence_Northeast[15,]), type = "l", pch = 20, col = "orangered2");  
+
+lines(1:180, c(Incidence_Central[1,],Incidence_Central[2,], Incidence_Central[3,],Incidence_Central[4,], Incidence_Central[5,],Incidence_Central[6,], Incidence_Central[7,],Incidence_Central[8,], Incidence_Central[9,],Incidence_Central[10,], Incidence_Central[11,],Incidence_Central[12,], Incidence_Central[13,],Incidence_Central[14,], Incidence_Central[15,]), type = "l", pch = 20, col = "mediumseagreen"); 
+
+lines(1:180, c(Incidence_South[1,],Incidence_South[2,], Incidence_South[3,],Incidence_South[4,], Incidence_South[5,],Incidence_South[6,], Incidence_South[7,],Incidence_South[8,], Incidence_South[9,],Incidence_South[10,], Incidence_South[11,],Incidence_South[12,], Incidence_South[13,],Incidence_South[14,], Incidence_South[15,]), type = "l", pch = 20, col = "maroon2");
+
+abline(v = 12.5)
+abline(v = 25)
+abline(v = 37.5)
+abline(v = 50)
+abline(v = 62.5)
+abline(v = 75)
+abline(v = 87.5)
+abline(v = 100)
+abline(v = 112.5)
+abline(v = 125)
+abline(v = 137.5)
+abline(v = 150)
+abline(v = 162.5)
+abline(v = 175)
+
+legend(x = "topright", 
+       inset = c(-0.3,0),
+       legend = c("North", "Northeast", "Central", "South"),  
+       lty = c(1),           
+       col = c(col= "purple2",col="orangered2",col="mediumseagreen", col="maroon2"),
+       lwd = 2)    
+```
+
+# Precipitation
+
+## Precipitation per year
+```{r}
+months_numbers <- 1:12
+colors_regions <- c("purple2", "orangered2", "mediumseagreen", "maroon2")
+names_regions <- c("North", "Northeast", "Central", "South")
+years <- c(2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020)
+
+for (i in 1:15) {
+  par(mar = c(5.1, 4.1, 4.1, 8.1), xpd = TRUE)
+  plot(x = months_numbers, y = Precipitation_North[i,], type = "b", pch = 20, lwd = 2, col = colors_regions[1], xlab = "month", ylab = "Precipitation", main = paste("Precipitation", years[i]), ylim = c(0, 600))
+  for (j in 2:4) {
+    lines(months_numbers, get(paste0("Precipitation_", names_regions[j]))[i,], type = "b", pch = 20, lwd = 2, col = colors_regions[j])
+  }
+  
+  legend(x = "topright",
+         inset = c(-0.3,0),
+         legend = names_regions,
+         lty = 1,
+         col = colors_regions,
+         lwd = 2)
+}
+```
+
+## Precipitation 2006-2020
+
+```{r}
+par(mar = c(5.1, 4.1, 4.1, 8.1), xpd = TRUE)
+
+plot(x = 1:180, y = c(Precipitation_North[1,],Precipitation_North[2,],Precipitation_North[3,],Precipitation_North[4,],Precipitation_North[5,],Precipitation_North[6,],Precipitation_North[7,],Precipitation_North[8,],Precipitation_North[9,],Precipitation_North[10,],Precipitation_North[11,],Precipitation_North[12,], Precipitation_North[13,],Precipitation_North[14,],Precipitation_North[15,]), type = "l", pch = 20, col = "purple2", xlab = "month", ylab = "Precipitation", main = "Precipitation 2006-2020", ylim = c(0,600)); 
+
+lines(1:180, c(Precipitation_Northeast[1,],Precipitation_Northeast[2,], Precipitation_Northeast[3,],Precipitation_Northeast[4,], Precipitation_Northeast[5,],Precipitation_Northeast[6,], Precipitation_Northeast[7,],Precipitation_Northeast[8,], Precipitation_Northeast[9,],Precipitation_Northeast[10,], Precipitation_Northeast[11,],Precipitation_Northeast[12,], Precipitation_Northeast[13,],Precipitation_Northeast[14,], Precipitation_Northeast[15,]), type = "l", pch = 20, col = "orangered2");  
+
+lines(1:180, c(Precipitation_Central[1,],Incidence_Central[2,], Precipitation_Central[3,],Precipitation_Central[4,], Precipitation_Central[5,],Precipitation_Central[6,], Precipitation_Central[7,],Precipitation_Central[8,], Precipitation_Central[9,],Precipitation_Central[10,], Precipitation_Central[11,],Precipitation_Central[12,], Precipitation_Central[13,],Precipitation_Central[14,], Precipitation_Central[15,]), type = "l", pch = 20, col = "mediumseagreen"); 
+
+lines(1:180, c(Precipitation_South[1,],Precipitation_South[2,], Precipitation_South[3,],Precipitation_South[4,], Precipitation_South[5,],Precipitation_South[6,], Precipitation_South[7,],Precipitation_South[8,], Precipitation_South[9,],Precipitation_South[10,], Precipitation_South[11,],Precipitation_South[12,], Precipitation_South[13,],Precipitation_South[14,], Precipitation_South[15,]), type = "l", pch = 20, col = "maroon2");
+
+legend(x = "topright", 
+       inset = c(-0.3,0),
+       legend = c("North", "Northeast", "Central", "South"),  
+       lty = c(1),           
+       col = c(col= "purple2",col="orangered2",col="mediumseagreen", col="maroon2"),
+       lwd = 2)    
+```
+
+```{r}
+par(mar = c(5.1, 4.1, 4.1, 8.1), xpd = TRUE)
+
+plot(x = 1:180, y = c(Precipitation_North[1,],Precipitation_North[2,],Precipitation_North[3,],Precipitation_North[4,],Precipitation_North[5,],Precipitation_North[6,],Precipitation_North[7,],Precipitation_North[8,],Precipitation_North[9,],Precipitation_North[10,],Precipitation_North[11,],Precipitation_North[12,], Precipitation_North[13,],Precipitation_North[14,],Precipitation_North[15,]), type = "l", pch = 20, col = "purple2", xlab = "month", ylab = "Precipitation", main = "Precipitation 2006-2020", ylim = c(0,600)); 
+
+lines(1:180, c(Precipitation_Northeast[1,],Precipitation_Northeast[2,], Precipitation_Northeast[3,],Precipitation_Northeast[4,], Precipitation_Northeast[5,],Precipitation_Northeast[6,], Precipitation_Northeast[7,],Precipitation_Northeast[8,], Precipitation_Northeast[9,],Precipitation_Northeast[10,], Precipitation_Northeast[11,],Precipitation_Northeast[12,], Precipitation_Northeast[13,],Precipitation_Northeast[14,], Precipitation_Northeast[15,]), type = "l", pch = 20, col = "orangered2");  
+
+lines(1:180, c(Precipitation_Central[1,],Incidence_Central[2,], Precipitation_Central[3,],Precipitation_Central[4,], Precipitation_Central[5,],Precipitation_Central[6,], Precipitation_Central[7,],Precipitation_Central[8,], Precipitation_Central[9,],Precipitation_Central[10,], Precipitation_Central[11,],Precipitation_Central[12,], Precipitation_Central[13,],Precipitation_Central[14,], Precipitation_Central[15,]), type = "l", pch = 20, col = "mediumseagreen"); 
+
+lines(1:180, c(Precipitation_South[1,],Precipitation_South[2,], Precipitation_South[3,],Precipitation_South[4,], Precipitation_South[5,],Precipitation_South[6,], Precipitation_South[7,],Precipitation_South[8,], Precipitation_South[9,],Precipitation_South[10,], Precipitation_South[11,],Precipitation_South[12,], Precipitation_South[13,],Precipitation_South[14,], Precipitation_South[15,]), type = "l", pch = 20, col = "maroon2");
+
+abline(v = 12.5)
+abline(v = 25)
+abline(v = 37.5)
+abline(v = 50)
+abline(v = 62.5)
+abline(v = 75)
+abline(v = 87.5)
+abline(v = 100)
+abline(v = 112.5)
+abline(v = 125)
+abline(v = 137.5)
+abline(v = 150)
+abline(v = 162.5)
+abline(v = 175)
+
+legend(x = "topright", 
+       inset = c(-0.3,0),
+       legend = c("North", "Northeast", "Central", "South"),  
+       lty = c(1),           
+       col = c(col= "purple2",col="orangered2",col="mediumseagreen", col="maroon2"),
+       lwd = 2)    
+```
+
+
