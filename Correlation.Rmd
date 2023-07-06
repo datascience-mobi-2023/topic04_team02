@@ -272,3 +272,14 @@ for (reg in regions) {
 }
 
 ```
+
+# Regional correlation
+
+## over whole time period (2006-2020)
+
+```{r}
+Dengue_combined[which(Dengue_combined[,2] %in% provinces_central),3:182]
+Population
+
+```
+
