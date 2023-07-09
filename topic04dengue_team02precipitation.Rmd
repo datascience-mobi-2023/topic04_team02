@@ -1148,6 +1148,8 @@ remove(Inc_seasons_2006, Inc_seasons_2007, Inc_seasons_2008, Inc_seasons_2009, I
 
 # GAM data cleaning
 
+
+## no Lag
 ```{r}
 GAM_data = NULL
 
@@ -1162,3 +1164,58 @@ for (year in 1:15) {
   }
 }
 ```
+
+## 1 month Lag
+
+```{r}
+GAM_data_1_Lag = NULL
+
+for (year in 1:15) {
+  # exception of last year
+  if (year == 15) {
+    
+    for (month in 1:11) {
+    
+      data = cbind(year, month, year, month+1, Incidence_combined[,c(2, (year-1)*12+month+3)],
+                   Precipitation[,(year-1)*12+month+4])
+      
+      colnames(data) = c("year for precipitation","month for precipitation","year for incidence",
+                           "month for incidence", "provinces", "dengue", "precipitation")
+      
+      GAM_data_1_Lag = rbind(GAM_data_1_Lag, data)
+    }
+  }
+  # every other year 
+  else {
+    for (month in 1:12) {
+      # exception for last month
+      if (month == 12) {
+        
+        data = cbind(year, month, year+1, 1, Incidence_combined[,c(2, (year-1)*12+month+3)],
+                     Precipitation[,(year-1)*12+month+4])
+      
+        colnames(data) = c("year for precipitation","month for precipitation","year for incidence",
+                           "month for incidence", "provinces", "dengue", "precipitation")
+        
+        GAM_data_1_Lag = rbind(GAM_data_1_Lag, data)
+      }
+      # every other month
+      else {
+        
+        data = cbind(year, month, year, month+1, Incidence_combined[,c(2, (year-1)*12+month+3)],
+                     Precipitation[,(year-1)*12+month+4])
+      
+        colnames(data) = c("year for precipitation","month for precipitation","year for incidence",
+                           "month for incidence", "provinces", "dengue", "precipitation")
+        
+        GAM_data_1_Lag = rbind(GAM_data_1_Lag, data)
+      }
+    
+      
+    }
+  }
+  
+}
+```
+```
+
