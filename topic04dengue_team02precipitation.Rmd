@@ -1101,16 +1101,16 @@ for(year in 2006:2020)
   subset_data1 = data[,6:8]
   subset_data2 = data[,9:14]
   subset_data3 = data[,c(5, 15:16)]
-  sum_data = cbind(as.data.frame(apply(subset_data1, 1, sum)), 
-                    as.data.frame(apply(subset_data2, 1, sum)),
-                    as.data.frame(apply(subset_data3, 1, sum)))
+  sum_data = cbind(as.data.frame(apply(subset_data1, 1, function(x) {sum(x) / 3})), 
+                    as.data.frame(apply(subset_data2, 1, function(x) {sum(x) / 6})),
+                    as.data.frame(apply(subset_data3, 1, function(x) {sum(x) / 3})))
   assign(paste0("Prec_seasons_", year), sum_data)
 }
 
 Precipitation_seasons = (Prec_seasons_2006 + Prec_seasons_2007 + Prec_seasons_2008 + Prec_seasons_2009 + Prec_seasons_2010 + Prec_seasons_2011 + Prec_seasons_2012 + Prec_seasons_2013 + Prec_seasons_2014 + Prec_seasons_2015 + Prec_seasons_2016 + Prec_seasons_2017 + Prec_seasons_2018 + Prec_seasons_2019 + Prec_seasons_2020) / 15 
 
 Precipitation_seasons = cbind(Precipitation[,2], Precipitation_seasons)
-colnames(Precipitation_seasons) = c("Districts_names", "P_FebApr", "P_MaiOct", "P_NovJan")
+colnames(Precipitation_seasons) = c("Districts_names", "P_FebApr", "P_MayOct", "P_NovJan")
 ```
 
 ***Remove useless variables***
@@ -1128,16 +1128,16 @@ for(year in 2006:2020)
   subset_data1 = data[,5:7]
   subset_data2 = data[,8:13]
   subset_data3 = data[,c(4, 14:15)]
-  sum_data = cbind(as.data.frame(apply(subset_data1, 1, sum)), 
-                    as.data.frame(apply(subset_data2, 1, sum)),
-                    as.data.frame(apply(subset_data3, 1, sum)))
+  sum_data = cbind(as.data.frame(apply(subset_data1, 1, function(x) {sum(x) / 3})), 
+                    as.data.frame(apply(subset_data2, 1, function(x) {sum(x) / 6})),
+                    as.data.frame(apply(subset_data3, 1, function(x) {sum(x) / 3})))
   assign(paste0("Inc_seasons_", year), sum_data)
 }
 
 Incidence_seasons = (Inc_seasons_2006 + Inc_seasons_2007 + Inc_seasons_2008 + Inc_seasons_2009 + Inc_seasons_2010 + Inc_seasons_2011 + Inc_seasons_2012 + Inc_seasons_2013 + Inc_seasons_2014 + Inc_seasons_2015 + Inc_seasons_2016 + Inc_seasons_2017 + Inc_seasons_2018 + Inc_seasons_2019 + Inc_seasons_2020) / 15 
 
 Incidence_seasons = cbind(Incidence_2006[,2], Incidence_seasons)
-colnames(Incidence_seasons) = c("Districts_names", "I_FebApr", "I_MaiOct", "I_NovJan")
+colnames(Incidence_seasons) = c("Districts_names", "I_FebApr", "I_MayOct", "I_NovJan")
 ```
 
 ***Remove useless variables***
