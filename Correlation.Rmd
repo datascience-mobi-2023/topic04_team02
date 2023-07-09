@@ -168,6 +168,13 @@ for (p in 1:152) {
 correlation_total = cbind(correlation_total, Region)
 ```
 
+### Data for spatio-temporal map
+
+```{r}
+correlation_map = correlation_total[which(correlation_total[,2] == "Spearman"), c(1,3)]
+colnames(correlation_map) = c("Districts_names", "correlation")
+```
+
 ### Correlation plots per region from 2006-2020
 ```{r}
 for (Lag in 3:5) {
