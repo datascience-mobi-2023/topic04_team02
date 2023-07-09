@@ -1151,11 +1151,14 @@ remove(Inc_seasons_2006, Inc_seasons_2007, Inc_seasons_2008, Inc_seasons_2009, I
 ```{r}
 GAM_data = NULL
 
-for (month in 1:180) {
+for (year in 1:15) {
   
-  data = cbind(month, Incidence_combined[,c(2, month+2)], Precipitation[,month+4])
-  colnames(data) = c("month", "provinces", "dengue", "precipitation")
-  GAM_data = rbind(GAM_data, data)
-  
+  for (month in 1:12) {
+    
+    data = cbind(year, month, Incidence_combined[,c(2, (year-1)*12+month+2)], Precipitation[,(year-1)*12+month+4])
+    colnames(data) = c("year","month", "provinces", "dengue", "precipitation")
+    GAM_data = rbind(GAM_data, data)
+    
+  }
 }
 ```
