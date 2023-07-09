@@ -1144,3 +1144,18 @@ colnames(Inc_seasons) = c("Districts_names", "FebApr", "MaiOct", "NovJan")
 ```{r}
 remove(Inc_seasons_2006, Inc_seasons_2007, Inc_seasons_2008, Inc_seasons_2009, Inc_seasons_2010, Inc_seasons_2011, Inc_seasons_2012, Inc_seasons_2013, Inc_seasons_2014, Inc_seasons_2015, Inc_seasons_2016, Inc_seasons_2017, Inc_seasons_2018, Inc_seasons_2019, Inc_seasons_2020)
 ```
+
+
+# GAM data cleaning
+
+```{r}
+GAM_data = NULL
+
+for (month in 1:180) {
+  
+  data = cbind(month, Incidence_combined[,c(2, month+2)], Precipitation[,month+4])
+  colnames(data) = c("month", "provinces", "dengue", "precipitation")
+  GAM_data = rbind(GAM_data, data)
+  
+}
+```
