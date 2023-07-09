@@ -9,22 +9,83 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Heatmaps
+ 
+## Dengue heatmaps
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+### North
 
-```{r cars}
-summary(cars)
+```{r}
+library(pheatmap)
+pheatmap(as.matrix(t(Incidence_North)), main = "Dengue Incidence North", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
 ```
 
-## Including Plots
+### Northeast
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+pheatmap(as.matrix(t(Incidence_Northeast)), main = "Dengue Incidence Northeast", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+### Central
+
+```{r}
+pheatmap(as.matrix(t(Incidence_Central)), main = "Dengue Incidence Central", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### South
+
+```{r}
+pheatmap(as.matrix(t(Incidence_South)), main = "Dengue Incidence South", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+## Precipitation heatmaps
+
+### North
+
+```{r}
+pheatmap(as.matrix(t(Precipitation_North)), main = "Precipitation North", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### Northeast
+
+```{r}
+pheatmap(as.matrix(t(Precipitation_Northeast)), main = "Precipitation Northeast", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### Central
+
+```{r}
+pheatmap(as.matrix(t(Precipitation_Central)), main = "Precipitation Central", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### South
+
+```{r}
+pheatmap(as.matrix(t(Precipitation_South)), main = "Precipitation South", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+## Correlation Heatmaps
+
+### Kein Lag
+
+```{r}
+library(pheatmap)
+pheatmap(as.matrix(heatmap_data_kein_lag_Pearson), main = "No lag, pearson", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+
+pheatmap(as.matrix(heatmap_data_kein_lag_Spearman), main = "No lag, spearman", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### 1 month lag
+```{r}
+pheatmap(as.matrix(heatmap_data_1_Monat_lag_Pearson), main = "1 month lag, pearson", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE)
+
+pheatmap(as.matrix(heatmap_data_1_Monat_lag_Spearman), main = "1 month lag, spearman", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### 2 month lag
+```{r}
+pheatmap(as.matrix(heatmap_data_2_Monat_lag_Pearson), main = "2 month lag, pearson", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+
+pheatmap(as.matrix(heatmap_data_2_Monat_lag_Spearman), main = "2 month lag, spearman", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
