@@ -11,57 +11,37 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 # Heatmaps
- 
-## Dengue heatmaps
 
 ### North
 
 ```{r}
 library(pheatmap)
 pheatmap(as.matrix(t(Incidence_North)), main = "Dengue Incidence North", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
-```
 
-### Northeast
-
-```{r}
-pheatmap(as.matrix(t(Incidence_Northeast)), main = "Dengue Incidence Northeast", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE)
-```
-
-### Central
-
-```{r}
-pheatmap(as.matrix(t(Incidence_Central)), main = "Dengue Incidence Central", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
-```
-
-### South
-
-```{r}
-pheatmap(as.matrix(t(Incidence_South)), main = "Dengue Incidence South", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
-```
-
-## Precipitation heatmaps
-
-### North
-
-```{r}
 pheatmap(as.matrix(t(Precipitation_North)), main = "Precipitation North", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
 ```
 
 ### Northeast
 
 ```{r}
+pheatmap(as.matrix(t(Incidence_Northeast)), main = "Dengue Incidence Northeast", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE)
+
 pheatmap(as.matrix(t(Precipitation_Northeast)), main = "Precipitation Northeast", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
 ```
 
 ### Central
 
 ```{r}
+pheatmap(as.matrix(t(Incidence_Central)), main = "Dengue Incidence Central", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+
 pheatmap(as.matrix(t(Precipitation_Central)), main = "Precipitation Central", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
 ```
 
 ### South
 
 ```{r}
+pheatmap(as.matrix(t(Incidence_South)), main = "Dengue Incidence South", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+
 pheatmap(as.matrix(t(Precipitation_South)), main = "Precipitation South", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
 ```
 
