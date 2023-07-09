@@ -10,7 +10,7 @@ class(centroids)
 
 ```{r}
 library(sf)
-Thailand_Shape = st_read("gadm36_THA_shp/gadm36_THA_1.shp")
+Thailand_Shape = st_read("Downloads/gadm36_THA_shp/gadm36_THA_1.shp")
 list(Thailand_Shape$NAME_1)
 View(Thailand_Shape)
 
@@ -87,8 +87,32 @@ View(geo_data_prec_incidence_sf[,360:374])
 
 geo_data_prec_incidence_sf$Longtitude
 
-geo_data_prec_incidence_yearframe <- left_join(x = , y = geo_data_prec, by = c("Districts_names"))
-geo_data_prec_incidence_yearframe_sf <- st_as_sf(geo_data_prec_incidence)
+
+#yearframe
+geo_data_prec_incidence_yearframe <- left_join(x = Prec_Inc_06_20, y = geo_data, by = c("Districts_names"))
+geo_data_prec_incidence_yearframe_sf <- st_as_sf(geo_data_prec_incidence_yearframe)
+
+geo_data_prec_incidence_yearframe_sf$Longtitude <- gsub(",", ".", geo_data_prec_incidence_sf$Longtitude)
+geo_data_prec_incidence_yearframe_sf$Latitude <- gsub(",", ".", geo_data_prec_incidence_sf$Latitude)
+
+geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
+  mutate(Longtitude = as.double(Longtitude))
+
+geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
+  mutate(Latitude = as.double(Latitude))
+
+#Turn Inc 06-20 into Numeric Data
+geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
+mutate(`Inc 06-10` = as.double(`Inc 06-10`))
+
+geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
+mutate(`Inc 11-15` = as.double(`Inc 11-15`))
+
+geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
+mutate(`Inc 16-20` = as.double(`Inc 16-20`))
+
+class(geo_data_prec_incidence_yearframe_sf$`Inc 16-20`)
+
 
 head(geo_data)
 class(geo_data)
@@ -269,22 +293,93 @@ print(prec_plot)
 
 
 ```{r}
-years2006_2002_prec <- c(``,``,``)
-years2006_2002_incidence <- c(``,``,``)
+library(ggplot2)
+library(viridis)
+library(sf)
+
+years2006_2020_prec <- c("Prec 06-10","Prec 11-15","Prec 16-20")
+years2006_2020_incidence <- c("Inc 06-10","Inc 11-15","Inc 16-20")
 
 for (yearframe_prec in years2006_2020_prec) {
   for (yearframe_incidence in years2006_2020_incidence){
   prec_incidence_plot <- ggplot() +
-  geom_sf(data = geo_data_prec_incidence_sf, aes(fill = !!as.name(yearframe_prec)) +
+  geom_sf(data = geo_data_prec_incidence_yearframe_sf, aes(fill = !!as.name(yearframe_prec)) +
   ggtitle(label = "Precipitation and Incidence", subtitle = yearframe_prec) +
-  geom_point(data = geo_data_prec_incidence_sf, aes(x = Longtitude, y = Latitude, size = !!as.name(yearframe_incidence), color = !!as.name(yearframe_incidence)), alpha = 0.95) +
+  geom_point(data = geo_data_prec_incidence_yearframe_sf, aes(x = Longtitude, y = Latitude, size = !!as.name(yearframe_incidence), color = !!as.name(yearframe_incidence)), alpha = 0.95) +
   scale_size_continuous(breaks = c(0,5,10,15,20)) +
   labs(x = "Longitude", y = "Latitude") +
   scale_fill_viridis(option = "plasma", direction = -1, name = "Rainfall [mm]") +
-  geom_sf_text(data = geo_data_prec_incidence_sf, aes(label = Districts_names), size = 1, hjust = 1) 
-  print(prec_incidence_plot)
+  geom_sf_text(data = geo_data_prec_incidence_yearframe_sf, aes(label = Districts_names), size = 1, hjust = 1) 
+  
+print(prec_incidence_plot)
   }
 }
+```
+
+```{r}
+library(ggplot2)
+library(viridis)
+library(sf)
+
+View(geo_data_prec_incidence_yearframe_sf)
+
+yearframe_prec = factor(yearframe_prec)
+yearframe_incidence <- as.numeric(yearframe_incidence)
+
+years2006_2020_prec <- c("Prec 06-10", "Prec 11-15", "Prec 16-20")
+years2006_2020_incidence <- c("Inc 06-10", "Inc 11-15", "Inc 16-20")
+
+for (yearframe_prec in years2006_2020_prec) {
+  for (yearframe_incidence in years2006_2020_incidence) {
+      prec_incidence_plot <- ggplot() +
+      geom_sf(data = geo_data_prec_incidence_yearframe_sf, aes(fill = !!as.name(yearframe_prec))) +
+      ggtitle(label = "Precipitation and Incidence", subtitle = yearframe_prec) +
+      geom_point(data = geo_data_prec_incidence_yearframe_sf, aes(x = Longtitude, y = Latitude, size = yearframe_incidence, color = yearframe_incidence), alpha = 0.95) +
+      scale_size_continuous(breaks = c(0, 5, 10, 15, 20)) +
+      labs(x = "Longitude", y = "Latitude") +
+      scale_fill_viridis(option = "plasma", direction = -1, name = "Rainfall [mm]") +
+      geom_sf_text(data = geo_data_prec_incidence_yearframe_sf, aes(label = Districts_names), size = 1, hjust = 1) 
+  
+    print(prec_incidence_plot)
+  }
+}
+```
+
+```{r}
+library(ggplot2)
+library(viridis)
+library(sf)
+
+
+years2006_2020_prec <- c("Prec 06-10", "Prec 11-15", "Prec 16-20")
+years2006_2020_incidence <- c("Inc 06-10", "Inc 11-15", "Inc 16-20")
+
+for (yearframe_prec in years2006_2020_prec) {
+  for (yearframe_incidence in years2006_2020_incidence) {
+    prec_incidence_plot <- ggplot() +
+      geom_sf(data = geo_data_prec_incidence_yearframe_sf, aes(fill = !!as.name(yearframe_prec))) +
+      ggtitle(label = "Precipitation and Incidence", subtitle = yearframe_prec) +
+      geom_point(data = geo_data_prec_incidence_yearframe_sf, aes(x = Longtitude, y = Latitude, color = !!as.name(yearframe_incidence)), alpha = 0.85) +
+      scale_size_continuous(breaks = c(500,1000,1500,2000)) +
+      labs(x = "Longitude", y = "Latitude") +
+      scale_color_viridis(option = "cividis", direction = -1, name = "Incidence", labels = scales::comma) +
+      scale_fill_viridis(option = "plasma", direction = -1, name = "Rainfall [mm]") 
+      #geom_sf_text(data = geo_data_prec_incidence_yearframe_sf, aes(label = Districts_names), size = 1, hjust = 1) 
+  
+    print(prec_incidence_plot)
+    
+    #ggsave
+    #margins
+    #images ordner direct speichern 
+    
+  }
+}
+
+#size = !!as.name(yearframe_incidence),
+
+
+
+
 ```
 
 
