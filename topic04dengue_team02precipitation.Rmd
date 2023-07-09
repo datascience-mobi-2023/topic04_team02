@@ -1109,8 +1109,8 @@ for(year in 2006:2020)
 
 Prec_seasons = (Prec_seasons_2006 + Prec_seasons_2007 + Prec_seasons_2008 + Prec_seasons_2009 + Prec_seasons_2010 + Prec_seasons_2011 + Prec_seasons_2012 + Prec_seasons_2013 + Prec_seasons_2014 + Prec_seasons_2015 + Prec_seasons_2016 + Prec_seasons_2017 + Prec_seasons_2018 + Prec_seasons_2019 + Prec_seasons_2020) / 15 
 
-Precipitation_seasons = cbind(Precipitation[,2], Prec_seasons)
-colnames(Prec_seasons) = c("Districts_names", "FebApr", "MaiOct", "NovJan")
+Precipitation_seasons = cbind(Precipitation[,2], Precipitation_seasons)
+colnames(Precipitation_seasons) = c("Districts_names", "FebApr", "MaiOct", "NovJan")
 ```
 
 ***Remove useless variables***
@@ -1134,10 +1134,10 @@ for(year in 2006:2020)
   assign(paste0("Inc_seasons_", year), sum_data)
 }
 
-Inc_seasons = (Inc_seasons_2006 + Inc_seasons_2007 + Inc_seasons_2008 + Inc_seasons_2009 + Inc_seasons_2010 + Inc_seasons_2011 + Inc_seasons_2012 + Inc_seasons_2013 + Inc_seasons_2014 + Inc_seasons_2015 + Inc_seasons_2016 + Inc_seasons_2017 + Inc_seasons_2018 + Inc_seasons_2019 + Inc_seasons_2020) / 15 
+Incidence_seasons = (Inc_seasons_2006 + Inc_seasons_2007 + Inc_seasons_2008 + Inc_seasons_2009 + Inc_seasons_2010 + Inc_seasons_2011 + Inc_seasons_2012 + Inc_seasons_2013 + Inc_seasons_2014 + Inc_seasons_2015 + Inc_seasons_2016 + Inc_seasons_2017 + Inc_seasons_2018 + Inc_seasons_2019 + Inc_seasons_2020) / 15 
 
-Incidence_seasons = cbind(Incidence_2006[,2], Inc_seasons)
-colnames(Inc_seasons) = c("Districts_names", "FebApr", "MaiOct", "NovJan")
+Incidence_seasons = cbind(Incidence_2006[,2], Incidence_seasons)
+colnames(Incidence_seasons) = c("Districts_names", "FebApr", "MaiOct", "NovJan")
 ```
 
 ***Remove useless variables***
