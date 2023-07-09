@@ -107,6 +107,8 @@ mutate(`Inc 06-10` = as.double(`Inc 06-10`))
 geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
 mutate(`Inc 11-15` = as.double(`Inc 11-15`))
 
+
+
 geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
 mutate(`Inc 16-20` = as.double(`Inc 16-20`))
 
@@ -117,15 +119,41 @@ View(Incidence_seasons)
 
 geo_data_seasons_incidence <- left_join(x = Incidence_seasons, y = geo_data, by = c("Districts_names"))
 
+
+
 View(geo_data_seasons_incidence)
+View(Precipitation_seasons)
 
 geo_data_seasons_incidence_precipitation <- left_join(x = Precipitation_seasons, y = geo_data_seasons_incidence, by = c("Districts_names"))
 
 
 
 geo_data_seasons_incidence_precipitation_sf <- st_as_sf(geo_data_seasons_incidence_precipitation)
+
 View(geo_data_seasons_incidence_precipitation_sf)
 
+
+geo_data_seasons_incidence_precipitation_sf$Longtitude <- gsub(",", ".", geo_data_seasons_incidence_precipitation_sf$Longtitude)
+geo_data_seasons_incidence_precipitation_sf$Latitude <- gsub(",", ".", geo_data_seasons_incidence_precipitation_sf$Latitude)
+
+geo_data_seasons_incidence_precipitation_sf <- geo_data_seasons_incidence_precipitation_sf %>% 
+  mutate(Longtitude = as.double(Longtitude))
+
+geo_data_seasons_incidence_precipitation_sf <- geo_data_seasons_incidence_precipitation_sf %>% 
+  mutate(Latitude = as.double(Latitude))
+
+#correlation
+geo_data_correlation <- left_join(x= correlation_map, y = geo_data, by = c("Districts_names"))
+geo_data_correlation $Longtitude <- gsub(",", ".", geo_data_correlation $Longtitude)
+geo_data_correlation $Latitude <- gsub(",", ".", geo_data_correlation $Latitude)
+
+geo_data_correlation <- geo_data_correlation  %>% 
+  mutate(Longtitude = as.double(Longtitude))
+
+geo_data_correlation  <- geo_data_correlation  %>% 
+  mutate(Latitude = as.double(Latitude))
+
+geo_data_correlation_sf <- st_as_sf(geo_data_correlation)
 
 head(geo_data)
 class(geo_data)
@@ -399,17 +427,39 @@ for (yearframe_prec in years2006_2020_prec) {
 library(ggplot2)
 library(viridis)
 library(sf)
+
     prec_season_plot <- ggplot() +
-      geom_sf(data = geo_data_seasons_incidence_precipitation_, aes(fill = !!as.name(yearframe_prec))) +
-      ggtitle(label = yearframe_incidence, subtitle = yearframe_prec) +
-      geom_point(data = geo_data_prec_incidence_yearframe_sf, aes(x = Longtitude, y = Latitude, size = !!as.name(yearframe_incidence), color = !!as.name(years2006_2020_incidence)), shape = 21) +
-      scale_size_continuous(breaks = c(500,1000,1500)) +
+      geom_sf(data = geo_data_seasons_incidence_precipitation_sf, aes(fill = P_NovJan)) +
+      ggtitle(label = "NorthEast Monsoon", subtitle = "November-January") +
+      #geom_point(data = geo_data_seasons_incidence_precipitation_sf, aes(x = Longtitude, y = Latitude, size = I_FebApr, color = I_FebApr))+
+      #scale_size_continuous(breaks = c(5,10,20,40)) +
       labs(x = "Longitude", y = "Latitude") +
-      scale_color_viridis(option = "plasma", direction = -1, name = "Incidence", labels = scales::comma) +
-      scale_fill_viridis(option = "plasma", direction = -1, name = "Rainfall [mm]") 
+      #scale_color_viridis(option = "plasma", direction = -1, name = "Incidence", labels = scales::comma, limits = c(0,32)) +
+      scale_fill_viridis(option = "plasma", direction = -1, name = "Precipitation [mm]", limits = c(0, 420))
       #geom_sf_text(data = geo_data_prec_incidence_yearframe_sf, aes(label = Districts_names), size = 1, hjust = 1) 
-    ggsave("Precipitation_Incidence_Zoom_2016_2020.png", plot = prec_incidence_plot + coord_sf(xlim = c(99, 101.7), ylim = c(12, 15)))
-    print(prec_incidence_plot)
+    ggsave("Precipitation_Zoom_NovJan.png", plot = prec_season_plot + coord_sf(xlim = c(98, 102.2), ylim = c(5.6, 12)))
+    print(prec_season_plot)
+```
+```{r}
+#Precipitation over the seasons
+library(ggplot2)
+library(viridis)
+library(sf)
+
+class(geo_data_correlation_sf)
+#View(geo_data_correlation_sf)
+
+    prec_season_plot1 <- ggplot() +
+      geom_sf(data = geo_data_correlation_sf, aes(fill = correlation)) +
+      ggtitle(label = "Correlation", subtitle = "2006-2020") +
+      #geom_point(data = geo_data_seasons_incidence_precipitation_sf, aes(x = Longtitude, y = Latitude, size = I_FebApr, color = I_FebApr))+
+      #scale_size_continuous(breaks = c(5,10,20,40)) +
+      labs(x = "Longitude", y = "Latitude") +
+      #scale_color_viridis(option = "plasma", direction = -1, name = "Incidence", labels = scales::comma, limits = c(0,32)) +
+      scale_fill_viridis(option = "Inferno", direction = -1, name = "Correlation", limits = c(0.1, 0.8))+
+      geom_sf_text(data = geo_data_prec_incidence_yearframe_sf, aes(label = Districts_names), size = 3, hjust = 1) 
+      ggsave("Correlation_map_zoom.png", plot = prec_season_plot1 + coord_sf(xlim = c(98.7, 102.2), ylim = c(11.8, 15.2)))
+    print(prec_season_plot1)
 ```
 
 
