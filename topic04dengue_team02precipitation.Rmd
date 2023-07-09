@@ -991,7 +991,7 @@ rownames(Dengue_South) = colnames(Population)[3:17]
 
 ## Incidence per Region
 
-*** Total population per region***
+### Total population per region
 ```{r}
 Population_North = data.frame(t(apply(Population[38:46, 3:17], 2, sum)))
 colnames(Population_North) = colnames(Population)[3:17]
@@ -1006,7 +1006,7 @@ Population_South = data.frame(t(apply(Population[63:76, 3:17], 2, sum)))
 colnames(Population_South) = colnames(Population)[3:17]
 ```
 
-***Incidence***
+### Incidence
 ```{r}
 for (region in c("North", "Northeast", "Central", "South")) 
 {
@@ -1088,4 +1088,59 @@ for(year in 2006:2020)
 }
 
 rownames(Precipitation_South) = colnames(Population)[3:17]
+```
+
+# Seasons
+
+## Precipitation
+
+```{r}
+for(year in 2006:2020)
+{
+  data = get(paste0("Precipitation_", year))
+  subset_data1 = data[,6:8]
+  subset_data2 = data[,9:14]
+  subset_data3 = data[,c(5, 15:16)]
+  sum_data = cbind(as.data.frame(apply(subset_data1, 1, sum)), 
+                    as.data.frame(apply(subset_data2, 1, sum)),
+                    as.data.frame(apply(subset_data3, 1, sum)))
+  assign(paste0("Prec_seasons_", year), sum_data)
+}
+
+Prec_seasons = (Prec_seasons_2006 + Prec_seasons_2007 + Prec_seasons_2008 + Prec_seasons_2009 + Prec_seasons_2010 + Prec_seasons_2011 + Prec_seasons_2012 + Prec_seasons_2013 + Prec_seasons_2014 + Prec_seasons_2015 + Prec_seasons_2016 + Prec_seasons_2017 + Prec_seasons_2018 + Prec_seasons_2019 + Prec_seasons_2020) / 15 
+
+Precipitation_seasons = cbind(Precipitation[,2], Prec_seasons)
+colnames(Prec_seasons) = c("Districts_names", "FebApr", "MaiOct", "NovJan")
+```
+
+***Remove useless variables***
+```{r}
+remove(Prec_seasons_2006, Prec_seasons_2007, Prec_seasons_2008, Prec_seasons_2009, Prec_seasons_2010, Prec_seasons_2011, Prec_seasons_2012, Prec_seasons_2013, Prec_seasons_2014, Prec_seasons_2015, Prec_seasons_2016, Prec_seasons_2017, Prec_seasons_2018, Prec_seasons_2019, Prec_seasons_2020)
+```
+
+
+## Incidence
+
+```{r}
+for(year in 2006:2020)
+{
+  data = get(paste0("Incidence_", year))
+  subset_data1 = data[,5:7]
+  subset_data2 = data[,8:13]
+  subset_data3 = data[,c(4, 14:15)]
+  sum_data = cbind(as.data.frame(apply(subset_data1, 1, sum)), 
+                    as.data.frame(apply(subset_data2, 1, sum)),
+                    as.data.frame(apply(subset_data3, 1, sum)))
+  assign(paste0("Inc_seasons_", year), sum_data)
+}
+
+Inc_seasons = (Inc_seasons_2006 + Inc_seasons_2007 + Inc_seasons_2008 + Inc_seasons_2009 + Inc_seasons_2010 + Inc_seasons_2011 + Inc_seasons_2012 + Inc_seasons_2013 + Inc_seasons_2014 + Inc_seasons_2015 + Inc_seasons_2016 + Inc_seasons_2017 + Inc_seasons_2018 + Inc_seasons_2019 + Inc_seasons_2020) / 15 
+
+Incidence_seasons = cbind(Incidence_2006[,2], Inc_seasons)
+colnames(Inc_seasons) = c("Districts_names", "FebApr", "MaiOct", "NovJan")
+```
+
+***Remove useless variables***
+```{r}
+remove(Inc_seasons_2006, Inc_seasons_2007, Inc_seasons_2008, Inc_seasons_2009, Inc_seasons_2010, Inc_seasons_2011, Inc_seasons_2012, Inc_seasons_2013, Inc_seasons_2014, Inc_seasons_2015, Inc_seasons_2016, Inc_seasons_2017, Inc_seasons_2018, Inc_seasons_2019, Inc_seasons_2020)
 ```
