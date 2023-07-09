@@ -1,0 +1,91 @@
+---
+title: "Heatmaps"
+author: "Fiona Steinacker"
+date: "2023-07-09"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Heatmaps
+ 
+## Dengue heatmaps
+
+### North
+
+```{r}
+library(pheatmap)
+pheatmap(as.matrix(t(Incidence_North)), main = "Dengue Incidence North", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### Northeast
+
+```{r}
+pheatmap(as.matrix(t(Incidence_Northeast)), main = "Dengue Incidence Northeast", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE)
+```
+
+### Central
+
+```{r}
+pheatmap(as.matrix(t(Incidence_Central)), main = "Dengue Incidence Central", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### South
+
+```{r}
+pheatmap(as.matrix(t(Incidence_South)), main = "Dengue Incidence South", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+## Precipitation heatmaps
+
+### North
+
+```{r}
+pheatmap(as.matrix(t(Precipitation_North)), main = "Precipitation North", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### Northeast
+
+```{r}
+pheatmap(as.matrix(t(Precipitation_Northeast)), main = "Precipitation Northeast", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### Central
+
+```{r}
+pheatmap(as.matrix(t(Precipitation_Central)), main = "Precipitation Central", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### South
+
+```{r}
+pheatmap(as.matrix(t(Precipitation_South)), main = "Precipitation South", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+## Correlation Heatmaps
+
+### Kein Lag
+
+```{r}
+library(pheatmap)
+pheatmap(as.matrix(heatmap_data_kein_lag_Pearson), main = "No lag, pearson", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+
+pheatmap(as.matrix(heatmap_data_kein_lag_Spearman), main = "No lag, spearman", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### 1 month lag
+```{r}
+pheatmap(as.matrix(heatmap_data_1_Monat_lag_Pearson), main = "1 month lag, pearson", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE)
+
+pheatmap(as.matrix(heatmap_data_1_Monat_lag_Spearman), main = "1 month lag, spearman", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```
+
+### 2 month lag
+```{r}
+pheatmap(as.matrix(heatmap_data_2_Monat_lag_Pearson), main = "2 month lag, pearson", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+
+pheatmap(as.matrix(heatmap_data_2_Monat_lag_Spearman), main = "2 month lag, spearman", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
+```

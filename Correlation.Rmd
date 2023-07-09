@@ -1,0 +1,285 @@
+# Correlation of every province and year including Lag
+
+```{r}
+Final = c(1:30)
+
+for (p in 1:76) {
+  
+  b = 5:16
+  a = b-2
+  n = 2006
+
+  x = as.vector(Precipitation[p, b], mode = "double")
+  y = as.vector(Incidence_combined[p, a], mode = "double")
+  y1 = as.vector(Incidence_combined[p, a+1], mode = "double")
+  y2 = as.vector(Incidence_combined[p, a+2], mode = "double")
+
+  Cor = data.frame(c("Pearson","Spearman"),
+                 c(cor(x,y, method = "pearson"), cor(x,y, method = "spearman")),
+                 c(cor(x,y1, method = "pearson"), cor(x,y1, method = "spearman")),
+                 c(cor(x,y2, method = "pearson"), cor(x,y2, method = "spearman")))
+
+  Cor = cbind(n, Cor)
+
+  colnames(Cor) = c(paste("year",Incidence_combined$Districts_names[p]), "Correlation method","kein Lag", "1 Monat Lag", "2 Monate Lag")
+
+  i = 1
+  n = 2006
+
+  repeat {
+    b = 5:16 + 12*i
+    a = b-2
+    n = n + 1
+    
+    x = as.vector(Precipitation[p, b], mode = "double")
+    y = as.vector(Incidence_combined[p, a], mode = "double")
+    y1 = as.vector(Incidence_combined[p, a+1], mode = "double")
+    y2 = as.vector(Incidence_combined[p, a+2], mode = "double")
+    
+    add = data.frame(c("Pearson","Spearman"),
+                   c(cor(x,y, method = "pearson"), cor(x,y, method = "spearman")),
+                   c(cor(x,y1, method = "pearson"), cor(x,y1, method = "spearman")),
+                   c(cor(x,y2, method = "pearson"), cor(x,y2, method = "spearman")))
+    add = cbind(n, add)
+    
+    colnames(add) = c(paste("year",Incidence_combined$Districts_names[p]),"Correlation method","kein Lag", "1 Monat Lag", "2 Monate Lag")
+    
+    Cor = rbind(Cor, add)
+    
+    i = i + 1
+    if (i == 14) {
+      b = 5:16 + 12*i
+      a = b-2
+      n = n + 1
+      
+      x = as.vector(Precipitation[p, b], mode = "double")
+      y = as.vector(Incidence_combined[p, a], mode = "double")
+  
+      x1 = x[-12]
+      y1 = as.vector(Incidence_combined[p, a[-12] + 1], mode = "double")
+  
+      x2 = x[-(11:12)]
+      y2 = as.vector(Incidence_combined[p, a[-(11:12)] + 2], mode = "double")
+  
+      add = data.frame(c("Pearson","Spearman"),
+                   c(cor(x,y, method = "pearson"), cor(x,y, method = "spearman")),
+                   c(cor(x1,y1, method = "pearson"), cor(x1,y1, method = "spearman")),
+                   c(cor(x2,y2, method = "pearson"), cor(x2,y2, method = "spearman")))
+  
+      add = cbind(n, add)
+  
+      colnames(add) = c(paste("year",Incidence_combined$Districts_names[p]), "Correlation method","kein Lag", "1 Monat Lag", "2 Monate Lag")
+  
+      Cor = rbind(Cor, add)
+      
+      break
+    }
+  }
+  Final = cbind(Final, Cor)
+  
+  if (p == 1) {
+    Final = Final[,-1]
+  }
+}
+```
+
+## Heatmap data for correlation of every year and province
+
+```{r}
+# choose every Pearson/Spearman correlation row of every year
+Correlation_method = c("Pearson", "Spearman")
+
+for (i in Correlation_method) {
+  heatmap_data = Final[which(Final[,2] == i), ]
+  rownames(heatmap_data) = heatmap_data[,1]
+  
+  # choosing lag method
+  Lag = c("kein_lag", "1_Monat_lag", "2_Monat_lag")
+  
+  ## vector for column selection
+  b = c()
+  for (n in 0:75){
+    b = c(b, 3+5*n)
+  }
+  
+  for (j in 1:3) {
+    assign(paste0("heatmap_data_", Lag[j], "_", i), heatmap_data[,b-1+j])
+  }
+  
+}
+
+colnames(heatmap_data_kein_lag_Pearson) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+colnames(heatmap_data_kein_lag_Spearman) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+colnames(heatmap_data_1_Monat_lag_Pearson) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+colnames(heatmap_data_1_Monat_lag_Spearman) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+colnames(heatmap_data_2_Monat_lag_Pearson) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+colnames(heatmap_data_2_Monat_lag_Spearman) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+```
+
+
+# Total correlation over full time period (2006-2020)
+```{r}
+b = 5:182
+
+for (p in 1:76) {
+  
+  for (i in 0:2) {
+    
+    Pearson = cor(x = as.vector(Precipitation[p,b], mode = "double"),
+               y = as.vector(Incidence_combined[p,(b-2+i)], mode = "double"),
+               method = "pearson")
+  
+    Spearman = cor(x = as.vector(Precipitation[p,b], mode = "double"),
+                y = as.vector(Incidence_combined[p,(b-2+i)], mode = "double"),
+                method = "spearman")
+    
+    if (i == 0) {
+      Corr_complete = data.frame(c(Pearson, Spearman))
+    }
+    else {
+      Corr_complete = cbind(Corr_complete, c(Pearson, Spearman))
+    }
+  }
+  
+  Corr_complete = cbind(paste0(Incidence_combined[p,2]), c("Pearson", "Spearman"), Corr_complete)
+  
+  colnames(Corr_complete) = c("Province", "Correlation method", "kein Lag", "1 Monat Lag", "2 Monate Lag")
+  
+  if (p == 1) {
+    correlation_total = Corr_complete 
+  }
+  else {
+    correlation_total = rbind(correlation_total, Corr_complete)
+  }
+}
+
+#add a region column
+regions = c("central", "north", "northeastern", "south")
+Region = character()
+
+for (p in 1:152) {
+  for (i in 1:4) {
+    if (correlation_total[p,1] %in% get(paste0("provinces_", regions[i]))) {
+      Region = c(Region, paste0(regions[i]))
+    }
+  }
+}
+
+correlation_total = cbind(correlation_total, Region)
+```
+
+### Correlation plots per region from 2006-2020
+```{r}
+for (Lag in 3:5) {
+  Correlation_method = c("Pearson", "Spearman")
+  
+  for (i in 1:2) {
+    par(mar=c(5.1, 4.1, 4.1, 8.1), xpd=TRUE)
+    
+    plot(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag],
+         ylim = c(min(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag]),
+                  max(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag])),
+         pch = 19,
+         xlab = "Province (sorted by code)",
+         ylab = paste(Correlation_method[i],"Correlation"),
+         col = factor(Region[which(correlation_total[,2] == paste(Correlation_method[i]))]),
+         main = paste(Correlation_method[i],
+                      colnames(correlation_total[Lag])));
+    
+    legend("topright",
+           legend = levels(factor(Region[which(correlation_total[,2] == paste(Correlation_method[i]))])),
+           pch = 19,
+           col = factor(levels(factor(Region[which(correlation_total[,2] == paste(Correlation_method[i]))]))),
+           inset=c(-0.3,0))  
+  }  
+}
+
+
+```
+
+## Comparing Lag for every region (Plots)
+```{r}
+for (reg in regions) {
+  Correlation_method = c("Pearson", "Spearman")
+  correlation_per_region = correlation_total[which(correlation_total[,6] == reg),]
+  Lag = colnames(correlation_per_region[3:5]) 
+  
+  for (i in Correlation_method) {
+    par(mar=c(5.1, 4.1, 4.1, 8.1), xpd=TRUE)
+    
+    plot(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 3],
+         ylim = c(min(correlation_per_region[which(correlation_per_region[,2] == paste(i)),3:5]),
+                  max(correlation_per_region[which(correlation_per_region[,2] == paste(i)),3:5])),
+         pch = 19,
+         xlab = "Province (sorted by code)",
+         ylab = paste(i,"Correlation"),
+         col = "black",
+         main = paste(i,
+                      correlation_per_region[1,6],
+                      "region"))
+    points(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 4],
+           pch = 19,
+           col = "red")
+    
+    points(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 5],
+           pch = 19,
+           col = "green")
+    
+    legend("topright",
+           legend = Lag,
+           pch = 19,
+           col = c("black", "red", "green"),
+           inset=c(-0.3,0))
+  }
+}
+```
+
+
+## Comparing Lag for every regions mean value (Plots)
+```{r}
+for (reg in regions) {
+  Correlation_method = c("Pearson", "Spearman")
+  correlation_per_region = correlation_total[which(correlation_total[,6] == reg),]
+  Lag = colnames(correlation_per_region[3:5]) 
+  
+  for (i in Correlation_method) {
+    par(mar=c(5.1, 4.1, 4.1, 8.1), xpd=TRUE)
+    
+    plot(mean(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 3]),
+         ylim = c(min(correlation_per_region[which(correlation_per_region[,2] == paste(i)),3:5]),
+                  max(correlation_per_region[which(correlation_per_region[,2] == paste(i)),3:5])),
+         pch = 19,
+         xlab = "Province (sorted by code)",
+         ylab = paste(i,"Correlation"),
+         col = "black",
+         main = paste(i,
+                      correlation_per_region[1,6],
+                      "region"))
+    points(mean(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 4]),
+           pch = 19,
+           col = "red")
+    
+    points(mean(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 5]),
+           pch = 19,
+           col = "green")
+    
+    legend("topright",
+           legend = Lag,
+           pch = 19,
+           col = c("black", "red", "green"),
+           inset=c(-0.3,0))
+  }
+}
+
+```
+
+# Regional correlation
+
+## over whole time period (2006-2020)
+
+```{r}
+Dengue_combined[which(Dengue_combined[,2] %in% provinces_central),3:182]
+Population
+
+```
+
