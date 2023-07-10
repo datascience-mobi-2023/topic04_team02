@@ -688,7 +688,7 @@ south <- c(sum2006_south, sum2007_south, sum2008_south, sum2009_south, sum2010_s
 adf.test(south)
 ```
 
-# results
+# Summary results
 
 - dengue cases are in general non-stationary/seasonal over a year 
 - exception: 2006 south, 2011 south, 2016 central, 2017 south
