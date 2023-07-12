@@ -467,7 +467,7 @@ monsoon_inc_2_lag = Incidence_combined[, c(1:2, d)]
 
 ```
 
-# Jun-Sep correlation
+# Jun-Sep correlation (useless)
 ```{r}
 
 column = 3:62
@@ -476,6 +476,8 @@ monsoon_cor_Pearson = data.frame(NULL)
 monsoon_cor_Spearman = data.frame(NULL)
 
 for (row in 1:76) {
+  monsoon_row_Pearson = data.frame(1)
+  monsoon_row_Spearman = data.frame(1)
   
   for (lag in 0:2) {
     
@@ -487,61 +489,20 @@ for (row in 1:76) {
                y = as.vector(get(paste0("monsoon_inc_", lag, "_lag"))[row, column], mode = "double"),
                 method = "spearman")
     
-    monsoon_cor_Pearson = rbind(Pearson)
-    
+    monsoon_row_Pearson = cbind(monsoon_row_Pearson, Pearson)
+    monsoon_row_Spearman = cbind(monsoon_row_Spearman, Spearman)
   }
+  monsoon_row_Pearson = monsoon_row_Pearson[,-1]
+  monsoon_row_Spearman = monsoon_row_Spearman[,-1]
+  
+  monsoon_row_Pearson = cbind(province_names[row,1], monsoon_row_Pearson)
+  monsoon_row_Spearman = cbind(province_names[row,1], monsoon_row_Spearman)
+  
+  colnames(monsoon_row_Pearson) = c("province","no lag", "1 month lag", "2 month lag")
+  colnames(monsoon_row_Spearman) = c("province", "no lag", "1 month lag", "2 month lag")
+  
+  monsoon_cor_Pearson = rbind(monsoon_cor_Pearson, monsoon_row_Pearson)
+  monsoon_cor_Spearman = rbind(monsoon_cor_Spearman, monsoon_row_Spearman)
+  
 }
 ```
-
-
-
-```{r}
-b = 5:182
-
-for (p in 1:76) {
-  
-  for (i in 0:2) {
-    
-    Pearson = cor(x = as.vector(Precipitation[p,b], mode = "double"),
-               y = as.vector(Incidence_combined[p,(b-2+i)], mode = "double"),
-               method = "pearson")
-  
-    Spearman = cor(x = as.vector(Precipitation[p,b], mode = "double"),
-                y = as.vector(Incidence_combined[p,(b-2+i)], mode = "double"),
-                method = "spearman")
-    
-    if (i == 0) {
-      Corr_complete = data.frame(c(Pearson, Spearman))
-    }
-    else {
-      Corr_complete = cbind(Corr_complete, c(Pearson, Spearman))
-    }
-  }
-  
-  Corr_complete = cbind(paste0(Incidence_combined[p,2]), c("Pearson", "Spearman"), Corr_complete)
-  
-  colnames(Corr_complete) = c("Province", "Correlation method", "no Lag", "1 month Lag", "2 month Lag")
-  
-  if (p == 1) {
-    correlation_total = Corr_complete 
-  }
-  else {
-    correlation_total = rbind(correlation_total, Corr_complete)
-  }
-}
-
-#add a region column
-regions = c("central", "north", "northeastern", "south")
-Region = character()
-
-for (p in 1:152) {
-  for (i in 1:4) {
-    if (correlation_total[p,1] %in% get(paste0("provinces_", regions[i]))) {
-      Region = c(Region, paste0(regions[i]))
-    }
-  }
-}
-
-correlation_total = cbind(correlation_total, Region)
-```
-
