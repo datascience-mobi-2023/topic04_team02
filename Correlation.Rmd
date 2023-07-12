@@ -108,12 +108,12 @@ for (i in Correlation_method) {
   
 }
 
-colnames(heatmap_data_kein_lag_Pearson) = province_names[-which(province_names[,1] == "Bungkan") ,1]
-colnames(heatmap_data_kein_lag_Spearman) = province_names[-which(province_names[,1] == "Bungkan") ,1]
-colnames(heatmap_data_1_Monat_lag_Pearson) = province_names[-which(province_names[,1] == "Bungkan") ,1]
-colnames(heatmap_data_1_Monat_lag_Spearman) = province_names[-which(province_names[,1] == "Bungkan") ,1]
-colnames(heatmap_data_2_Monat_lag_Pearson) = province_names[-which(province_names[,1] == "Bungkan") ,1]
-colnames(heatmap_data_2_Monat_lag_Spearman) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+colnames(heatmap_data_no_lag_Pearson) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+colnames(heatmap_data_no_lag_Spearman) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+colnames(heatmap_data_1_month_lag_Pearson) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+colnames(heatmap_data_1_month_lag_Spearman) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+colnames(heatmap_data_2_month_lag_Pearson) = province_names[-which(province_names[,1] == "Bungkan") ,1]
+colnames(heatmap_data_2_month_lag_Spearman) = province_names[-which(province_names[,1] == "Bungkan") ,1]
 ```
 
 ## Plots for Lag comparison
@@ -155,6 +155,49 @@ for (year in 1:15) {
            inset=c(-0.3,0))
 }
 ```
+### Lag plots for every region
+
+```{r}
+color = rainbow(3)
+
+for (region in regions) {
+  for (year in 1:15) {
+    par(mar=c(5.1, 4.1, 4.1, 8.1), xpd=TRUE)
+    
+    Lag = "no_lag"
+        
+    plot(t(get(paste0("heatmap_data_", Lag, "_Spearman")))[which(colnames(get(paste0("heatmap_data_", Lag, "_Spearman"))) %in% get(paste0("provinces_", region))), year],
+         
+         ylim = c(min(get(paste0("heatmap_data_", Lag, "_Spearman"))),
+                  max(get(paste0("heatmap_data_", Lag, "_Spearman")))),
+         pch = 19,
+         xlab = "provinces",
+         ylab = paste(Correlation_method[i],"Correlation"),
+         col = color[1],
+         main = paste(Correlation_method[i], "correlation,", year+2005, "in the", region, "region"),
+        xaxt = "n")
+    
+    axis(side = 1, at = 1:length(get(paste0("provinces_", region))), labels = get(paste0("provinces_", region)))
+    
+    for (Lag in c("1_month_lag", "2_month_lag")) {
+      i = which(Lag == c("1_month_lag", "2_month_lag"))
+      points(t(get(paste0("heatmap_data_", Lag, "_Spearman")))[which(colnames(get(paste0("heatmap_data_", Lag, "_Spearman"))) %in% get(paste0("provinces_", region))),year],
+           pch = 19,
+           col = color[i+1],
+           xaxt = "n")
+      
+      #axis(side = 1, at = 1:76, labels = province_names[-which(province_names[,1] == "Bungkan"), 1])    
+    }
+    
+    legend("topright",
+             legend = c("no Lag","1 month Lag", "2 month Lag"),
+             pch = 19,
+             col = color,
+             inset=c(-0.3,0))
+  }  
+}
+```
+
 
 ## Plots for year comparison (not useful)
 
