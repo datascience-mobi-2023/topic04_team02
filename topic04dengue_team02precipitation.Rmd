@@ -1146,79 +1146,7 @@ remove(Inc_seasons_2006, Inc_seasons_2007, Inc_seasons_2008, Inc_seasons_2009, I
 ```
 
 
-# GAM data cleaning
-
-
-## no Lag
-```{r}
-GAM_data = NULL
-
-for (year in 1:15) {
-  
-  for (month in 1:12) {
-    
-    data = cbind(year, month, Incidence_combined[,c(2, (year-1)*12+month+2)], Precipitation[,(year-1)*12+month+4])
-    colnames(data) = c("year","month", "provinces", "dengue", "precipitation")
-    GAM_data = rbind(GAM_data, data)
-    
-  }
-}
-```
-
-## 1 month Lag
-
-```{r}
-GAM_data_1_Lag = NULL
-
-for (year in 1:15) {
-  # exception of last year
-  if (year == 15) {
-    
-    for (month in 1:11) {
-    
-      data = cbind(year, month, year, month+1, Incidence_combined[,c(2, (year-1)*12+month+3)],
-                   Precipitation[,(year-1)*12+month+4])
-      
-      colnames(data) = c("year for precipitation","month for precipitation","year for incidence",
-                           "month for incidence", "provinces", "dengue", "precipitation")
-      
-      GAM_data_1_Lag = rbind(GAM_data_1_Lag, data)
-    }
-  }
-  # every other year 
-  else {
-    for (month in 1:12) {
-      # exception for last month
-      if (month == 12) {
-        
-        data = cbind(year, month, year+1, 1, Incidence_combined[,c(2, (year-1)*12+month+3)],
-                     Precipitation[,(year-1)*12+month+4])
-      
-        colnames(data) = c("year for precipitation","month for precipitation","year for incidence",
-                           "month for incidence", "provinces", "dengue", "precipitation")
-        
-        GAM_data_1_Lag = rbind(GAM_data_1_Lag, data)
-      }
-      # every other month
-      else {
-        
-        data = cbind(year, month, year, month+1, Incidence_combined[,c(2, (year-1)*12+month+3)],
-                     Precipitation[,(year-1)*12+month+4])
-      
-        colnames(data) = c("year for precipitation","month for precipitation","year for incidence",
-                           "month for incidence", "provinces", "dengue", "precipitation")
-        
-        GAM_data_1_Lag = rbind(GAM_data_1_Lag, data)
-      }
-    
-      
-    }
-  }
-  
-}
-```
-
-# GAM for monsoon
+# GAM data cleaning (monsoon)
 
 ```{r}
 a = 10:13
@@ -1238,18 +1166,15 @@ monsoon_inc_2_lag = Incidence_combined[, c(1:2, d)]
 
 ```{r}
 for (lag in 0:2) {
-  assign(paste0("GAM_data_", lag, "_lag"), data.frame(NULL))
+  assign(paste0("GAM_", lag), data.frame(NULL))
   
   for (month in 3:62) {
-    data = cbind(province_names[-which(province_names[,1] == "Bungkan"),1],
-                 colnames(monsoon_prec)[month],
-                 monsoon_prec[ ,month],
-                 colnames(get(paste0("monsoon_inc_", lag, "_lag")))[month],
+    data = cbind(monsoon_prec[ ,month],
                  get(paste0("monsoon_inc_", lag, "_lag"))[, month])
     
-    colnames(data) = c("province","month for precipitation", "precipitation", "month for dengue", "dengue")
+    colnames(data) = c("precipitation", "dengue")
     
-    assign(paste0("GAM_data_", lag, "_lag"), rbind(get(paste0("GAM_data_", lag, "_lag")), data))
+    assign(paste0("GAM_", lag), rbind(get(paste0("GAM_", lag)), data))
   }
 }
 ```
