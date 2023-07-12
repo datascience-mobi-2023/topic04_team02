@@ -1217,5 +1217,40 @@ for (year in 1:15) {
   
 }
 ```
+
+# GAM for monsoon
+
+```{r}
+a = 10:13
+d = NULL
+
+for (b in 0:14) {
+  c = a+12*b
+  d = c(d, c)
+}
+
+monsoon_prec = Precipitation[,c(1:2, d)]
+
+monsoon_inc_0_lag = Incidence_combined[,c(1:2, d-2)]
+monsoon_inc_1_lag = Incidence_combined[, c(1:2, d-1)]
+monsoon_inc_2_lag = Incidence_combined[, c(1:2, d)]
+```
+
+```{r}
+for (lag in 0:2) {
+  assign(paste0("GAM_data_", lag, "_lag"), data.frame(NULL))
+  
+  for (month in 3:62) {
+    data = cbind(province_names[-which(province_names[,1] == "Bungkan"),1],
+                 colnames(monsoon_prec)[month],
+                 monsoon_prec[ ,month],
+                 colnames(get(paste0("monsoon_inc_", lag, "_lag")))[month],
+                 get(paste0("monsoon_inc_", lag, "_lag"))[, month])
+    
+    colnames(data) = c("province","precipitation month", "precipitation", "incidence month", "incidence")
+    
+    assign(paste0("GAM_data_", lag, "_lag"), rbind(get(paste0("GAM_data_", lag, "_lag")), data))
+  }
+}
 ```
 
