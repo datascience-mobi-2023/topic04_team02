@@ -1247,7 +1247,7 @@ for (lag in 0:2) {
                  colnames(get(paste0("monsoon_inc_", lag, "_lag")))[month],
                  get(paste0("monsoon_inc_", lag, "_lag"))[, month])
     
-    colnames(data) = c("province","precipitation month", "precipitation", "incidence month", "incidence")
+    colnames(data) = c("province","precipitation month", "precipitation", "incidence month", "dengue")
     
     assign(paste0("GAM_data_", lag, "_lag"), rbind(get(paste0("GAM_data_", lag, "_lag")), data))
   }
