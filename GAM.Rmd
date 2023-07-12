@@ -9,7 +9,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# No Lag 
+ 
 
 ***load libraries***
 ```{r}
@@ -23,25 +23,25 @@ library(mgcv)
 library(sf)
 ```
 
+# 0 month lag
 
 ***attach dataframe***
 ```{r}
-attach(GAM_data)
+attach(GAM_0)
 ```
-
 
 ## Plot GAM 
 ```{r}
-model <- gam(dengue~s(precipitation, k=17),family="quasipoisson")
+model0 <- gam(dengue~s(precipitation),family="quasipoisson")
 
-plot.gam(model)
-summary(model)
+plot.gam(model0)
+summary(model0)
 ```
 
 
 ## GAM evaluation
 ```{r}
-gam.check(model)
+gam.check(model0)
 ```
 
 in a “perfect” model: 
@@ -65,7 +65,7 @@ t2m_precipitation <- stack("pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_sw
 names(t2m_precipitation) <- "precipitation"
 t2m_precipitation
 
-p0 <- raster::predict(t2m_precipitation, model, type = "response")
+p0 <- raster::predict(t2m_precipitation, model0, type = "response")
 ```
 
 ```{r}
@@ -77,67 +77,25 @@ my.p0.mask <- mask(my.p0, thailand) # mask function creates a MASK with values 1
 
 # values only over Thailand, the rest are setting to zero
 
-pdf(file="thailand_precipitation__dengue.pdf") # save the plot in pdf in your directory
+pdf(file="thailand_precipitation_dengue_0lag.pdf") # save the plot in pdf in your directory
 plot(my.p0.mask, legend.width=1, legend.shrink=0.75, axes= FALSE, box=FALSE) 
-title("Predicted values: Influence of precipitation on dengue", line = -1) 
+title("Predicted values: Influence of precipitation on dengue (0 lag)", line = -1) 
  
 plot(thailand, add=TRUE) 
 dev.off()
 ```
 
 
-# 1 months lag 
-
-***attach dataframe***
-```{r}
-attach(GAM_data_1_Lag)
-```
 
 
-## Plot GAM 
-```{r}
-model_1_Lag <- gam(dengue~s(precipitation, k=17),family="quasipoisson")
-
-plot.gam(model_1_Lag)
-summary(model_1_Lag)
-```
 
 
-## GAM evaluation
-```{r}
-gam.check(model_1_Lag)
-```
 
 
-## raster plot - precipitation per province
-```{r}
-linear_model <- lm(dengue~precipitation)
-smooth_model <- gam(dengue~s(precipitation))
-
-AIC(linear_model, smooth_model)
 
 
-t2m_precipitation <- stack("pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
-names(t2m_precipitation) <- "precipitation"
-t2m_precipitation
 
-p1 <- raster::predict(t2m_precipitation, model_1_Lag, type = "response")
-```
 
-```{r}
-thailand <- raster::getData('GADM', country='THA', level=1) # in this case Thailand boundary is loaded
 
-my.area <- extent(thailand) # the extent of a map describes the area visible on the map
-my.p1 <- crop(p1, my.area) # crop returns a geographic subset of an object as specified by an Extent object 
-my.p1.mask <- mask(my.p1, thailand) # mask function creates a MASK with values 1 and NULL, actually it plots 
 
-# values only over Thailand, the rest are setting to zero
-
-pdf(file="thailand_precipitation__dengue_1Lag.pdf") # save the plot in pdf in your directory
-plot(my.p0.mask, legend.width=1, legend.shrink=0.75, axes= FALSE, box=FALSE) 
-title("Predicted values: Influence of precipitation on dengue (1 Month Lag)", line = -1) 
- 
-plot(thailand, add=TRUE) 
-dev.off()
-```
 
