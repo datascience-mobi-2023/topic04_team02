@@ -42,13 +42,9 @@ for (i in 1:15) {
 ```{r}
 par(mar = c(5.1, 4.1, 4.1, 8.1), xpd = TRUE)
 
-<<<<<<< HEAD
-incidence_plot <- plot(x = 1:180, y = c(Incidence_North[1,],Incidence_North[2,],Incidence_North[3,],Incidence_North[4,],Incidence_North[5,],Incidence_North[6,],Incidence_North[7,],Incidence_North[8,],Incidence_North[9,],Incidence_North[10,],Incidence_North[11,],Incidence_North[12,], Incidence_North[13,],Incidence_North[14,],Incidence_North[15,]), type = "l", pch = 20, col = "purple2", xlab = "month", ylab = "Incidences", main = "Incidences 2006-2020", ylim = c(0,170)); 
-=======
 plot(x = 1:180, y = c(Incidence_North[1,],Incidence_North[2,],Incidence_North[3,],Incidence_North[4,],Incidence_North[5,],Incidence_North[6,],Incidence_North[7,],Incidence_North[8,],Incidence_North[9,],Incidence_North[10,],Incidence_North[11,],Incidence_North[12,], Incidence_North[13,],Incidence_North[14,],Incidence_North[15,]), type = "l", pch = 20, col = "purple2", xlab = "month", ylab = "Incidences", main = "Incidences 2006-2020", ylim = c(0,170), xaxt = "n"); 
 
 axis(1, at=seq(12,180, by=12))
->>>>>>> 2bb985e18c765fe885aa8e26e4b417b804667e59
 
 lines(1:180, c(Incidence_Northeast[1,],Incidence_Northeast[2,], Incidence_Northeast[3,],Incidence_Northeast[4,], Incidence_Northeast[5,],Incidence_Northeast[6,], Incidence_Northeast[7,],Incidence_Northeast[8,], Incidence_Northeast[9,],Incidence_Northeast[10,], Incidence_Northeast[11,],Incidence_Northeast[12,], Incidence_Northeast[13,],Incidence_Northeast[14,], Incidence_Northeast[15,]), type = "l", pch = 20, col = "orangered2");  
 
@@ -96,13 +92,9 @@ for (i in 1:15) {
 ```{r}
 par(mar = c(5.1, 4.1, 4.1, 8.1), xpd = TRUE)
 
-<<<<<<< HEAD
-precipitation_plot <- plot(x = 1:180, y = c(Precipitation_North[1,],Precipitation_North[2,],Precipitation_North[3,],Precipitation_North[4,],Precipitation_North[5,],Precipitation_North[6,],Precipitation_North[7,],Precipitation_North[8,],Precipitation_North[9,],Precipitation_North[10,],Precipitation_North[11,],Precipitation_North[12,], Precipitation_North[13,],Precipitation_North[14,],Precipitation_North[15,]), type = "l", pch = 20, col = "purple2", xlab = "month", ylab = "Precipitation", main = "Precipitation 2006-2020", ylim = c(0,600)); 
-=======
 plot(x = 1:180, y = c(Precipitation_North[1,],Precipitation_North[2,],Precipitation_North[3,],Precipitation_North[4,],Precipitation_North[5,],Precipitation_North[6,],Precipitation_North[7,],Precipitation_North[8,],Precipitation_North[9,],Precipitation_North[10,],Precipitation_North[11,],Precipitation_North[12,], Precipitation_North[13,],Precipitation_North[14,],Precipitation_North[15,]), type = "l", pch = 20, col = "purple2", xlab = "month", ylab = "Precipitation", main = "Precipitation 2006-2020", ylim = c(0,600), xaxt = "n"); 
 
 axis(1, at=seq(12,180, by=12))
->>>>>>> 2bb985e18c765fe885aa8e26e4b417b804667e59
 
 lines(1:180, c(Precipitation_Northeast[1,],Precipitation_Northeast[2,], Precipitation_Northeast[3,],Precipitation_Northeast[4,], Precipitation_Northeast[5,],Precipitation_Northeast[6,], Precipitation_Northeast[7,],Precipitation_Northeast[8,], Precipitation_Northeast[9,],Precipitation_Northeast[10,], Precipitation_Northeast[11,],Precipitation_Northeast[12,], Precipitation_Northeast[13,],Precipitation_Northeast[14,], Precipitation_Northeast[15,]), type = "l", pch = 20, col = "orangered2");  
 
@@ -117,7 +109,7 @@ legend(x = "topright",
        col = c(col= "purple2",col="orangered2",col="mediumseagreen", col="maroon2"),
        lwd = 2)    
 ```
-
+These findings were highlighted with line charts which illustrate the precipitation values in the regions of Thailand from 2006 to 2020. One chart was made for each year from 2006 to 2020 and another chart was plotted over the complete timeframe. Each chart contains four lines, one for each region. The precipitation values range on average from 200 mm to 400 mm in the monsoon season. In the north, northeast and in Central Thailand nears the precipitation from November to Feburary zero in most years. The dry period lasts in some years even till April. The rainfall is therefor relatively high in every region between May and October what is also illustrated in the Temporal-Spatial maps. However, in Southern Thailand is the precipitation higher over a longer period of time.It is noticable that outliers with precipitation values up to 500 mm or 600 mm occur mainly in the south during the northeast-monsoon. 
 
 
 
