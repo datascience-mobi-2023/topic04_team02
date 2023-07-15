@@ -610,14 +610,14 @@ central_2019 <- c(sum2019_central)
 adf.test(central_2019)
 ```
 
-***Incidence: 2019 Southern Thailand*** -> non-stationary (p-value = 0.9054)
+***Incidence: 2019 Southern Thailand*** -> non-stationary (p-value = 0.9873)
 ```{r}
 library(tseries)
 
 sum2019_south <- data.frame(t(apply(Dengue_2019[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
 south_2019 <- c(sum2019_south)
 
-adf.test(south_2008)
+adf.test(south_2019)
 ```
 
 ## Dickey-Fuller test 2020
