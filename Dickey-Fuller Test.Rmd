@@ -9,20 +9,19 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-
-# Augmented Dickey-Fuller Test (ADF-TEST)
-
-"Computes the Augmented  Dickey-Fuller Test for the null that x (a numeric vector or time series) has a unit root."
-
 H0: The time series is non-stationary.
 H1: The time series is stationary.
 
 If the p-value from the test is less than alpha (significance level -> e.g. alpha = 0.05), then we can reject the null hypothesis and conclude that the time series is stationary.
 If the p-value from the test is more than alpha, then we can´t reject the null hypothesis and conclude that the time series is non-stationary.
 
-# ADF-Test 2006
 
-***ADF-Test 2006 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8506)
+# Dickey-Fuller test: over one year
+
+
+## Dickey-Fuller test 2006
+
+***Incidence: 2006 Northern Thailand*** -> non-stationary (p-value = 0.8506)
 ```{r}
 library(tseries)
 
@@ -32,7 +31,7 @@ north_2006 <- c(sum2006_north)
 adf.test(north_2006)
 ```
 
-***ADF-Test 2006 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.956)
+***Incidence: 2006 Northeastern Thailand*** -> non-stationary (p-value = 0.956)
 ```{r}
 library(tseries)
 
@@ -42,7 +41,9 @@ northeastern_2006 <- c(sum2006_northeastern)
 adf.test(northeastern_2006)
 ```
 
-***ADF-Test 2006 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9014)
+
+
+***Incidence: 2006 Central Thailand*** -> non-stationary (p-value = 0.9014)
 ```{r}
 library(tseries)
 
@@ -52,7 +53,7 @@ central_2006 <- c(sum2006_central)
 adf.test(central_2006)
 ```
 
-***ADF-Test 2006 for south Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+***Incidence: 2006 Southern Thailand*** -> stationary (p-value = 0.01)
 ```{r}
 library(tseries)
 
@@ -62,9 +63,20 @@ south_2006 <- c(sum2006_south)
 adf.test(south_2006)
 ```
 
-# ADF-Test 2007
+***Precipitation: 2006 Southern Thailand*** -> non-stationary (p-value = 0.9333)
+```{r}
+library(tseries)
 
-***ADF-Test 2007 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8823)
+sum2006_south_pr <- data.frame(t(apply(Precipitation_2006[63:76,4:15], 2,sum))) # provinces_south = province_numbers[63:76, 2]
+south_2006_pr <- c(sum2006_south_pr)
+
+adf.test(south_2006_pr)
+```
+
+
+## Dickey-Fuller test 2007
+
+***Incidence: 2007 Northern Thailand*** -> non-stationary (p-value = 0.8823)
 ```{r}
 library(tseries)
 
@@ -74,7 +86,7 @@ north_2007 <- c(sum2007_north)
 adf.test(north_2007)
 ```
 
-***ADF-Test 2007 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9048)
+***Incidence: 2007 Northeastern Thailand*** -> non-stationary (p-value = 0.9048)
 ```{r}
 library(tseries)
 
@@ -84,7 +96,7 @@ northeastern_2007 <- c(sum2007_northeastern)
 adf.test(northeastern_2007)
 ```
 
-***ADF-Test 2007 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9527)
+***Incidence: 2007 Central Thailand*** -> non-stationary (p-value = 0.9527)
 ```{r}
 library(tseries)
 
@@ -94,7 +106,7 @@ central_2007 <- c(sum2007_central)
 adf.test(central_2007)
 ```
 
-***ADF-Test 2007 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8606)
+***Incidence: 2007 Southern Thailand*** -> non-stationary (p-value = 0.8606)
 ```{r}
 library(tseries)
 
@@ -104,9 +116,9 @@ south_2007 <- c(sum2007_south)
 adf.test(south_2007)
 ```
 
-# ADF-Test 2008
+## Dickey-Fuller test 2008
 
-***ADF-Test 2008 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9766)
+***Incidence: 2008 Northern Thailand*** -> non-stationary (p-value = 0.9766)
 ```{r}
 library(tseries)
 
@@ -116,7 +128,7 @@ north_2008 <- c(sum2008_north)
 adf.test(north_2008)
 ```
 
-***ADF-Test 2008 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9197)
+***Incidence: 2008 Northeastern Thailand*** -> non-stationary (p-value = 0.9197)
 ```{r}
 library(tseries)
 
@@ -126,7 +138,7 @@ northeastern_2008 <- c(sum2008_northeastern)
 adf.test(northeastern_2008)
 ```
 
-***ADF-Test 2008 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9571)
+***Incidence: 2008 Central Thailand*** -> non-stationary (p-value = 0.9571)
 ```{r}
 library(tseries)
 
@@ -136,7 +148,7 @@ central_2008 <- c(sum2008_central)
 adf.test(central_2008)
 ```
 
-***ADF-Test 2008 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9054)
+***Incidence: 2008 Southern Thailand*** -> non-stationary (p-value = 0.9054)
 ```{r}
 library(tseries)
 
@@ -146,9 +158,9 @@ south_2008 <- c(sum2008_south)
 adf.test(south_2008)
 ```
 
-# ADF-Test 2009
+## Dickey-Fuller test 2009
 
-***ADF-Test 2009 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.79
+***Incidence: 2009 Northern Thailand*** -> non-stationary (p-value = 0.79
 ```{r}
 library(tseries)
 
@@ -158,7 +170,7 @@ north_2009 <- c(sum2009_north)
 adf.test(north_2009)
 ```
 
-***ADF-Test 2009 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8119)
+***Incidence: 2009 Northeastern Thailand*** -> non-stationary (p-value = 0.8119)
 ```{r}
 library(tseries)
 
@@ -168,7 +180,7 @@ northeastern_2009 <- c(sum2009_northeastern)
 adf.test(northeastern_2009)
 ```
 
-***ADF-Test 2009 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.952)
+***Incidence: 2009 Central Thailand*** -> non-stationary (p-value = 0.952)
 ```{r}
 library(tseries)
 
@@ -178,7 +190,7 @@ central_2009 <- c(sum2009_central)
 adf.test(central_2009)
 ```
 
-***ADF-Test 2009 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.4625)
+***Incidence: 2009 Southern Thailand*** -> non-stationary (p-value = 0.4625)
 ```{r}
 library(tseries)
 
@@ -188,9 +200,9 @@ south_2009 <- c(sum2009_south)
 adf.test(south_2009)
 ```
 
-# ADF-Test 2010
+## Dickey-Fuller test 2010
 
-***ADF-Test 2010 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9501)
+***Incidence: 20010 Northern Thailand*** -> non-stationary (p-value = 0.9501)
 ```{r}
 library(tseries)
 
@@ -200,7 +212,7 @@ north_2010 <- c(sum2010_north)
 adf.test(north_2010)
 ```
 
-***ADF-Test 2010 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8942)
+***Incidence: 2010 Northeastern Thailand*** -> non-stationary (p-value = 0.8942)
 ```{r}
 library(tseries)
 
@@ -210,7 +222,7 @@ northeastern_2010 <- c(sum2010_northeastern)
 adf.test(northeastern_2010)
 ```
 
-***ADF-Test 2010 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9153)
+***Incidence: 2010 Central Thailand*** -> non-stationary (p-value = 0.9153)
 ```{r}
 library(tseries)
 
@@ -220,7 +232,7 @@ central_2010 <- c(sum2010_central)
 adf.test(central_2010)
 ```
 
-***ADF-Test 2010 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9303)
+***Incidence: 2010 Southern Thailand*** -> non-stationary (p-value = 0.9303)
 ```{r}
 library(tseries)
 
@@ -230,9 +242,9 @@ south_2010 <- c(sum2010_south)
 adf.test(south_2010)
 ```
 
-# ADF-Test 2011
+## Dickey-Fuller test 2011
 
-***ADF-Test 2011 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.8142)
+***Incidence: 2011 Northern Thailand*** -> non-stationary (p-value = 0.8142)
 ```{r}
 library(tseries)
 
@@ -242,7 +254,7 @@ north_2011 <- c(sum2011_north)
 adf.test(north_2011)
 ```
 
-***ADF-Test 2011 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9374)
+***Incidence: 2011 Northeastern Thailand*** -> non-stationary (p-value = 0.9374)
 ```{r}
 library(tseries)
 
@@ -252,7 +264,7 @@ northeastern_2011 <- c(sum2011_northeastern)
 adf.test(northeastern_2011)
 ```
 
-***ADF-Test 2011 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.99)
+***Incidence: 2011 Central Thailand*** -> non-stationary (p-value = 0.99)
 ```{r}
 library(tseries)
 
@@ -262,7 +274,7 @@ central_2011 <- c(sum2011_central)
 adf.test(central_2011)
 ```
 
-***ADF-Test 2011 for south Thailand*** -> ADF-Test result: stationary (p-value = 0.01378)
+***Incidence: 2011 Southern Thailand*** -> stationary (p-value = 0.01378)
 ```{r}
 library(tseries)
 
@@ -272,9 +284,9 @@ south_2011 <- c(sum2011_south)
 adf.test(south_2011)
 ```
 
-# ADF-Test 2012
+## Dickey-Fuller test 2012
 
-***ADF-Test 2012 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9544)
+***Incidence: 2012 Northern Thailand*** -> non-stationary (p-value = 0.9544)
 ```{r}
 library(tseries)
 
@@ -284,7 +296,7 @@ north_2012 <- c(sum2012_north)
 adf.test(north_2012)
 ```
 
-***ADF-Test 2012 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.99)
+***Incidence: 2012 Northeastern Thailand*** -> non-stationary (p-value = 0.99)
 ```{r}
 library(tseries)
 
@@ -294,7 +306,7 @@ northeastern_2012 <- c(sum2012_northeastern)
 adf.test(northeastern_2012)
 ```
 
-***ADF-Test 2012 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.99)
+***Incidence: 2012 Central Thailand*** -> non-stationary (p-value = 0.99)
 ```{r}
 library(tseries)
 
@@ -304,7 +316,7 @@ central_2012 <- c(sum2012_central)
 adf.test(central_2012)
 ```
 
-***ADF-Test 2012 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.6082)
+***Incidence: 2012 Southern Thailand*** -> non-stationary (p-value = 0.6082)
 ```{r}
 library(tseries)
 
@@ -314,9 +326,9 @@ south_2012 <- c(sum2012_south)
 adf.test(south_2012)
 ```
 
-# ADF-Test 2013
+## Dickey-Fuller test 2013
 
-***ADF-Test 2013 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9626)
+***Incidence: 2013 Northern Thailand*** -> non-stationary (p-value = 0.9626)
 ```{r}
 library(tseries)
 
@@ -326,7 +338,7 @@ north_2013 <- c(sum2013_north)
 adf.test(north_2013)
 ```
 
-***ADF-Test 2013 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9546)
+***Incidence: 2013 Northeastern Thailand*** -> non-stationary (p-value = 0.9546)
 ```{r}
 library(tseries)
 
@@ -336,7 +348,7 @@ northeastern_2013 <- c(sum2013_northeastern)
 adf.test(northeastern_2013)
 ```
 
-***ADF-Test 2013 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9847)
+***Incidence: 2013 Central Thailand*** -> non-stationary (p-value = 0.9847)
 ```{r}
 library(tseries)
 
@@ -346,7 +358,7 @@ central_2013 <- c(sum2013_central)
 adf.test(central_2013)
 ```
 
-***ADF-Test 2013 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.6502)
+***Incidence: 2013 Southern Thailand*** -> non-stationary (p-value = 0.6502)
 ```{r}
 library(tseries)
 
@@ -356,9 +368,9 @@ south_2013 <- c(sum2013_south)
 adf.test(south_2013)
 ```
 
-# ADF-Test 2014
+## Dickey-Fuller test 2014
 
-***ADF-Test 2014 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9766)
+***Incidence: 2014 Northern Thailand*** -> non-stationary (p-value = 0.9766)
 ```{r}
 library(tseries)
 
@@ -368,7 +380,7 @@ north_2014 <- c(sum2014_north)
 adf.test(north_2014)
 ```
 
-***ADF-Test 2014 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9539)
+***Incidence: 2014 Northeastern Thailand*** -> non-stationary (p-value = 0.9539)
 ```{r}
 library(tseries)
 
@@ -378,7 +390,7 @@ northeastern_2014 <- c(sum2014_northeastern)
 adf.test(northeastern_2014)
 ```
 
-***ADF-Test 2014 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.6665)
+***Incidence: 2014 Central Thailand*** -> non-stationary (p-value = 0.6665)
 ```{r}
 library(tseries)
 
@@ -388,7 +400,7 @@ central_2014 <- c(sum2014_central)
 adf.test(central_2014)
 ```
 
-***ADF-Test 2014 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9256)
+***Incidence: 2014 Southern Thailand*** -> non-stationary (p-value = 0.9256)
 ```{r}
 library(tseries)
 
@@ -398,9 +410,9 @@ south_2014 <- c(sum2014_south)
 adf.test(south_2014)
 ```
 
-# ADF-Test 2015
+## Dickey-Fuller test 2015
 
-***ADF-Test 2015 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.2958)
+***Incidence: 2015 Northern Thailand*** -> non-stationary (p-value = 0.2958)
 ```{r}
 library(tseries)
 
@@ -410,7 +422,7 @@ north_2015 <- c(sum2015_north)
 adf.test(north_2015)
 ```
 
-***ADF-Test 2015 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9073)
+***Incidence: 2015 Northeastern Thailand*** -> non-stationary (p-value = 0.9073)
 ```{r}
 library(tseries)
 
@@ -420,7 +432,7 @@ northeastern_2015 <- c(sum2015_northeastern)
 adf.test(northeastern_2015)
 ```
 
-***ADF-Test 2015 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.4513)
+***Incidence: 2015 Central Thailand*** -> non-stationary (p-value = 0.4513)
 ```{r}
 library(tseries)
 
@@ -430,7 +442,7 @@ central_2015 <- c(sum2015_central)
 adf.test(central_2015)
 ```
 
-***ADF-Test 2015 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9706)
+***Incidence: 2015 Southern Thailand*** -> non-stationary (p-value = 0.9706)
 ```{r}
 library(tseries)
 
@@ -440,9 +452,9 @@ south_2015 <- c(sum2015_south)
 adf.test(south_2015)
 ```
 
-# ADF-Test 2016
+## Dickey-Fuller test 2016
 
-***ADF-Test 2016 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9623)
+***Incidence: 2016 Northern Thailand*** -> non-stationary (p-value = 0.9623)
 ```{r}
 library(tseries)
 
@@ -452,7 +464,7 @@ north_2016 <- c(sum2016_north)
 adf.test(north_2016)
 ```
 
-***ADF-Test 2016 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.5795)
+***Incidence: 2016 Northeastern Thailand*** -> non-stationary (p-value = 0.5795)
 ```{r}
 library(tseries)
 
@@ -462,7 +474,7 @@ northeastern_2016 <- c(sum2016_northeastern)
 adf.test(northeastern_2016)
 ```
 
-***ADF-Test 2016 for central Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+***Incidence: 2016 Central Thailand*** -> stationary (p-value = 0.01)
 ```{r}
 library(tseries)
 
@@ -472,7 +484,7 @@ central_2016 <- c(sum2016_central)
 adf.test(central_2016)
 ```
 
-***ADF-Test 2016 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.2966)
+***Incidence: 2016 Southern Thailand*** -> non-stationary (p-value = 0.2966)
 ```{r}
 library(tseries)
 
@@ -482,9 +494,9 @@ south_2016 <- c(sum2016_south)
 adf.test(south_2016)
 ```
 
-# ADF-Test 2017
+## Dickey-Fuller test 2017
 
-***ADF-Test 2017 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.99)
+***Incidence: 2017 Northern Thailand*** -> non-stationary (p-value = 0.99)
 ```{r}
 library(tseries)
 
@@ -494,7 +506,7 @@ north_2017 <- c(sum2017_north)
 adf.test(north_2017)
 ```
 
-***ADF-Test 2017 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.824)
+***Incidence: 2017 Northeastern Thailand*** -> non-stationary (p-value = 0.824)
 ```{r}
 library(tseries)
 
@@ -504,7 +516,7 @@ northeastern_2017 <- c(sum2017_northeastern)
 adf.test(northeastern_2017)
 ```
 
-***ADF-Test 2017 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.99)
+***Incidence: 2017 Central Thailand*** -> non-stationary (p-value = 0.99)
 ```{r}
 library(tseries)
 
@@ -514,7 +526,7 @@ central_2017 <- c(sum2017_central)
 adf.test(central_2017)
 ```
 
-***ADF-Test 2017 for south Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+***Incidence: 2017 Southern Thailand*** -> stationary (p-value = 0.01)
 ```{r}
 library(tseries)
 
@@ -524,9 +536,9 @@ south_2017 <- c(sum2017_south)
 adf.test(south_2017)
 ```
 
-# ADF-Test 2018
+## Dickey-Fuller test 2018
 
-***ADF-Test 2018 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9702)
+***Incidence: 2018 Northern Thailand*** -> non-stationary (p-value = 0.9702)
 ```{r}
 library(tseries)
 
@@ -536,7 +548,7 @@ north_2018 <- c(sum2018_north)
 adf.test(north_2018)
 ```
 
-***ADF-Test 2018 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9041)
+***Incidence: 2018 Northeastern Thailand*** -> non-stationary (p-value = 0.9041)
 ```{r}
 library(tseries)
 
@@ -546,7 +558,7 @@ northeastern_2018 <- c(sum2018_northeastern)
 adf.test(northeastern_2018)
 ```
 
-***ADF-Test 2018 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9668)
+***Incidence: 2018 Central Thailand*** -> non-stationary (p-value = 0.9668)
 ```{r}
 library(tseries)
 
@@ -556,7 +568,7 @@ central_2018 <- c(sum2018_central)
 adf.test(central_2018)
 ```
 
-***ADF-Test 2018 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9025)
+***Incidence: 2018 Southern Thailand*** -> non-stationary (p-value = 0.9025)
 ```{r}
 library(tseries)
 
@@ -566,9 +578,9 @@ south_2018 <- c(sum2018_south)
 adf.test(south_2018)
 ```
 
-# ADF-Test 2019
+## Dickey-Fuller test 2019
 
-***ADF-Test 2019 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9088)
+***Incidence: 2019 Northern Thailand*** -> non-stationary (p-value = 0.9088)
 ```{r}
 library(tseries)
 
@@ -578,7 +590,7 @@ north_2019 <- c(sum2019_north)
 adf.test(north_2019)
 ```
 
-***ADF-Test 2019 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9593)
+***Incidence: 2019 Northeastern Thailand*** -> non-stationary (p-value = 0.9593)
 ```{r}
 library(tseries)
 
@@ -588,7 +600,7 @@ northeastern_2019 <- c(sum2019_northeastern)
 adf.test(northeastern_2019)
 ```
 
-***ADF-Test 2019 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9854)
+***Incidence: 2019 Central Thailand*** -> non-stationary (p-value = 0.9854)
 ```{r}
 library(tseries)
 
@@ -598,7 +610,7 @@ central_2019 <- c(sum2019_central)
 adf.test(central_2019)
 ```
 
-***ADF-Test 2019 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9054)
+***Incidence: 2019 Southern Thailand*** -> non-stationary (p-value = 0.9054)
 ```{r}
 library(tseries)
 
@@ -608,9 +620,9 @@ south_2019 <- c(sum2019_south)
 adf.test(south_2008)
 ```
 
-# ADF-Test 2020
+## Dickey-Fuller test 2020
 
-***ADF-Test 2020 for north Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9088)
+***Incidence: 2020 Northern Thailand*** -> non-stationary (p-value = 0.9088)
 ```{r}
 library(tseries)
 
@@ -620,7 +632,7 @@ north_2020 <- c(sum2020_north)
 adf.test(north_2020)
 ```
 
-***ADF-Test 2020 for northeastern Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9593)
+***Incidence: 2020 Northeastern Thailand*** -> non-stationary (p-value = 0.9593)
 ```{r}
 library(tseries)
 
@@ -630,7 +642,7 @@ northeastern_2020 <- c(sum2020_northeastern)
 adf.test(northeastern_2020)
 ```
 
-***ADF-Test 2020 for central Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9854)
+***Incidence: 2020 Central Thailand*** -> non-stationary (p-value = 0.9854)
 ```{r}
 library(tseries)
 
@@ -640,7 +652,7 @@ central_2020 <- c(sum2020_central)
 adf.test(central_2020)
 ```
 
-***ADF-Test 2020 for south Thailand*** -> ADF-Test result: non-stationary (p-value = 0.9873)
+***Incidence: 2020 Southern Thailand*** -> non-stationary (p-value = 0.9873)
 ```{r}
 library(tseries)
 
@@ -650,9 +662,10 @@ south_2020 <- c(sum2020_south)
 adf.test(south_2020)
 ```
 
-# ADF-Test 2006-2020
 
-***ADF-Test 2006-2020 for north Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+# Dickey-Fuller test: 2006-2020
+
+***Incidence: 2006-2020 Northern Thailand*** -> stationary (p-value = 0.01)
 ```{r}
 library(tseries)
 
@@ -661,7 +674,7 @@ north <- c(sum2006_north, sum2007_north, sum2008_north, sum2009_north, sum2010_n
 adf.test(north)
 ```
 
-***ADF-Test 2006-2020 for northeastern Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+***Incidence: 2006-2020 Northeastern Thailand*** -> stationary (p-value = 0.01)
 ```{r}
 library(tseries)
 
@@ -670,7 +683,7 @@ northeastern <- c(sum2006_northeastern, sum2007_northeastern, sum2008_northeaste
 adf.test(northeastern)
 ```
 
-***ADF-Test 2006-2020 for central Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+***Incidence: 2006-2020 Central Thailand*** -> stationary (p-value = 0.01)
 ```{r}
 library(tseries)
 
@@ -679,7 +692,7 @@ central <- c(sum2006_central, sum2007_central, sum2008_central, sum2009_central,
 adf.test(central)
 ```
 
-***ADF-Test 2006-2020 for south Thailand*** -> ADF-Test result: stationary (p-value = 0.01)
+***Incidence: 2006-2020 Southern Thailand*** -> stationary (p-value = 0.01)
 ```{r}
 library(tseries)
 
@@ -688,8 +701,15 @@ south <- c(sum2006_south, sum2007_south, sum2008_south, sum2009_south, sum2010_s
 adf.test(south)
 ```
 
-# Summary results
+
+# Results Dickey-Fuller test 
+
+## Results Dickey-Fuller test: incidences 
 
 - dengue cases are in general non-stationary/seasonal over a year 
 - exception: 2006 south, 2011 south, 2016 central, 2017 south
+- the p-values are in general lower for Southern Thailand 
 - dengue cases are stationary over the years (2006-2020)
+
+## Results Dickey-Fuller test: precipitation
+
