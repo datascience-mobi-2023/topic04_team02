@@ -1,0 +1,1228 @@
+---
+title: "Dickey-Fuller Test and GAM"
+output: pdf_document
+date: "2023-05-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Dickey-Fuller test: over one year
+
+H0: The time series is non-stationary.
+H1: The time series is stationary.
+
+If the p-value from the test is less than alpha (significance level -> e.g. alpha = 0.05), then we can reject the null hypothesis and conclude that the time series is stationary.
+If the p-value from the test is more than alpha, then we can´t reject the null hypothesis and conclude that the time series is non-stationary.
+
+## Dickey-Fuller test 2006
+
+***Incidence: 2006 Northern Thailand*** -> non-stationary (p-value = 0.8506)
+```{r}
+library(tseries)
+
+north_2006 <- c(sum2006_north)
+adf.test(north_2006)
+```
+
+***Precipitation: 2006 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2006_pr <- c(sum2006_north_pr)
+adf.test(north_2006_pr)
+```
+
+***Incidence: 2006 Northeastern Thailand*** -> non-stationary (p-value = 0.956)
+```{r}
+library(tseries)
+
+northeast_2006 <- c(sum2006_northeast)
+adf.test(northeast_2006)
+```
+
+***Precipitation: 2006 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2006_pr <- c(sum2006_northeast_pr)
+adf.test(northeast_2006_pr)
+```
+
+***Incidence: 2006 Central Thailand*** -> non-stationary (p-value = 0.9014)
+```{r}
+library(tseries)
+
+central_2006 <- c(sum2006_central)
+adf.test(central_2006)
+```
+
+***Precipitation: 2006 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2006_pr <- c(sum2006_central_pr)
+adf.test(central_2006_pr)
+```
+
+***Incidence: 2006 Southern Thailand*** -> stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+south_2006 <- c(sum2006_south)
+adf.test(south_2006)
+```
+
+***Precipitation: 2006 Southern Thailand*** -> non-stationary (p-value = 0.9333)
+```{r}
+library(tseries)
+
+south_2006_pr <- c(sum2006_south_pr)
+adf.test(south_2006_pr)
+```
+
+
+## Dickey-Fuller test 2007
+
+***Incidence: 2007 Northern Thailand*** -> non-stationary (p-value = 0.8823)
+```{r}
+library(tseries)
+
+north_2007 <- c(sum2007_north)
+adf.test(north_2007)
+```
+
+***Precipitation: 2007 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2007_pr <- c(sum2007_north_pr)
+adf.test(north_2007_pr)
+```
+
+***Incidence: 2007 Northeastern Thailand*** -> non-stationary (p-value = 0.9048)
+```{r}
+library(tseries)
+
+northeast_2007 <- c(sum2007_northeast)
+adf.test(northeast_2007)
+```
+
+***Precipitation: 2007 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2007_pr <- c(sum2007_northeast_pr)
+adf.test(northeast_2007_pr)
+```
+
+***Incidence: 2007 Central Thailand*** -> non-stationary (p-value = 0.9527)
+```{r}
+library(tseries)
+
+central_2007 <- c(sum2007_central)
+adf.test(central_2007)
+```
+
+***Precipitation: 2007 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2007_pr <- c(sum2007_central_pr)
+adf.test(central_2007_pr)
+```
+
+***Incidence: 2007 Southern Thailand*** -> non-stationary (p-value = 0.8606)
+```{r}
+library(tseries)
+
+south_2007 <- c(sum2007_south)
+adf.test(south_2007)
+```
+
+***Precipitation: 2007 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2007_pr <- c(sum2007_south_pr)
+adf.test(south_2007_pr)
+```
+
+## Dickey-Fuller test 2008
+
+***Incidence: 2008 Northern Thailand*** -> non-stationary (p-value = 0.9766)
+```{r}
+library(tseries)
+
+north_2008 <- c(sum2008_north)
+adf.test(north_2008)
+```
+
+***Precipitation: 2008 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2008_pr <- c(sum2008_north_pr)
+adf.test(north_2008_pr)
+```
+
+***Incidence: 2008 Northeastern Thailand*** -> non-stationary (p-value = 0.9197)
+```{r}
+library(tseries)
+
+northeast_2008 <- c(sum2008_northeast)
+adf.test(northeast_2008)
+```
+
+***Precipitation: 2008 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2008_pr <- c(sum2008_northeast_pr)
+adf.test(northeast_2008_pr)
+```
+
+***Incidence: 2008 Central Thailand*** -> non-stationary (p-value = 0.9571)
+```{r}
+library(tseries)
+
+central_2008 <- c(sum2008_central)
+adf.test(central_2008)
+```
+
+***Precipitation: 2008 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2008_pr <- c(sum2008_central_pr)
+adf.test(central_2008_pr)
+```
+
+***Incidence: 2008 Southern Thailand*** -> non-stationary (p-value = 0.9054)
+```{r}
+library(tseries)
+
+south_2008 <- c(sum2008_south)
+adf.test(south_2008)
+```
+
+***Precipitation: 2008 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2008_pr <- c(sum2008_south_pr)
+adf.test(south_2008_pr)
+```
+
+## Dickey-Fuller test 2009
+
+***Incidence: 2009 Northern Thailand*** -> non-stationary (p-value = 0.79)
+```{r}
+library(tseries)
+
+north_2009 <- c(sum2009_north)
+adf.test(north_2009)
+```
+
+***Precipitation: 2009 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2009_pr <- c(sum2009_north_pr)
+adf.test(north_2009_pr)
+```
+
+***Incidence: 2009 Northeastern Thailand*** -> non-stationary (p-value = 0.8119)
+```{r}
+library(tseries)
+
+northeast_2009 <- c(sum2009_northeast)
+adf.test(northeast_2009)
+```
+
+***Precipitation: 2009 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2009_pr <- c(sum2009_northeast_pr)
+adf.test(northeast_2009_pr)
+```
+
+***Incidence: 2009 Central Thailand*** -> non-stationary (p-value = 0.952)
+```{r}
+library(tseries)
+
+central_2009 <- c(sum2009_central)
+adf.test(central_2009)
+```
+
+***Precipitation: 2009 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2009_pr <- c(sum2009_central_pr)
+adf.test(central_2009_pr)
+```
+
+***Incidence: 2009 Southern Thailand*** -> non-stationary (p-value = 0.4625)
+```{r}
+library(tseries)
+
+south_2009 <- c(sum2009_south)
+adf.test(south_2009)
+```
+
+***Precipitation: 2009 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2009_pr <- c(sum2009_south_pr)
+adf.test(south_2009_pr)
+```
+
+## Dickey-Fuller test 2010
+
+***Incidence: 2010 Northern Thailand*** -> non-stationary (p-value = 0.9501)
+```{r}
+library(tseries)
+
+north_2010 <- c(sum2010_north)
+adf.test(north_2010)
+```
+
+***Precipitation: 2010 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2010_pr <- c(sum2010_north_pr)
+adf.test(north_2010_pr)
+```
+
+***Incidence: 2010 Northeastern Thailand*** -> non-stationary (p-value = 0.8942)
+```{r}
+library(tseries)
+
+northeast_2010 <- c(sum2010_northeast)
+adf.test(northeast_2010)
+```
+
+***Precipitation: 2010 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2010_pr <- c(sum2010_northeast_pr)
+adf.test(northeast_2010_pr)
+```
+
+***Incidence: 2010 Central Thailand*** -> non-stationary (p-value = 0.9153)
+```{r}
+library(tseries)
+
+central_2010 <- c(sum2010_central)
+adf.test(central_2010)
+```
+
+***Precipitation: 2010 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2010_pr <- c(sum2010_central_pr)
+adf.test(central_2010_pr)
+```
+
+***Incidence: 2010 Southern Thailand*** -> non-stationary (p-value = 0.9303)
+```{r}
+library(tseries)
+
+south_2010 <- c(sum2010_south)
+adf.test(south_2010)
+```
+
+***Precipitation: 2010 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2010_pr <- c(sum2010_south_pr)
+adf.test(south_2010_pr)
+```
+
+
+## Dickey-Fuller test 2011
+
+***Incidence: 2011 Northern Thailand*** -> non-stationary (p-value = 0.8142)
+```{r}
+library(tseries)
+
+north_2011 <- c(sum2011_north)
+adf.test(north_2011)
+```
+
+***Precipitation: 2011 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2011_pr <- c(sum2011_north_pr)
+adf.test(north_2011_pr)
+```
+
+***Incidence: 2011 Northeastern Thailand*** -> non-stationary (p-value = 0.9374)
+```{r}
+library(tseries)
+
+northeast_2011 <- c(sum2011_northeast)
+adf.test(northeast_2011)
+```
+
+***Precipitation: 2011 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2011_pr <- c(sum2011_northeast_pr)
+adf.test(northeast_2011_pr)
+```
+
+***Incidence: 2011 Central Thailand*** -> non-stationary (p-value = 0.99)
+```{r}
+library(tseries)
+
+central_2011 <- c(sum2011_central)
+adf.test(central_2011)
+```
+
+***Precipitation: 2011 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2011_pr <- c(sum2011_central_pr)
+adf.test(central_2011_pr)
+```
+
+***Incidence: 2011 Southern Thailand*** -> stationary (p-value = 0.01378)
+```{r}
+library(tseries)
+
+south_2011 <- c(sum2011_south)
+adf.test(south_2011)
+```
+
+***Precipitation: 2011 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2011_pr <- c(sum2011_south_pr)
+adf.test(south_2011_pr)
+```
+
+## Dickey-Fuller test 2012
+
+***Incidence: 2012 Northern Thailand*** -> non-stationary (p-value = 0.9544)
+```{r}
+library(tseries)
+
+north_2012 <- c(sum2012_north)
+adf.test(north_2012)
+```
+
+***Precipitation: 2012 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2012_pr <- c(sum2012_north_pr)
+adf.test(north_2012_pr)
+```
+
+***Incidence: 2012 Northeastern Thailand*** -> non-stationary (p-value = 0.99)
+```{r}
+library(tseries)
+
+northeast_2012 <- c(sum2012_northeast)
+adf.test(northeast_2012)
+```
+
+***Precipitation: 2012 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2012_pr <- c(sum2012_northeast_pr)
+adf.test(northeast_2012_pr)
+```
+
+***Incidence: 2012 Central Thailand*** -> non-stationary (p-value = 0.99)
+```{r}
+library(tseries)
+
+central_2012 <- c(sum2012_central)
+adf.test(central_2012)
+```
+
+***Precipitation: 2012 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2012_pr <- c(sum2012_central_pr)
+adf.test(central_2012_pr)
+```
+
+***Incidence: 2012 Southern Thailand*** -> non-stationary (p-value = 0.6082)
+```{r}
+library(tseries)
+
+south_2012 <- c(sum2012_south)
+adf.test(south_2012)
+```
+
+***Precipitation: 2012 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2012_pr <- c(sum2012_south_pr)
+adf.test(south_2012_pr)
+```
+
+## Dickey-Fuller test 2013
+
+***Incidence: 2013 Northern Thailand*** -> non-stationary (p-value = 0.9626)
+```{r}
+library(tseries)
+
+north_2013 <- c(sum2013_north)
+adf.test(north_2013)
+```
+
+***Precipitation: 2013 Northern Thailand***
+```{r}
+library(tseries)
+
+north_2013_pr <- c(sum2013_north_pr)
+adf.test(north_2013_pr)
+```
+
+***Incidence: 2013 Northeastern Thailand*** -> non-stationary (p-value = 0.9546)
+```{r}
+library(tseries)
+
+northeast_2013 <- c(sum2013_northeast)
+adf.test(northeast_2013)
+```
+
+***Precipitation: 2013 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2013_pr <- c(sum2013_northeast_pr)
+adf.test(northeast_2013_pr)
+```
+
+***Incidence: 2013 Central Thailand*** -> non-stationary (p-value = 0.9847)
+```{r}
+library(tseries)
+
+central_2013 <- c(sum2013_central)
+adf.test(central_2013)
+```
+
+***Precipitation: 2013 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2013_pr <- c(sum2013_central_pr)
+adf.test(central_2013_pr)
+```
+
+***Incidence: 2013 Southern Thailand*** -> non-stationary (p-value = 0.6502)
+```{r}
+library(tseries)
+
+south_2013 <- c(sum2013_south)
+adf.test(south_2013)
+```
+
+***Precipitation: 2013 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2013_pr <- c(sum2013_south_pr)
+adf.test(south_2013_pr)
+```
+
+## Dickey-Fuller test 2014
+
+***Incidence: 2014 Northern Thailand*** -> non-stationary (p-value = 0.9766)
+```{r}
+library(tseries)
+
+north_2014 <- c(sum2014_north)
+adf.test(north_2014)
+```
+
+***Precipitation: 2014 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2014_pr <- c(sum2014_north_pr)
+adf.test(north_2014_pr)
+```
+
+***Incidence: 2014 Northeastern Thailand*** -> non-stationary (p-value = 0.9539)
+```{r}
+library(tseries)
+
+northeast_2014 <- c(sum2014_northeast)
+adf.test(northeast_2014)
+```
+
+***Precipitation: 2014 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2014_pr <- c(sum2014_northeast_pr)
+adf.test(northeast_2014_pr)
+```
+
+***Incidence: 2014 Central Thailand*** -> non-stationary (p-value = 0.6665)
+```{r}
+library(tseries)
+
+central_2014 <- c(sum2014_central)
+adf.test(central_2014)
+```
+
+***Precipitation: 2014 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2014_pr <- c(sum2014_central_pr)
+adf.test(central_2014_pr)
+```
+
+***Incidence: 2014 Southern Thailand*** -> non-stationary (p-value = 0.9256)
+```{r}
+library(tseries)
+
+south_2014 <- c(sum2014_south)
+adf.test(south_2014)
+```
+
+***Precipitation: 2014 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2014_pr <- c(sum2014_south_pr)
+adf.test(south_2014_pr)
+```
+
+
+## Dickey-Fuller test 2015
+
+***Incidence: 2015 Northern Thailand*** -> non-stationary (p-value = 0.2958)
+```{r}
+library(tseries)
+
+north_2015 <- c(sum2015_north)
+adf.test(north_2015)
+```
+
+***Precipitation: 2015 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2015_pr <- c(sum2015_north_pr)
+adf.test(north_2015_pr)
+```
+
+***Incidence: 2015 Northeastern Thailand*** -> non-stationary (p-value = 0.9073)
+```{r}
+library(tseries)
+
+northeast_2015 <- c(sum2015_northeast)
+adf.test(northeast_2015)
+```
+
+***Precipitation: 2015 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2015_pr <- c(sum2015_northeast_pr)
+adf.test(northeast_2015_pr)
+```
+
+***Incidence: 2015 Central Thailand*** -> non-stationary (p-value = 0.4513)
+```{r}
+library(tseries)
+
+central_2015 <- c(sum2015_central)
+adf.test(central_2015)
+```
+
+***Precipitation: 2015 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2015_pr <- c(sum2015_central_pr)
+adf.test(central_2015_pr)
+```
+
+***Incidence: 2015 Southern Thailand*** -> non-stationary (p-value = 0.9706)
+```{r}
+library(tseries)
+
+south_2015 <- c(sum2015_south)
+adf.test(south_2015)
+```
+
+***Precipitation: 2015 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2015_pr <- c(sum2015_south_pr)
+adf.test(south_2015_pr)
+```
+
+## Dickey-Fuller test 2016
+
+***Incidence: 2016 Northern Thailand*** -> non-stationary (p-value = 0.9623)
+```{r}
+library(tseries)
+
+north_2016 <- c(sum2016_north)
+adf.test(north_2016)
+```
+
+***Precipitation: 2016 Northern Thailand***
+```{r}
+library(tseries)
+
+north_2016_pr <- c(sum2016_north_pr)
+adf.test(north_2016_pr)
+```
+
+
+***Incidence: 2016 Northeastern Thailand*** -> non-stationary (p-value = 0.5795)
+```{r}
+library(tseries)
+
+northeast_2016 <- c(sum2016_northeast)
+adf.test(northeast_2016)
+```
+
+***Precipitation: 2016 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2016_pr <- c(sum2016_northeast_pr)
+adf.test(northeast_2016_pr)
+```
+
+***Incidence: 2016 Central Thailand*** -> stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+central_2016 <- c(sum2016_central)
+adf.test(central_2016)
+```
+
+***Precipitation: 2016 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2016_pr <- c(sum2016_central_pr)
+adf.test(central_2016_pr)
+```
+
+***Incidence: 2016 Southern Thailand*** -> non-stationary (p-value = 0.2966)
+```{r}
+library(tseries)
+
+south_2016 <- c(sum2016_south)
+adf.test(south_2016)
+```
+
+***Precipitation: 2016 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2016_pr <- c(sum2016_south_pr)
+adf.test(south_2016_pr)
+```
+
+## Dickey-Fuller test 2017
+
+***Incidence: 2017 Northern Thailand*** -> non-stationary (p-value = 0.99)
+```{r}
+library(tseries)
+
+north_2017 <- c(sum2017_north)
+adf.test(north_2017)
+```
+
+***Precipitation: 2017 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2017_pr <- c(sum2017_north_pr)
+adf.test(north_2017_pr)
+```
+
+***Incidence: 2017 Northeastern Thailand*** -> non-stationary (p-value = 0.824)
+```{r}
+library(tseries)
+
+northeast_2017 <- c(sum2017_northeast)
+adf.test(northeast_2017)
+```
+
+***Precipitation: 2017 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2017_pr <- c(sum2017_northeast_pr)
+adf.test(northeast_2017_pr)
+```
+
+***Incidence: 2017 Central Thailand*** -> non-stationary (p-value = 0.99)
+```{r}
+library(tseries)
+
+central_2017 <- c(sum2017_central)
+adf.test(central_2017)
+```
+
+***Precipitation: 2017 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2017_pr <- c(sum2017_central_pr)
+adf.test(central_2017_pr)
+```
+
+***Incidence: 2017 Southern Thailand*** -> stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+south_2017 <- c(sum2017_south)
+adf.test(south_2017)
+```
+
+***Precipitation: 2017 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2017_pr <- c(sum2017_south_pr)
+adf.test(south_2017_pr)
+```
+
+## Dickey-Fuller test 2018
+
+***Incidence: 2018 Northern Thailand*** -> non-stationary (p-value = 0.9702)
+```{r}
+library(tseries)
+
+north_2018 <- c(sum2018_north)
+adf.test(north_2018)
+```
+
+***Precipitation: 2018 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2018_pr <- c(sum2018_north_pr)
+adf.test(north_2018_pr)
+```
+
+***Incidence: 2018 Northeastern Thailand*** -> non-stationary (p-value = 0.9041)
+```{r}
+library(tseries)
+
+northeast_2018 <- c(sum2018_northeast)
+adf.test(northeast_2018)
+```
+
+***Precipitation: 2018 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2018_pr <- c(sum2018_northeast_pr)
+adf.test(northeast_2018_pr)
+```
+
+***Incidence: 2018 Central Thailand*** -> non-stationary (p-value = 0.9668)
+```{r}
+library(tseries)
+
+central_2018 <- c(sum2018_central)
+adf.test(central_2018)
+```
+
+***Precipitation: 2018 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2018_pr <- c(sum2018_central_pr)
+adf.test(central_2018_pr)
+```
+
+***Incidence: 2018 Southern Thailand*** -> non-stationary (p-value = 0.9025)
+```{r}
+library(tseries)
+
+south_2018 <- c(sum2018_south)
+adf.test(south_2018)
+```
+
+***Precipitation: 2018 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2018_pr <- c(sum2018_south_pr)
+adf.test(south_2018_pr)
+```
+
+## Dickey-Fuller test 2019
+
+***Incidence: 2019 Northern Thailand*** -> non-stationary (p-value = 0.9088)
+```{r}
+library(tseries)
+
+north_2019 <- c(sum2019_north)
+adf.test(north_2019)
+```
+
+***Precipitation: 2019 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2019_pr <- c(sum2019_north_pr)
+adf.test(north_2019_pr)
+```
+
+***Incidence: 2019 Northeastern Thailand*** -> non-stationary (p-value = 0.9593)
+```{r}
+library(tseries)
+
+northeast_2019 <- c(sum2019_northeast)
+adf.test(northeast_2019)
+```
+
+***Precipitation: 2019 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_2019_pr <- c(sum2019_northeast_pr)
+adf.test(northeast_2019_pr)
+```
+
+***Incidence: 2019 Central Thailand*** -> non-stationary (p-value = 0.9854)
+```{r}
+library(tseries)
+
+central_2019 <- c(sum2019_central)
+adf.test(central_2019)
+```
+
+***Precipitation: 2019 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2019_pr <- c(sum2019_central_pr)
+adf.test(central_2019_pr)
+```
+
+***Incidence: 2019 Southern Thailand*** -> non-stationary (p-value = 0.9873)
+```{r}
+library(tseries)
+
+south_2019 <- c(sum2019_south)
+adf.test(south_2019)
+```
+
+***Precipitation: 2019 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2019_pr <- c(sum2019_south_pr)
+adf.test(south_2019_pr)
+```
+
+## Dickey-Fuller test 2020
+
+***Incidence: 2020 Northern Thailand*** -> non-stationary (p-value = 0.9088)
+```{r}
+library(tseries)
+
+north_2020 <- c(sum2020_north)
+adf.test(north_2020)
+```
+
+***Precipitation: 2020 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_2020_pr <- c(sum2020_north_pr)
+adf.test(north_2020_pr)
+```
+
+***Incidence: 2020 Northeastern Thailand*** -> non-stationary (p-value = 0.9593)
+```{r}
+library(tseries)
+
+northeast_2020 <- c(sum2020_northeast)
+adf.test(northeast_2020)
+```
+
+***Precipitation: 2020 Northeastern Thailand***
+```{r}
+library(tseries)
+
+northeast_2020_pr <- c(sum2020_northeast_pr)
+adf.test(northeast_2020_pr)
+```
+
+***Incidence: 2020 Central Thailand*** -> non-stationary (p-value = 0.9854)
+```{r}
+library(tseries)
+
+central_2020 <- c(sum2020_central)
+adf.test(central_2020)
+```
+
+***Precipitation: 2020 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_2020_pr <- c(sum2020_central_pr)
+adf.test(central_2020_pr)
+```
+
+***Incidence: 2020 Southern Thailand*** -> non-stationary (p-value = 0.9873)
+```{r}
+library(tseries)
+
+south_2020 <- c(sum2020_south)
+adf.test(south_2020)
+```
+
+***Precipitation: 2020 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_2020_pr <- c(sum2020_south_pr)
+adf.test(south_2020_pr)
+```
+
+
+# Dickey-Fuller test: 2006-2020
+
+H0: The time series is non-stationary.
+H1: The time series is stationary.
+
+If the p-value from the test is less than alpha (significance level -> e.g. alpha = 0.05), then we can reject the null hypothesis and conclude that the time series is stationary.
+If the p-value from the test is more than alpha, then we can´t reject the null hypothesis and conclude that the time series is non-stationary.
+
+***Incidence: 2006-2020 Northern Thailand*** -> stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+north <- c(sum2006_north, sum2007_north, sum2008_north, sum2009_north, sum2010_north, sum2011_north, sum2012_north, sum2013_north, sum2014_north, sum2015_north, sum2016_north, sum2017_north, sum2018_north, sum2019_north, sum2020_north)
+
+adf.test(north)
+```
+
+***Precipitation: 2006-2020 Northern Thailand*** 
+```{r}
+library(tseries)
+
+north_pr <- c(sum2006_north_pr, sum2007_north_pr, sum2008_north_pr, sum2009_north_pr, sum2010_north_pr, sum2011_north_pr, sum2012_north_pr, sum2013_north_pr, sum2014_north_pr, sum2015_north_pr, sum2016_north_pr, sum2017_north_pr, sum2018_north_pr, sum2019_north_pr, sum2020_north_pr)
+
+adf.test(north_pr)
+```
+
+***Incidence: 2006-2020 Northeastern Thailand*** -> stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+northeast <- c(sum2006_northeast, sum2007_northeast, sum2008_northeast, sum2009_northeast, sum2010_northeast, sum2011_northeast, sum2012_northeast, sum2013_northeast, sum2014_northeast, sum2015_northeast, sum2016_northeast, sum2017_northeast, sum2018_northeast, sum2019_northeast, sum2020_northeast)
+
+adf.test(northeast)
+```
+
+***Precipitation: 2006-2020 Northeastern Thailand*** 
+```{r}
+library(tseries)
+
+northeast_pr <- c(sum2006_northeast_pr, sum2007_northeast_pr, sum2008_northeast_pr, sum2009_northeast_pr, sum2010_northeast_pr, sum2011_northeast_pr, sum2012_northeast_pr, sum2013_northeast_pr, sum2014_northeast_pr, sum2015_northeast_pr, sum2016_northeast_pr, sum2017_northeast_pr, sum2018_northeast_pr, sum2019_northeast_pr, sum2020_northeast_pr)
+
+adf.test(northeast_pr)
+```
+
+***Incidence: 2006-2020 Central Thailand*** -> stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+central <- c(sum2006_central, sum2007_central, sum2008_central, sum2009_central, sum2010_central, sum2011_central, sum2012_central, sum2013_central, sum2014_central, sum2015_central, sum2016_central, sum2017_central, sum2018_central, sum2019_central, sum2020_central)
+
+adf.test(central)
+```
+
+***Precipitation: 2006-2020 Central Thailand*** 
+```{r}
+library(tseries)
+
+central_pr <- c(sum2006_central_pr, sum2007_central_pr, sum2008_central_pr, sum2009_central_pr, sum2010_central_pr, sum2011_central_pr, sum2012_central_pr, sum2013_central_pr, sum2014_central_pr, sum2015_central_pr, sum2016_central_pr, sum2017_central_pr, sum2018_central_pr, sum2019_central_pr, sum2020_central_pr)
+
+adf.test(central_pr)
+```
+
+***Incidence: 2006-2020 Southern Thailand*** -> stationary (p-value = 0.01)
+```{r}
+library(tseries)
+
+south <- c(sum2006_south, sum2007_south, sum2008_south, sum2009_south, sum2010_south, sum2011_south, sum2012_south, sum2013_south, sum2014_south, sum2015_south, sum2016_south, sum2017_south, sum2018_south, sum2019_south, sum2020_south)
+
+adf.test(south)
+```
+
+***Precipitation: 2006-2020 Southern Thailand*** 
+```{r}
+library(tseries)
+
+south_pr <- c(sum2006_south_pr, sum2007_south_pr, sum2008_south_pr, sum2009_south_pr, sum2010_south_pr, sum2011_south_pr, sum2012_south_pr, sum2013_south_pr, sum2014_south_pr, sum2015_south_pr, sum2016_south_pr, sum2017_south_pr, sum2018_south_pr, sum2019_south_pr, sum2020_south_pr)
+
+adf.test(south_pr)
+```
+
+
+# GAM
+
+***load libraries***
+```{r}
+library(readxl)
+library(nlme)
+library(gam)
+library(sdm)
+library(raster)
+library(ncdf4)
+library(mgcv)
+library(sf)
+```
+
+
+# GAM: 0-months lag
+
+***attach dataframe***
+```{r}
+attach(GAM_0)
+```
+
+## Plot GAM 
+
+```{r}
+model0 <- gam(dengue~s(precipitation, k = 10),family="quasipoisson")
+
+plot.gam(model0)
+summary(model0)
+```
+
+## GAM evaluation
+
+```{r}
+gam.check(model0)
+```
+
+## raster plot - precipitation per province
+
+```{r}
+linear_model0 <- lm(dengue~precipitation)
+smooth_model0 <- gam(dengue~s(precipitation))
+
+AIC(linear_model0, smooth_model0)
+
+
+t2m_precipitation <- stack("pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
+names(t2m_precipitation) <- "precipitation"
+t2m_precipitation
+
+p0 <- raster::predict(t2m_precipitation, model0, type = "response")
+```
+
+```{r}
+thailand0 <- raster::getData('GADM', country='THA', level=1) # in this case Thailand boundary is loaded
+
+my.area0 <- extent(thailand0) # the extent of a map describes the area visible on the map
+my.p0 <- crop(p0, my.area0) # crop returns a geographic subset of an object as specified by an Extent object 
+my.p0.mask <- mask(my.p0, thailand0) # mask function creates a MASK with values 1 and NULL, actually it plots 
+
+# values only over Thailand, the rest are setting to zero
+
+pdf(file="thailand_precipitation_dengue_0lag.pdf") # save the plot in pdf in your directory
+plot(my.p0.mask, legend.width=1, legend.shrink=0.75, axes= FALSE, box=FALSE) 
+title("Predicted values: Influence of precipitation on dengue (0-months lag)", line = -1) 
+ 
+plot(thailand0, add=TRUE) 
+dev.off()
+```
+
+
+# GAM: 1-month lag
+
+***attach dataframe***
+```{r}
+attach(GAM_1)
+```
+
+## Plot GAM 
+
+```{r}
+model1 <- gam(dengue~s(precipitation, k = 10),family="quasipoisson")
+
+plot.gam(model1)
+summary(model1)
+```
+
+## GAM evaluation
+
+```{r}
+gam.check(model1)
+```
+
+## raster plot - precipitation per province
+
+```{r}
+linear_model1 <- lm(dengue~precipitation)
+smooth_model1 <- gam(dengue~s(precipitation))
+
+AIC(linear_model1, smooth_model1)
+
+
+t2m_precipitation <- stack("pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
+names(t2m_precipitation) <- "precipitation"
+t2m_precipitation
+
+p1 <- raster::predict(t2m_precipitation, model1, type = "response")
+```
+
+```{r}
+thailand1 <- raster::getData('GADM', country='THA', level=1) # in this case Thailand boundary is loaded
+
+my.area1 <- extent(thailand1) # the extent of a map describes the area visible on the map
+my.p1 <- crop(p1, my.area1) # crop returns a geographic subset of an object as specified by an Extent object 
+my.p1.mask <- mask(my.p1, thailand1) # mask function creates a MASK with values 1 and NULL, actually it plots 
+
+# values only over Thailand, the rest are setting to zero
+
+pdf(file="thailand_precipitation_dengue_1lag.pdf") # save the plot in pdf in your directory
+plot(my.p1.mask, legend.width=1, legend.shrink=0.75, axes= FALSE, box=FALSE) 
+title("Predicted values: Influence of precipitation on dengue (1-month lag)", line = -1) 
+ 
+plot(thailand1, add=TRUE) 
+dev.off()
+```
+
+
+
+
+
+
+
+
