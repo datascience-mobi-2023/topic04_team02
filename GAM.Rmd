@@ -32,7 +32,7 @@ attach(GAM_0)
 
 ## Plot GAM 
 ```{r}
-model0 <- gam(dengue~s(precipitation),family="quasipoisson")
+model0 <- gam(dengue~s(precipitation, k = 10),family="quasipoisson")
 
 plot.gam(model0)
 summary(model0)
@@ -96,7 +96,7 @@ attach(GAM_1)
 
 ## Plot GAM 
 ```{r}
-model1 <- gam(dengue~s(precipitation),family="quasipoisson")
+model1 <- gam(dengue~s(precipitation, k = 10),family="quasipoisson")
 
 plot.gam(model1)
 summary(model1)
@@ -148,80 +148,3 @@ title("Predicted values: Influence of precipitation on dengue (1 lag)", line = -
 plot(thailand, add=TRUE) 
 dev.off()
 ```
-
-
-
-# 2 month lag
-
-***attach dataframe***
-```{r}
-attach(GAM_2)
-```
-
-## Plot GAM 
-```{r}
-model2 <- gam(dengue~s(precipitation),family="quasipoisson")
-
-plot.gam(model2)
-summary(model2)
-```
-
-
-## GAM evaluation
-```{r}
-gam.check(model2)
-```
-
-in a “perfect” model: 
-- the q-q plot should no curves
-- the histogram have to be bell-shaped
-- residuals values should be evenly distributed around 0
-- the response vs fitted values should clusters around a one-one line
-- p-value should not be too low -> indicates that k is too low, especially if edf is close to k
-- gcv should be small 
-
-
-## raster plot - precipitation per province
-```{r}
-linear_model <- lm(dengue~precipitation)
-smooth_model <- gam(dengue~s(precipitation))
-
-AIC(linear_model, smooth_model)
-
-
-t2m_precipitation <- stack("pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
-names(t2m_precipitation) <- "precipitation"
-t2m_precipitation
-
-p2 <- raster::predict(t2m_precipitation, model2, type = "response")
-```
-
-```{r}
-thailand <- raster::getData('GADM', country='THA', level=1) # in this case Thailand boundary is loaded
-
-my.area <- extent(thailand) # the extent of a map describes the area visible on the map
-my.p2 <- crop(p2, my.area) # crop returns a geographic subset of an object as specified by an Extent object 
-my.p2.mask <- mask(my.p2, thailand) # mask function creates a MASK with values 1 and NULL, actually it plots 
-
-# values only over Thailand, the rest are setting to zero
-
-pdf(file="thailand_precipitation_dengue_2lag.pdf") # save the plot in pdf in your directory
-plot(my.p2.mask, legend.width=1, legend.shrink=0.75, axes= FALSE, box=FALSE) 
-title("Predicted values: Influence of precipitation on dengue (2 lag)", line = -1) 
- 
-plot(thailand, add=TRUE) 
-dev.off()
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
