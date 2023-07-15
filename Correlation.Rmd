@@ -130,13 +130,13 @@ for (year in 1:15) {
        ylim = c(min(get(paste0("heatmap_data_", Lag, "_Spearman"))),
                 max(get(paste0("heatmap_data_", Lag, "_Spearman")))),
        pch = 19,
-       xlab = "regions",
+       xlab = "provinces",
        ylab = paste(Correlation_method[i],"Correlation"),
        col = color[1],
        main = paste(Correlation_method[i], year+2005),
       xaxt = "n")
   
-  #axis(side = 1, at = 1:19)#, labels = province_names[-which(province_names[,1] == "Bungkan"), 1])
+  axis(side = 1, at = 1:76)#, labels = province_names[-which(province_names[,1] == "Bungkan"), 1])
   
   for (Lag in c("1_month_lag", "2_month_lag")) {
     i = which(Lag == c("1_month_lag", "2_month_lag"))
@@ -320,6 +320,69 @@ for (Lag in 3:5) {
 
 
 ```
+
+### Code to save plot as .png file
+```{r}
+
+Lag = 3
+i = 2
+
+png(file = "correlation_plot.png", width = 2400, height = 2400,res = 300)
+
+plot(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag],
+     ylim = c(min(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag]),
+              max(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag])),
+     pch = 19,
+     xlab = "Province (sorted by official code)",
+     ylab = paste(Correlation_method[i],"correlation coefficient"),
+     col = factor(Region[which(correlation_total[,2] == paste(Correlation_method[i]))]),
+     main = paste(Correlation_method[i], "correlation with no lag"));
+
+legend("topright",
+       legend = levels(factor(Region[which(correlation_total[,2] == paste(Correlation_method[i]))])),
+       pch = 19,
+       col = factor(levels(factor(Region[which(correlation_total[,2] == paste(Correlation_method[i]))]))))
+
+
+dev.off()
+```
+```{r}
+
+Lag = 4
+i = 2
+
+png(file = "correlation_plot_1_lag.png", width = 2400, height = 2400,res = 300)
+
+plot(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag],
+     ylim = c(min(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag]),
+              max(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag])),
+     pch = 19,
+     xlab = "Province (sorted by official code)",
+     ylab = paste(Correlation_method[i],"correlation coefficient"),
+     col = factor(Region[which(correlation_total[,2] == paste(Correlation_method[i]))]),
+     main = paste(Correlation_method[i], "correlation with 1-month lag"));
+
+legend("topright",
+       legend = levels(factor(Region[which(correlation_total[,2] == paste(Correlation_method[i]))])),
+       pch = 19,
+       col = factor(levels(factor(Region[which(correlation_total[,2] == paste(Correlation_method[i]))]))))
+
+
+dev.off()
+```
+
+### Central regions provinces sorted by latitude
+
+```{r}
+correlation_total_spear = correlation_total[which(correlation_total[,2] == "Spearman"),]
+correlation_total_spear[which(correlation_total_spear[,6] == "central"),]
+
+Precipitation[which(Precipitation[,2] %in% provinces_central),c(2,4)]
+
+
+plot(x = rank(correlation_total_spear[which(correlation_total_spear[,6] == "central"),3]), y = rank(Precipitation[which(Precipitation[,2] %in% provinces_central),4]), pch = 19)
+```
+
 
 ## Comparing Lag for every region (Plots)
 ```{r}
