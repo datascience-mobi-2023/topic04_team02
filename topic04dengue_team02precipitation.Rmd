@@ -1048,7 +1048,7 @@ for(year in 2006:2020)
   data = get(paste0("Precipitation_", year))
   subset_data = data[38:46, 5:16]
   pr_North = as.data.frame(t(apply(subset_data, 2, function(x){sum(x * area[38:46, 3]) / Area_North})))
-  assign(paste0("sum", year, "_north_pr"), sum_data)
+  assign(paste0("sum", year, "_north_pr"), pr_North)
 }
 
 rownames(Precipitation_North) = colnames(Population)[3:17]
