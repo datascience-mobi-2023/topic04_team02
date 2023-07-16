@@ -1118,7 +1118,7 @@ attach(GAM_0)
 ## Plot GAM 
 
 ```{r}
-model0 <- gam(dengue~s(precipitation, k = 10),family="quasipoisson")
+model0 <- gam(dengue~s(precipitation, k = 5),family="quasipoisson")
 
 plot.gam(model0)
 summary(model0)
@@ -1133,8 +1133,8 @@ gam.check(model0)
 ## raster plot - precipitation per province
 
 ```{r}
-linear_model0 <- lm(dengue~precipitation)
-smooth_model0 <- gam(dengue~s(precipitation))
+linear_model0 <- lm(dengue~precipitation, k = 5)
+smooth_model0 <- gam(dengue~s(precipitation, k = 5))
 
 AIC(linear_model0, smooth_model0)
 
@@ -1174,7 +1174,7 @@ attach(GAM_1)
 ## Plot GAM 
 
 ```{r}
-model1 <- gam(dengue~s(precipitation, k = 10),family="quasipoisson")
+model1 <- gam(dengue~s(precipitation, k = 8),family="quasipoisson")
 
 plot.gam(model1)
 summary(model1)
@@ -1189,8 +1189,8 @@ gam.check(model1)
 ## raster plot - precipitation per province
 
 ```{r}
-linear_model1 <- lm(dengue~precipitation)
-smooth_model1 <- gam(dengue~s(precipitation))
+linear_model1 <- lm(dengue~precipitation, k = 8)
+smooth_model1 <- gam(dengue~s(precipitation, k = 8))
 
 AIC(linear_model1, smooth_model1)
 
@@ -1219,10 +1219,24 @@ plot(thailand1, add=TRUE)
 dev.off()
 ```
 
+It was specified in our GAM model that the function of precipitation should have 10 degrees of freedom (k = 10) to display the relationship between precipiation and incidence. Degrees of freedom in a GAM generally refer to the number of basis functions or smoothing splines used to approximate the relationship between variables. 
+
+The effective number of degrees of freedom (edf) and the AIC (Akaike information criterion) allow a determination of the linearity of our data. When the edf is close to 1, a strong correlation with a linear relationship is indicated. In contrast, a higher edf means that the spline is non-linear. The (non-)linearity is additionally visible in the graph of the GAM fit. A linear curve indicates linearity of our data. The AIC is used to analyse whether the inclusion of a smooth function in the linear model improves the model's fit to the data set. If the AIC of the linear model and smooth GAM are similar, incorporating a smoothing function into the linear model does not result in a better fit for the model.    
+
+The evaluation of the GAM fit can be performed with the gam check and by interpreting characteristical values of GAMs. The gam check computes different plots which indicate whether a GAM is a good fit for the model. The GCV (minimised generalised cross-validation) is a characteristal value. Better fitting models have a smaller GCV.Furthermore, a model can be refitted with a different k to improve the GAM fit. A low p-value of the summary of the gam fit and the gam check suggests that k is too low.  
+
+In climate-sensitive infectious diseases studies, long-term trends and short-term fluctuations are captured by GAM. However, a fitted GAM model can be used to make predictions of our data. In order to compute GAM as a predictive model the time series data set has to be stationary. The stationarity of our time series data sets was checked with the Dickey-Fuller test. The GAM model was fitted with the dengue incidences and precipitation time series data. Predictions from the fitted GAM model were visualized in a spatial plot for no-lag and 1-month lag. 
+
+Two GAMs were computed to display the relationship between precipitation and dengue incidence: a GAM for no-lag and 1-month lag. The summary of the GAM fit includes the edf which are relatively close to 1. The GAM fit for no-lag has a edf-value of 2.148, the GAM fit for 1-month lag a edf-value of 3.816. Therefore, both GAMs indicate a more or less relatively linear relationship. The linearity can also be suggested by the graph of the GAM fit and by the similar AIC of the linear model and the smooth GAM.       
+ 
+According to the GAM check, the GAM does not fit perfectly to the analysed data set. The data set with 1-month lag however appears to be displayed slightly better by the GAM.The GCVs are high what indicates a bad fit. It is noticeable that the GCV is a little higher for no-lag than for 1-month lag. Therefore, according to the GCVs the 1-month lag data set is fitted a bit better by the GAM.     
 
 
-
-
+gam.check(model1) – in a “perfect” model 
+→ the q-q plot should no curves
+→ the histogram have to be bell-shaped
+→ residuals values should be evenly distributed around 0
+→ the response vs fitted values should clusters around a one-one line
 
 
 
