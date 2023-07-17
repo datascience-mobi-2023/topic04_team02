@@ -15,41 +15,41 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Precipitation data
 ```{r}
 library(readxl)
-Precipitation <- as.data.frame(read_excel("ClimateData_2006_2020.xlsx", sheet = "era5_tp_2006_2020_thailand_monm"))
+Precipitation <- as.data.frame(read_excel("Data/ClimateData_2006_2020.xlsx", sheet = "era5_tp_2006_2020_thailand_monm"))
 ```
 
 ## Dengue data
 ```{r}
 library(readxl)
-Dengue_2006 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2006"))
-Dengue_2007 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2007"))
-Dengue_2008 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2008"))
-Dengue_2009 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2009"))
-Dengue_2010 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2010"))
-Dengue_2011 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2011"))
-Dengue_2012 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2012"))
-Dengue_2013 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2013"))
-Dengue_2014 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2014"))
-Dengue_2015 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2015"))
-Dengue_2016 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2016"))
-Dengue_2017 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2017"))
-Dengue_2018 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2018"))
-Dengue_2019 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2019"))
-Dengue_2020 <- as.data.frame(read_excel("dengue_data.xlsx", sheet = "2020"))
+Dengue_2006 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2006"))
+Dengue_2007 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2007"))
+Dengue_2008 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2008"))
+Dengue_2009 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2009"))
+Dengue_2010 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2010"))
+Dengue_2011 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2011"))
+Dengue_2012 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2012"))
+Dengue_2013 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2013"))
+Dengue_2014 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2014"))
+Dengue_2015 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2015"))
+Dengue_2016 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2016"))
+Dengue_2017 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2017"))
+Dengue_2018 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2018"))
+Dengue_2019 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2019"))
+Dengue_2020 <- as.data.frame(read_excel("Data/dengue_data.xlsx", sheet = "2020"))
 
 Dengue = list(Dengue_2006, Dengue_2007, Dengue_2008, Dengue_2009, Dengue_2010, Dengue_2011, Dengue_2012, Dengue_2013, Dengue_2014, Dengue_2015, Dengue_2016, Dengue_2017, Dengue_2018, Dengue_2019, Dengue_2020)
 ```
 
 ## Population Data
 ```{r}
-Population <- as.data.frame(read_excel("population.xlsx", sheet = "Tabelle1"))
+Population <- as.data.frame(read_excel("Data/population.xlsx", sheet = "Tabelle1"))
 ```
 
 
 ## Each province gets its code (number)
 ```{r}
 library(readxl)
-province_numbers <- as.data.frame(read_excel("province_numbers.xlsx"))
+province_numbers <- as.data.frame(read_excel("Data/province_numbers.xlsx"))
 province_numbers = province_numbers[-27,]
 rownames(province_numbers) = 1:76
 ```
@@ -57,7 +57,7 @@ rownames(province_numbers) = 1:76
 ## Area Data
 ```{r}
 library(readxl)
-area <- as.data.frame(read_excel("area_data.xlsx"))
+area <- as.data.frame(read_excel("Data/area_data.xlsx"))
 ```
 
 

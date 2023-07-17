@@ -1139,7 +1139,7 @@ smooth_model0 <- gam(dengue~s(precipitation, k = 5))
 AIC(linear_model0, smooth_model0)
 
 
-t2m_precipitation <- stack("Data\pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
+t2m_precipitation <- stack("Data/pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
 names(t2m_precipitation) <- "precipitation"
 t2m_precipitation
 
@@ -1195,7 +1195,7 @@ smooth_model1 <- gam(dengue~s(precipitation, k = 8))
 AIC(linear_model1, smooth_model1)
 
 
-t2m_precipitation <- stack("Data\pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
+t2m_precipitation <- stack("Data/pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
 names(t2m_precipitation) <- "precipitation"
 t2m_precipitation
 
