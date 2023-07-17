@@ -155,6 +155,7 @@ for (year in 1:15) {
            inset=c(-0.3,0))
 }
 ```
+
 ### Lag plots for every region
 
 ```{r}
@@ -197,42 +198,6 @@ for (region in regions) {
   }  
 }
 ```
-
-
-## Plots for year comparison (not useful)
-
-```{r}
-color = rainbow(15)
-
-for (Lag in c("no_lag", "1_month_lag", "2_month_lag")) {
-  par(mar=c(5.1, 4.1, 4.1, 8.1), xpd=TRUE)
-      
-  plot(t(get(paste0("heatmap_data_", Lag, "_Spearman")))[,1],
-       ylim = c(min(get(paste0("heatmap_data_", Lag, "_Spearman"))),
-                max(get(paste0("heatmap_data_", Lag, "_Spearman")))),
-       pch = 19,
-       xlab = "regions",
-       ylab = paste(Correlation_method[i],"Correlation"),
-       col = color[1],
-       main = paste(Correlation_method[i], Lag),
-      xaxt = "n")
-  
-  #axis(side = 1, at = 1:76, labels = province_names[-which(province_names[,1] == "Bungkan"), 1])
-  
-  for (year in 2:15) {
-    
-    points(t(get(paste0("heatmap_data_", Lag, "_Spearman")))[,year],
-         pch = 19,
-         col = color[year],
-         xaxt = "n")
-    
-    #axis(side = 1, at = 1:76, labels = province_names[-which(province_names[,1] == "Bungkan"), 1])    
-  }
-  
-}
-```
-
-
 
 # Total correlation over full time period (2006-2020)
 ```{r}
@@ -421,44 +386,49 @@ for (reg in regions) {
 }
 ```
 
+### save plot code
 
-## Comparing Lag for every regions mean value (Plots) (not that useful)
 ```{r}
+i = "Spearman"
+
 for (reg in regions) {
+  
+  region_names = c("central", "northern", "northeastern", "southern")
+  
   Correlation_method = c("Pearson", "Spearman")
   correlation_per_region = correlation_total[which(correlation_total[,6] == reg),]
-  Lag = colnames(correlation_per_region[3:5]) 
+  Lag = colnames(correlation_per_region[3:5])
   
-  for (i in Correlation_method) {
-    par(mar=c(5.1, 4.1, 4.1, 8.1), xpd=TRUE)
-    
-    plot(mean(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 3]),
+  png(file = paste0("Lag_comparison_", reg, ".png"), width = 2400, height = 2400, res = 300)
+  
+  plot(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 3],
          ylim = c(min(correlation_per_region[which(correlation_per_region[,2] == paste(i)),3:5]),
                   max(correlation_per_region[which(correlation_per_region[,2] == paste(i)),3:5])),
          pch = 19,
-         xlab = "Province (sorted by code)",
+         xlab = paste(region_names[which(regions %in% reg)], "provinces (sorted by code)"),
          ylab = paste(i,"Correlation"),
          col = "black",
          main = paste(i,
                       correlation_per_region[1,6],
                       "region"))
-    points(mean(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 4]),
+  points(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 4],
            pch = 19,
            col = "red")
     
-    points(mean(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 5]),
-           pch = 19,
-           col = "green")
-    
+  points(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 5],
+         pch = 19,
+         col = "green")
+  
+  if (reg == "central") {
     legend("topright",
            legend = Lag,
            pch = 19,
-           col = c("black", "red", "green"),
-           inset=c(-0.3,0))
-  }
+           col = c("black", "red", "green"))
+  }  
+  dev.off()
 }
-
 ```
+
 
 # Regional correlation
 
@@ -573,42 +543,3 @@ monsoon_inc_2_lag = Incidence_combined[, c(1:2, d)]
 
 ```
 
-# Jun-Sep correlation (useless)
-```{r}
-
-column = 3:62
-
-monsoon_cor_Pearson = data.frame(NULL)
-monsoon_cor_Spearman = data.frame(NULL)
-
-for (row in 1:76) {
-  monsoon_row_Pearson = data.frame(1)
-  monsoon_row_Spearman = data.frame(1)
-  
-  for (lag in 0:2) {
-    
-    Pearson = cor(x = as.vector(monsoon_prec[row, column], mode = "double"),
-               y = as.vector(get(paste0("monsoon_inc_", lag, "_lag"))[row, column], mode = "double"),
-               method = "pearson")
-  
-    Spearman = cor(x = as.vector(monsoon_prec[row, column], mode = "double"),
-               y = as.vector(get(paste0("monsoon_inc_", lag, "_lag"))[row, column], mode = "double"),
-                method = "spearman")
-    
-    monsoon_row_Pearson = cbind(monsoon_row_Pearson, Pearson)
-    monsoon_row_Spearman = cbind(monsoon_row_Spearman, Spearman)
-  }
-  monsoon_row_Pearson = monsoon_row_Pearson[,-1]
-  monsoon_row_Spearman = monsoon_row_Spearman[,-1]
-  
-  monsoon_row_Pearson = cbind(province_names[row,1], monsoon_row_Pearson)
-  monsoon_row_Spearman = cbind(province_names[row,1], monsoon_row_Spearman)
-  
-  colnames(monsoon_row_Pearson) = c("province","no lag", "1 month lag", "2 month lag")
-  colnames(monsoon_row_Spearman) = c("province", "no lag", "1 month lag", "2 month lag")
-  
-  monsoon_cor_Pearson = rbind(monsoon_cor_Pearson, monsoon_row_Pearson)
-  monsoon_cor_Spearman = rbind(monsoon_cor_Spearman, monsoon_row_Spearman)
-  
-}
-```
