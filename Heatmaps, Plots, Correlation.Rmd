@@ -19,40 +19,40 @@ library(pheatmap)
 library(ggplot2)
 
 H_Incidence_North = pheatmap(as.matrix(t(Incidence_North)), main = "Dengue Incidence North", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
-ggsave("Heatmap Incidence North.png", plot = H_Incidence_North)
+#ggsave("Heatmap Incidence North.png", plot = H_Incidence_North)
 
 H_Precipitation_North = pheatmap(as.matrix(t(Precipitation_North)), main = "Precipitation North", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
-ggsave("Heatmap Precipitation North.png", plot = H_Precipitation_North)
+#ggsave("Heatmap Precipitation North.png", plot = H_Precipitation_North)
 ```
 
 ### Northeast
 
 ```{r}
 H_Incidence_Northeast = pheatmap(as.matrix(t(Incidence_Northeast)), main = "Dengue Incidence Northeast", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE)
-ggsave("Heatmap Incidence Northeast.png", plot = H_Incidence_Northeast)
+#ggsave("Heatmap Incidence Northeast.png", plot = H_Incidence_Northeast)
 
 H_Precipitation_Northeast = pheatmap(as.matrix(t(Precipitation_Northeast)), main = "Precipitation Northeast", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE)
-ggsave("Heatmap Precipitation Northeast.png", plot = H_Precipitation_Northeast)
+#ggsave("Heatmap Precipitation Northeast.png", plot = H_Precipitation_Northeast)
 ```
 
 ### Central
 
 ```{r}
 H_Incidence_Central = pheatmap(as.matrix(t(Incidence_Central)), main = "Dengue Incidence Central", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
-ggsave("Heatmap Incidence Central.png", plot = H_Incidence_Central)
+#ggsave("Heatmap Incidence Central.png", plot = H_Incidence_Central)
 
 H_Precipitation_Central = pheatmap(as.matrix(t(Precipitation_Central)), main = "Precipitation Central", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE)
-ggsave("Heatmap Precipitation Central.png", plot = H_Precipitation_Central)
+#ggsave("Heatmap Precipitation Central.png", plot = H_Precipitation_Central)
 ```
 
 ### South
 
 ```{r}
 H_Incidence_South = pheatmap(as.matrix(t(Incidence_South)), main = "Dengue Incidence South", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE) 
-ggsave("Heatmap Incidence South.png", plot = H_Incidence_South)
+#ggsave("Heatmap Incidence South.png", plot = H_Incidence_South)
 
 H_Precipitation_South = pheatmap(as.matrix(t(Precipitation_South)), main = "Precipitation South", scale = "column", border_color = "white", cluster_rows = FALSE, cluster_cols = FALSE)
-ggsave("Heatmap Precipitation South.png", plot = H_Precipitation_South)
+#ggsave("Heatmap Precipitation South.png", plot = H_Precipitation_South)
 ```
 
 
@@ -321,6 +321,7 @@ for (year in 1:15) {
 
 ```{r}
 color = rainbow(3)
+regions = c("central", "north", "northeastern", "south")
 
 for (region in regions) {
   for (year in 1:15) {
@@ -453,7 +454,7 @@ for (Lag in 3:5) {
 Lag = 3
 i = 2
 
-png(file = "correlation_plot.png", width = 2400, height = 2400,res = 300)
+#png(file = "correlation_plot.png", width = 2400, height = 2400,res = 300)
 
 plot(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag],
      ylim = c(min(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag]),
@@ -470,14 +471,14 @@ legend("topright",
        col = factor(levels(factor(Region[which(correlation_total[,2] == paste(Correlation_method[i]))]))))
 
 
-dev.off()
+#dev.off()
 ```
 ```{r}
 
 Lag = 4
 i = 2
 
-png(file = "correlation_plot_1_lag.png", width = 2400, height = 2400,res = 300)
+#png(file = "correlation_plot_1_lag.png", width = 2400, height = 2400,res = 300)
 
 plot(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag],
      ylim = c(min(correlation_total[which(correlation_total[,2] == paste(Correlation_method[i])),Lag]),
@@ -494,7 +495,7 @@ legend("topright",
        col = factor(levels(factor(Region[which(correlation_total[,2] == paste(Correlation_method[i]))]))))
 
 
-dev.off()
+#dev.off()
 ```
 
 ### Central regions provinces sorted by latitude
@@ -560,7 +561,7 @@ for (reg in regions) {
   correlation_per_region = correlation_total[which(correlation_total[,6] == reg),]
   Lag = colnames(correlation_per_region[3:5])
   
-  png(file = paste0("Lag_comparison_", reg, ".png"), width = 2400, height = 2400, res = 300)
+  #png(file = paste0("Lag_comparison_", reg, ".png"), width = 2400, height = 2400, res = 300)
   
   plot(correlation_per_region[which(correlation_per_region[,2] == paste(i)), 3],
          ylim = c(min(correlation_per_region[which(correlation_per_region[,2] == paste(i)),3:5]),
@@ -586,7 +587,7 @@ for (reg in regions) {
            pch = 19,
            col = c("black", "red", "green"))
   }  
-  dev.off()
+  #dev.off()
 }
 ```
 

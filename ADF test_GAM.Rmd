@@ -1139,7 +1139,7 @@ smooth_model0 <- gam(dengue~s(precipitation, k = 5))
 AIC(linear_model0, smooth_model0)
 
 
-t2m_precipitation <- stack("pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
+t2m_precipitation <- stack("Data\pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
 names(t2m_precipitation) <- "precipitation"
 t2m_precipitation
 
@@ -1155,12 +1155,12 @@ my.p0.mask <- mask(my.p0, thailand0) # mask function creates a MASK with values 
 
 # values only over Thailand, the rest are setting to zero
 
-pdf(file="thailand_precipitation_dengue_0lag.pdf") # save the plot in pdf in your directory
+#pdf(file="thailand_precipitation_dengue_0lag.pdf") # save the plot in pdf in your directory
 plot(my.p0.mask, legend.width=1, legend.shrink=0.75, axes= FALSE, box=FALSE) 
 title("Predicted values: Influence of precipitation on dengue (0-months lag)", line = -1) 
  
 plot(thailand0, add=TRUE) 
-dev.off()
+#dev.off()
 ```
 
 
@@ -1195,7 +1195,7 @@ smooth_model1 <- gam(dengue~s(precipitation, k = 8))
 AIC(linear_model1, smooth_model1)
 
 
-t2m_precipitation <- stack("pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
+t2m_precipitation <- stack("Data\pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
 names(t2m_precipitation) <- "precipitation"
 t2m_precipitation
 
@@ -1211,12 +1211,12 @@ my.p1.mask <- mask(my.p1, thailand1) # mask function creates a MASK with values 
 
 # values only over Thailand, the rest are setting to zero
 
-pdf(file="thailand_precipitation_dengue_1lag.pdf") # save the plot in pdf in your directory
+#pdf(file="thailand_precipitation_dengue_1lag.pdf") # save the plot in pdf in your directory
 plot(my.p1.mask, legend.width=1, legend.shrink=0.75, axes= FALSE, box=FALSE) 
 title("Predicted values: Influence of precipitation on dengue (1-month lag)", line = -1) 
  
 plot(thailand1, add=TRUE) 
-dev.off()
+#dev.off()
 ```
 
 
