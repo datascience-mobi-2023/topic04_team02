@@ -4,7 +4,7 @@
 
 ```{r}
 #Download centroid data containing Regions, Longtitude and Latitude
-centroids <- read.table(file = "Regions, Longtitude, Latitude.csv",  sep = "|", header = TRUE)
+centroids <- read.table(file = "Data/Regions, Longtitude, Latitude.csv",  sep = "|", header = TRUE)
 #centroids = Table with Region; Latitude; Longtitude
 centroids
 ```
@@ -13,7 +13,7 @@ centroids
 # load sf library
 library(sf)
 #Download shp.file containing geometry data 
-Thailand_Shape = st_read("gadm36_THA_shp/gadm36_THA_1.shp")
+Thailand_Shape = st_read("Data/gadm36_THA_shp/gadm36_THA_1.shp")
 #view a list of districts names
 list(Thailand_Shape$NAME_1)
 
