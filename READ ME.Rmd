@@ -1,8 +1,13 @@
 # READ ME:
 
-##How to read our directory:
+## How to read our directory:
 
-1. Run *"Data Cleaning.Rmd"* first
-   Note that without running this code, the other markdowns will not work 
-
-2.
+1.  Run the **COMPLETE** code of **"Data Cleaning.Rmd"** first **!!!**
+    -   Note that without running this code, the other markdowns will not work
+2.  Run **"Heatmaps, Plots, Correlation.Rmd"** next
+    -   You will see multiple Heatmaps and Plots that we created
+3.  Run **"ADF test_GAM.Rmd"** next
+    -   You can run the ADF and GAM code sections separately
+    -   You will find the prediction spatial plot after running the GAM code in the GitHub folder --\> saved as a pdf
+    -   If you run the GAM code a second time, it could cause problems, as the prediction pdf already exists
+4.  **"Temporal-Spatial Maps.Rmd"** cannot be runned completely as we reused the code for multiple maps. **HOWEVER**: The R document contains a chunk listing up all functions, that are required to create multivariable Temporal-Spatial maps with step by step instructions breaking down the process. **Various example plots are included.**
