@@ -1,0 +1,8 @@
+# READ ME:
+
+##How to read our directory:
+
+1. Run *"Data Cleaning.Rmd"* first
+   Note that without running this code, the other markdowns will not work 
+
+2.
