@@ -1,0 +1,313 @@
+***Temporal spacial maps***
+
+**Data extraction and cleaning**
+
+```{r}
+#Download centroid data containing Regions, Longtitude and Latitude
+centroids <- read.table(file = "Data/Regions, Longtitude, Latitude.csv",  sep = "|", header = TRUE)
+#centroids = Table with Region; Latitude; Longtitude
+centroids
+```
+
+```{r}
+# load sf library
+library(sf)
+#Download shp.file containing geometry data 
+Thailand_Shape = st_read("Data/gadm36_THA_shp/gadm36_THA_1.shp")
+#view a list of districts names
+list(Thailand_Shape$NAME_1)
+
+#Dataframe containing NAME_1(districts) and geomertry
+ShapeData = as.data.frame(Thailand_Shape[,4])
+
+#Dataframe containing NAME_1(districts)
+ShapeDataFinal = as.data.frame(ShapeData[,1])
+
+#Which NAME_1 are not found in province_names list. This is important because we will combine both dataframes by linking them over the district names
+ergebnis = as.data.frame(province_names)[,1] %in% ShapeDataFinal[,1]
+which(ergebnis == F)
+as.data.frame(province_names)[which((as.data.frame(province_names)[,1] %in% ShapeDataFinal[,1]) == FALSE),1]
+
+#Result = Bangkok is not found in ShapeDataFinal
+```
+
+```{r}
+# load dplyr and tidyr library
+library(dplyr)
+library(tidyr)
+
+#Turn Centroid data separated by ";" into 3 separated columns
+
+centroids <- centroids %>% separate(ADM1_EN.Longitude.Latitude, c('Province','Longtitude',"Latitude"), sep = ";")
+
+```
+
+```{r}
+#Change "Bangkok Metropolis" in NAME_1 Columb of Thailand_Shape to "Bangkok" 
+Thailand_Shape$NAME_1[Thailand_Shape$NAME_1 == "Bangkok Metropolis"] <- "Bangkok" 
+View(Thailand_Shape)
+
+# Adjust column header
+names(Thailand_Shape)[4]  <- "Districts_names"
+# Adjust column header
+names(centroids)[1]  <- "Districts_names"
+```
+
+**Creating sf DataFrames: Joining variables such as precipitation and incidence with geometry data for plotting with ggplot2**
+
+```{r}
+library(dplyr)
+
+colnames(Population)[2]="Districts_names"
+Population
+
+colnames(Precipitation)[2]="Districts_names"
+
+# geo_data contains the geometry data from the shp. data and longtitude and Latitude from centroids and these dataframes are combined over the "Districts_names columb
+geo_data <- left_join(x = centroids, y = Thailand_Shape, by = c("Districts_names"))
+# create an sf object for plotting
+geo_data <- sf::st_as_sf(geo_data)
+class(geo_data)
+
+#Geodata + Population Dataframe
+geo_data_pop <- left_join(x= Population, y = geo_data, by = c("Districts_names"))
+#Turn into sf type
+geo_data_pop_sf <- st_as_sf(geo_data_pop)
+#check class
+class(geo_data_pop_sf)
+
+#Geodata + Precipitation Dataframe
+geo_data_prec <- left_join(x = Precipitation[, -c(3, 4)], y = geo_data, by = c("Districts_names"))
+#Turn into sf type
+geo_data_prec_sf <- st_as_sf(geo_data_prec)
+
+#geo_data_prec + Incidence Dataframe
+geo_data_prec_incidence <- left_join(x = lag_Incidence_combined, y = geo_data_prec, by = c("Districts_names"))
+colnames(geo_data_prec_incidence)
+geo_data_prec_incidence_sf <- st_as_sf(geo_data_prec_incidence)
+
+#Longtitude and Latitude "," to "." and turn into double datatyp
+geo_data_prec_incidence_sf$Longtitude <- gsub(",", ".", geo_data_prec_incidence_sf$Longtitude)
+geo_data_prec_incidence_sf$Latitude <- gsub(",", ".", geo_data_prec_incidence_sf$Latitude)
+
+geo_data_prec_incidence_sf <- geo_data_prec_incidence_sf %>% 
+  mutate(Longtitude = as.double(Longtitude))
+
+geo_data_prec_incidence_sf <- geo_data_prec_incidence_sf %>% 
+  mutate(Latitude = as.double(Latitude))
+
+#Check Class
+class(geo_data_prec_incidence_sf$Longtitude)
+
+#Precipitation and Incidence from 2006-2020 in 5 year Intervals + geo_data Dataframe
+geo_data_prec_incidence_yearframe <- left_join(x = Prec_Inc_06_20, y = geo_data, by = c("Districts_names"))
+geo_data_prec_incidence_yearframe_sf <- st_as_sf(geo_data_prec_incidence_yearframe)
+
+#Longtitude and Latitude "," to "." and turn into double datatyp
+
+geo_data_prec_incidence_yearframe_sf$Longtitude <- gsub(",", ".", geo_data_prec_incidence_sf$Longtitude)
+geo_data_prec_incidence_yearframe_sf$Latitude <- gsub(",", ".", geo_data_prec_incidence_sf$Latitude)
+
+geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
+  mutate(Longtitude = as.double(Longtitude))
+
+geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
+  mutate(Latitude = as.double(Latitude))
+
+#Turn Inidence 06-20 in 5 year Intervals into Numeric Data
+geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
+mutate(`Inc 06-10` = as.double(`Inc 06-10`))
+
+geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
+mutate(`Inc 11-15` = as.double(`Inc 11-15`))
+
+geo_data_prec_incidence_yearframe_sf <- geo_data_prec_incidence_yearframe_sf %>% 
+mutate(`Inc 16-20` = as.double(`Inc 16-20`))
+
+class(geo_data_prec_incidence_yearframe_sf$`Inc 16-20`)
+
+#Incidence_seasons + geo_data
+#Incidence normalised for the seasons from 2006 to 2020 
+geo_data_seasons_incidence <- left_join(x = Incidence_seasons, y = geo_data, by = c("Districts_names"))
+
+#geo_data_seasons_incidence + precipitation
+#Precipitation normalised for the seasons from 2006 to 2020 
+geo_data_seasons_incidence_precipitation <- left_join(x = Precipitation_seasons, y = geo_data_seasons_incidence, by = c("Districts_names"))
+
+#Turn into sf datatyp
+geo_data_seasons_incidence_precipitation_sf <- st_as_sf(geo_data_seasons_incidence_precipitation)
+
+#Longtitude and Latitude "," to "." and turn into double datatyp
+geo_data_seasons_incidence_precipitation_sf$Longtitude <- gsub(",", ".", geo_data_seasons_incidence_precipitation_sf$Longtitude)
+geo_data_seasons_incidence_precipitation_sf$Latitude <- gsub(",", ".", geo_data_seasons_incidence_precipitation_sf$Latitude)
+
+geo_data_seasons_incidence_precipitation_sf <- geo_data_seasons_incidence_precipitation_sf %>% 
+  mutate(Longtitude = as.double(Longtitude))
+
+geo_data_seasons_incidence_precipitation_sf <- geo_data_seasons_incidence_precipitation_sf %>% 
+  mutate(Latitude = as.double(Latitude))
+
+#geo_data + Correlation
+geo_data_correlation <- left_join(x= correlation_map, y = geo_data, by = c("Districts_names"))
+#Longtitude and Latitude "," to "." and turn into double datatyp
+geo_data_correlation $Longtitude <- gsub(",", ".", geo_data_correlation $Longtitude)
+geo_data_correlation $Latitude <- gsub(",", ".", geo_data_correlation $Latitude)
+
+geo_data_correlation <- geo_data_correlation  %>% 
+  mutate(Longtitude = as.double(Longtitude))
+
+geo_data_correlation  <- geo_data_correlation  %>% 
+  mutate(Latitude = as.double(Latitude))
+
+#Turn into sf datatyp
+geo_data_correlation_sf <- st_as_sf(geo_data_correlation)
+```
+
+**Temporal spacial maps**
+
+The following explanation provides a detailed overview of the code responsible for generating a collection of temporal spatial maps using the **`ggplot2`** package in R. The step-by-step breakdown illustrates the code's workflow and purpose. The sf DataFrames used in geom_sf(), geom_point() and any aesthetic/label functions are swapped out depending on the desired plot. The DataFrames geo_data_correlation_sf, geo_data_prec_incidence_sf, geo_data_prec_incidence_yearframe_sf, geo_data_seasons_incidence_precipitation_sf and geo_data_seasons_incidence_precipitation_correlation_sf were used to create different temporal spacial maps.
+
+```{r}
+library(ggplot2)
+library(viridis)
+library(sf)
+
+#Two vectors are defined: years2006_2020_prec and years2006_2020_incidence containing the columns that the for loop will iterate over.
+years2006_2020_prec <- c("Prec 06-10", "Prec 11-15", "Prec 16-20")
+years2006_2020_incidence <- c("Inc 06-10", "Inc 11-15", "Inc 16-20")
+
+#The code enters a nested loop to iterate over combinations of precipitation and incidence time frames.
+for (yearframe_prec in years2006_2020_prec) {
+  for (yearframe_incidence in years2006_2020_incidence) {
+#Within the loop, a sf dataframe containing the precipitation, incidence, latitude, longtitude, district names and geometry data named prec_incidence_plot is initialized.
+    prec_incidence_plot <- ggplot() +
+#Spatial data is added to the plot using the geom_sf() function, mapping the fill aesthetic to the precipitation variable for the current time frame
+      geom_sf(data = geo_data_prec_incidence_yearframe_sf, aes(fill = !!as.name(yearframe_prec))) +
+#The main title and subtitle of the plot are set using the ggtitle() function.
+      ggtitle(label = yearframe_incidence, subtitle = yearframe_prec) +
+#Point data is added to the plot using the geom_point() function, mapping longitude and latitude to the x and y aesthetics, and using the incidence variable for size and color. "shape" = 21 creates hollow dots. "alpha" sets the transparency of the dots. 
+      geom_point(data = geo_data_prec_incidence_yearframe_sf, aes(x = Longtitude, y = Latitude, size = !!as.name(yearframe_incidence), color = !!as.name(years2006_2020_incidence)), shape = 21, alpha = 1) +
+#breaks for the point size legend are set
+      scale_size_continuous(breaks = c(500,1000,1500)) +
+#x and y axis labels are set
+      labs(x = "Longitude", y = "Latitude") +
+#The geom_point layer is designed with scale_color_viridis: the "plasma" colour scheme is chosen to display incidence, the legend title is set to "Incidence"
+      scale_color_viridis(option = "plasma", direction = -1, name = "Incidence") +
+#The geom_sf layer is designed with scale_fill_viridis: the "plasma" colour scheme is chosen to display precipitation, the legend title is set to "Rainfall "
+      scale_fill_viridis(option = "plasma", direction = -1, name = "Precipitation")+ 
+#geom_sf_text adds labels to the map. In this case it labels each district by the list of Districts_names
+      geom_sf_text(data = geo_data_prec_incidence_yearframe_sf, aes(label = Districts_names), size = 1, hjust = 1) 
+#ggsave saves each plot as a png. The coord_sf() function zooms into a certain area and save that cutout
+    ggsave("Example Plot.png", plot = prec_incidence_plot + coord_sf(xlim = c(99, 101.7), ylim = c(12, 15)))
+#the print() function prints each plot separately. 
+    print(prec_incidence_plot)
+  }
+}
+```
+
+**Examples of temporal spacial map plots**
+
+```{r}
+#Northern Region of District highlighted on the map. Same process for other regions
+Bangkok_ChangRai_Label <- filter(geo_data,
+                         Districts_names %in% c("Chiang Mai", "Chiang Rai", "Lampang", "Lamphun", "Mae Hong Son", "Nan", "Phayao", "Phrae", "Uttaradit"))
+
+Thailand_provinces_Specific <- ggplot() +
+  geom_sf(data = geo_data,
+          col = NA) +
+  geom_sf(data = Bangkok_ChangRai_Label,
+          aes(linetype = Districts_names,
+              fill = Districts_names)) +
+  scale_fill_brewer(palette = "Dark3") +
+  labs(caption = "Caption",fill = "Northern Region",linetype = "Northern Region",x = "Longitude",y = "Latitude") + theme_bw()
+
+Thailand_provinces_Specific
+```
+
+```{r}
+#Highlight all regions on map
+
+#Define the Regions
+geo_data$District_Group <- ifelse(geo_data$Districts_names %in% c("Chiang Mai", "Chiang Rai", "Lampang", "Lamphun", "Mae Hong Son", "Nan", "Phayao", "Phrae", "Uttaradit"), "Northern Provinces",
+                                  ifelse(geo_data$Districts_names %in% c("Amnat Charoen", "Bueng Kan", "Buri Ram", "Chaiyaphum", "Kalasin", "Khon Kaen", "Loei", "Maha Sarakham", "Mukdahan", "Nakhon Phanom", "Nakhon Ratchasima", "Nong Bua Lam Phu", "Nong Khai", "Roi Et", "Sakon Nakhon", "Si Sa Ket", "Surin", "Ubon Ratchathani", "Udon Thani", "Yasothon"), "North-Eastern Provinces",
+                                         ifelse(geo_data$Districts_names %in% c("Chumphon", "Krabi", "Nakhon Si Thammarat", "Narathiwat", "Pattani", "Phangnga", "Phatthalung", "Phuket", "Ranong", "Satun", "Songkhla", "Surat Thani", "Trang", "Yala"), "Southern Provinces",
+                                                "Central Provinces")))
+
+# Create a ggplot object and plot the sf data
+my_plot <- ggplot() +
+  geom_sf(data = geo_data,aes(linetype = District_Group, fill = District_Group)) + scale_fill_brewer (palette = "Dark2") + theme_bw()
+my_plot
+```
+
+```{r}
+#Save the population map in the southern central region for 2014 and 2020
+library(ggplot2)
+library(viridis)
+
+years <- c("2014","2020")
+
+for (year in years) {
+  pop_plot <- ggplot() +
+    geom_sf(data = geo_data_pop_sf, aes(fill = !!as.name(year)), alpha = 0.95) +
+    ggtitle(label = "Population Data", subtitle = year) +
+    labs(x = "Latitude", y = "Longitude") +
+    scale_fill_viridis(option = "plasma", direction = -1) +
+    geom_sf_text(data = geo_data_pop_sf, aes(label = Districts_names), size = 3, hjust = 1)
+    ggsave("Population_Zoom_2014.png", plot = pop_plot + coord_sf(xlim = c(99, 101.7), ylim = c(12, 15)))
+}
+
+```
+
+```{r}
+#Example of how a for loop is iterated for the precipitation for each month in 2020. Code provides 12 separated plots.
+
+library(ggplot2)
+library(viridis)
+
+Month2020 <- c("2020.01.", "2020.02.", "2020.03.", "2020.04.", "2020.05.", "2020.06.", "2020.07.", "2020.08.", "2020.09.", "2020.10.", "2020.11.", "2020.12.")
+
+for (Month in Month2020) {
+  prec_plot <- ggplot() +
+    geom_sf(data = geo_data_prec_sf, aes(fill = !!as.name(Month)), alpha = 0.95) +
+    ggtitle(label = "Precipitation Data", subtitle = Month) +
+    labs(x = "Latitude", y = "Longitude") +
+    scale_fill_viridis(option = "plasma", direction = -1, limits= range(0:700), name = "Rainfall [mm]") +
+    geom_sf_text(data = geo_data_prec_sf, aes(label = Districts_names), size = 1, hjust = 1)
+  print(prec_plot)
+}
+```
+
+```{r}
+#Precipitation during the north east monsoon season compared to the incidence during the same period
+library(ggplot2)
+library(viridis)
+library(sf)
+
+    prec_season_plot <- ggplot() +
+      geom_sf(data = geo_data_seasons_incidence_precipitation_sf, aes(fill = P_NovJan)) +
+      ggtitle(label = "NorthEast Monsoon", subtitle = "November-January") +
+      geom_point(data = geo_data_seasons_incidence_precipitation_sf, aes(x = Longtitude, y = Latitude, size = I_NovJan, color = I_NovJan))+
+      scale_size_continuous(breaks = c(5,10,20,40)) +
+      labs(x = "Longitude", y = "Latitude") +
+      scale_color_viridis(option = "plasma", direction = -1, name = "Incidence", labels = scales::comma, limits = c(0,32)) +
+      scale_fill_viridis(option = "plasma", direction = -1, name = "Precipitation [mm]", limits = c(0, 420))
+      geom_sf_text(data = geo_data_prec_incidence_yearframe_sf, aes(label = Districts_names), size = 1, hjust = 1) 
+    ggsave("Precipitation_Zoom_NovJan.png", plot = prec_season_plot + coord_sf(xlim = c(98, 102.2), ylim = c(5.6, 12)))
+    print(prec_season_plot)
+```
+
+```{r}
+#Correlation between incidence and precipitation between 2006-2020
+library(ggplot2)
+library(viridis)
+library(sf)
+
+    correlation_season_plot <- ggplot() +
+      geom_sf(data = geo_data_correlation_sf, aes(fill = correlation)) +
+      ggtitle(label = "Correlation", subtitle = "2006-2020") +
+      labs(x = "Longitude", y = "Latitude") +
+      scale_fill_viridis(option = "Inferno", direction = -1, name = "Correlation", limits = c(0.1, 0.8))+
+      geom_sf_text(data = geo_data_prec_incidence_yearframe_sf, aes(label = Districts_names), size = 3, hjust = 1) 
+      ggsave("Correlation_map_.png", plot = prec_season_plot1 + coord_sf(xlim = c(98.7, 102.2), ylim = c(11.8, 15.2)))
+    print(correlation_season_plot)
+```
