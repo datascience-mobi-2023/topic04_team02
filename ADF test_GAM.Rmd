@@ -1141,12 +1141,8 @@ AIC(linear_model0, smooth_model0)
 
 ## prediction from fitted GAM model and spatial plot
 
-<<<<<<< HEAD
 ```{r}
-t2m_precipitation <- stack("Data\pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
-=======
 t2m_precipitation <- stack("Data/pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
->>>>>>> 124fcd6020b6c3864096406c1fcd5a46ef84f1e5
 names(t2m_precipitation) <- "precipitation"
 t2m_precipitation
 
@@ -1202,12 +1198,8 @@ AIC(linear_model1, smooth_model1)
 
 ## prediction from fitted GAM model and spatial plot
 
-<<<<<<< HEAD
 ```{r}
-t2m_precipitation <- stack("Data\pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
-=======
 t2m_precipitation <- stack("Data/pr_SEA22_MPI_rcp85_2021-2040_grid_daymean_monmean_swm_timmean_thai.nc")
->>>>>>> 124fcd6020b6c3864096406c1fcd5a46ef84f1e5
 names(t2m_precipitation) <- "precipitation"
 t2m_precipitation
 
