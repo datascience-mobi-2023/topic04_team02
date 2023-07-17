@@ -4,6 +4,7 @@
 
 The Report is named **"Topic 4_Team 2_Report.pdf"**
 
+Instructions:
 1.  Run the **COMPLETE** code of **"Data Cleaning.Rmd"** first **!!!**
     -   Note that without running this code, the other markdowns will not work
 2.  Run **"Heatmaps, Plots, Correlation.Rmd"** next
